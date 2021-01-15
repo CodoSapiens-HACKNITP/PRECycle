@@ -1,0 +1,19 @@
+{
+  "name": "precycle",
+  "version": "1.0.0",
+  "description": "'",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodoSapiens-HACKNITP/PRECycle.git"
+  },
+  "author": "CodoSapiens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodoSapiens-HACKNITP/PRECycle/issues"
+  },
+  "homepage": "https://github.com/CodoSapiens-HACKNITP/PRECycle#readme"
+}
