@@ -9,7 +9,31 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "aos": "^3.0.0-beta.6",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "bootstrap-social": "^5.1.1",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "moment": "^2.29.1",
+    
+    "react-bootstrap": "^1.4.3",
+    
+    "react-icons": "^4.1.0",
+    "react-popper": "^2.2.4",
+    "react-radio-buttons": "^1.2.2",
+    "react-redux": "^7.2.2",
+    "react-responsive-carousel": "^3.2.11",
+    "react-router-dom": "^5.2.0",
+    
+    "react-select": "^3.1.1",
+    "react-transition-group": "^4.4.1",
+    "reactstrap": "^8.8.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "thunk": "0.0.1",
   },
   "scripts": {
     "start": "react-scripts start",
