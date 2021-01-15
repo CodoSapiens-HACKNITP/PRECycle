@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# PRECycle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Get rid of the recyclable waste!!
 
-## Available Scripts
+> WebApp for Recyclable Waste Management.
 
-In the project directory, you can run:
+### Overview
 
-### `yarn start`
+-PRECycle is a service which helps you to sell your old and throw away stuff in an organized manner.
+It is as easy as calling or dropping us a note and.. Kaboom! You get rid of your stuff just like that!
+-The site would be having three portal for:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1.**The local scrap dealers**.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2.**The local riders or ragpickers**.
 
-### `yarn test`
+3.**The civilians willing to sell the waste**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Goals:
 
-### `yarn build`
+Our project aims at reducing the gap between the people who are willing to recycle the waste and the people looking for customers to buy it from.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- It will eliminate any kind of third party involvement thereby ensuring that the total profit that the worker deserves goes to the worker only.
+- It will help in promoting the local services available at a particular time in a particular location.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tech Stacks Required:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Website(Mern Stack)
+- Future needs:
+  - Machine learning to suggest testimonials and filter out NSFW content.
+  - We can add realtime mapping of the riders to the sellers and the vendors.
+  - Cloud to deploy the website.
 
-### `yarn eject`
+### Limitations (if any):
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The fact that local ragpickers still are not comfortable with using apps and websites.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Setting up project in your local machine:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+After cloning project:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. npm run dev
+2. Application Started working on port 3000
