@@ -9,10 +9,24 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route />
-          <Route exact path="/signup/rider" component={() => <SignupRider />} />
+              {/*}  <Route
+                  exact
+                  path="/signup/seller"
+                  component={() => <Register />}
+                /> */}
+                <Route
+                  exact
+                  path="/signup/rider"
+                  component={() => <SignupRider />}
+                />  
+              {/*  <Route
+                  exact
+                  path="/signup/vendor"
+                  component={() => <SignupVendor />}
+              />  */}
           <Redirect to="/home" />
         </Switch>
+        
       </div>
     </BrowserRouter>
   );
