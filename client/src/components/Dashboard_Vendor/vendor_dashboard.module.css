@@ -1,97 +1,95 @@
-.vendor_dashboard{
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 50px 25px 50px 25px;
+.vendor_dashboard {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px 25px 50px 25px;
 }
 
-.greet_vendor{
-    border: none;
-    border-radius: 25px 25px 0px 0px;
-    position: relative;    
-    background-image: linear-gradient(to right, #fde601, #71caf6 );
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    height: 100%;
+.greet_vendor {
+  border: none;
+  border-radius: 25px 25px 0px 0px;
+  position: relative;
+  background-image: linear-gradient(to right, #003366, #1a1a1a);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.vendor_img{
-    border-radius: 50%;
-    width: 10%; 
-    margin-left: 88%;
-    margin-top: 1%;
+.vendor_img {
+  border-radius: 50%;
+  width: 10%;
+  margin-left: 88%;
+  margin-top: 1%;
 }
 
-.greeting_vendor{  
-    text-align: right;
-    margin-right: 2%;
-    color: antiquewhite;
+.greeting_vendor {
+  text-align: right;
+  margin-right: 2%;
+  color: antiquewhite;
 }
 
-.vendor_heading{
-    color: white;
-    background-color: #00ae7d;
-    text-align: center;
-    border: 4px solid white;
+.vendor_heading {
+  color: white;
+  background-color: #0f1f3d;
+  text-align: center;
+  border: 4px solid white;
 }
 
-.card_orders{
-    border: none;
-    border-radius: 25px;
-    padding: 10px;    
+.card_orders {
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
 }
 
-.card_ac:hover{ 
-    transform: scale(0.95);
+.card_ac:hover {
+  transform: scale(0.95);
 }
 
-.card_u:hover{ 
-    transform: scale(0.95);
+.card_u:hover {
+  transform: scale(0.95);
 }
 
-.card_ac{
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-image: linear-gradient(to bottom right ,#fff586, #ffffff);
-    width: 95%;
-    margin: 10px auto 10px auto;
+.card_ac {
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(to bottom right, #5c85d6, #adc2eb);
+  width: 95%;
+  margin: 10px auto 10px auto;
 }
 
-.card_u{
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-image: linear-gradient(to bottom right, #febf63, #ffffff);    
-    width: 95%;
-    margin: 10px auto 10px auto;
+.card_u {
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(to bottom right, #008891, #70af85);
+  width: 95%;
+  margin: 10px auto 10px auto;
 }
 
-.vendor_accept{
-    margin-left: 20%;    
+.vendor_accept {
+  margin-left: 20%;
 }
 
-.vendor_decline{
-    margin-left: 20%;    
+.vendor_decline {
+  margin-left: 20%;
 }
 
-.vendor_update_button{
-    margin-left: 10%;
+.vendor_update_button {
+  margin-left: 10%;
 }
 
-.vendor_invoice_button{
-    margin-left: 10%;
-   
+.vendor_invoice_button {
+  margin-left: 10%;
 }
 
-.vendor_order_hist_button{
-    display: flex;   
-    justify-content: center;
-    padding-bottom: 10px ;    
-    padding-top: 10px;
+.vendor_order_hist_button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-.td:last-child{
-    color: blue;
-  }
-
+.td:last-child {
+  color: blue;
+}
