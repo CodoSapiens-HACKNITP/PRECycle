@@ -184,7 +184,7 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     // value={phone}
                     // onChange={(e) => onChange(e)}
                   />
-                  <label for="Contact">Phone No.</label>
+                  <label for="Contact">Phone No.<Req /></label>
                 </div>
                 <div class="form-floating mb-3">
                   <input

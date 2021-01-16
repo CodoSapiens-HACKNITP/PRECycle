@@ -30,6 +30,16 @@ function App() {
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Route
             exact
+            path="/dashboard/seller"
+            component={() => <SellerDashboard1 />}
+          />
+          <Route
+            exact
+            path="/sellerDashboardProgress"
+            component={() => <SellerDashboard2 />}
+          />
+          <Route
+            exact
             path="/signup/vendor"
             component={() => <SignupVendor />}
           />
@@ -46,6 +56,7 @@ function App() {
         <SellerDashboard2 />
         <RiderDashboard />
         <VendorDashboard />
+
         <Footer />
       </div>
     </BrowserRouter>
