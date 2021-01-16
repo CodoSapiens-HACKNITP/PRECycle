@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./signup-rider.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
 // import PropTypes from "prop-types";

@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
-import PropTypes from "prop-types";
-
+//import { connect } from "react-redux";
+//import PropTypes from "prop-types";
+//import { logout } from "../../actions/auth";
 import {
   Navbar,
   NavbarBrand,
@@ -63,7 +64,7 @@ const Display = ({ onClick }) => {
   );
 };
 
-const Header = ({ logout, auth }) => {
+const Header = (/* logout, auth */) => {
   const [formData, setFormData] = useState({
     isNavOpen: false,
     isModalOpen: false,
@@ -102,24 +103,25 @@ const Header = ({ logout, auth }) => {
               </NavItem>
               <NavItem>
                 <UncontrolledDropdown nav inNavbar>
-                  
+              {/* {auth.isAuthenticated ? ( */}
                     <DropdownToggle nav caret>
                       <span className="fa fa-list fa-lg"></span> Menu
                     </DropdownToggle>
-                  
+                 {/*) : ( */}
                     <span></span>
-                  
-                  
+                 {/* )} */}
+                {/*  {auth.isAuthenticated ? ( */}
                     <DropdownMenu className="DropdownMenu" right>
-                      
+                     {/*} {auth.typeofuser === "seller" ? (  */}
                         <DropdownItem className="DropdownMenu">
                           <NavLink className="nav-link" to="/dashboard/seller">
                             Seller Dashboard
                           </NavLink>
                         </DropdownItem>
-                      
+                   {/*   ) : ( */}
                         <span></span>
-                    
+                    {/*  )} */}
+                   {/*   {auth.typeofuser === "seller" ? (  */}
                         <DropdownItem className="DropdownMenu">
                           <NavLink
                             className="nav-link"
@@ -128,40 +130,41 @@ const Header = ({ logout, auth }) => {
                             Seller Dashboard (Order Status)
                           </NavLink>
                         </DropdownItem>
-                      
+                  {/*    ) : ( */}
                         <span></span>
-                      
+                  {/*    )} */}
+                   {/*   {auth.typeofuser === "vendor" ? ( */}
                         <DropdownItem className="DropdownMenu">
                           <NavLink className="nav-link" to="/dashboard/vendor">
                             Vendor Dashboard
                           </NavLink>
                         </DropdownItem>
-                      
+                 {/*}     ) : ( */}
                         <span></span>
-                     
-                      
+                 {/*}     )}  */}
+                  {/*    {auth.typeofuser === "rider" ? (  */}
                         <DropdownItem className="DropdownMenu">
                           <NavLink className="nav-link" to="/dashboard/rider">
                             Rider Dashboard
                           </NavLink>
                         </DropdownItem>
-                      
+                   {/*   ) : (  */}
                         <span></span>
-                      
-                      
+                   {/*   )}  */}  
+                  {/*    {auth.typeofuser === "seller" ? (  */}
                         <DropdownItem className="DropdownMenu">
                           <DropdownItem divider />
                           <NavLink className="nav-link" to="/requestPickup">
                             Request pickup
                           </NavLink>
                         </DropdownItem>
-                      
+                   {/*   ) : (  */}
                         <span></span>
-                     
+                   {/*   )}  */}
                     </DropdownMenu>
-                  
+              {/*    ) : (   */}
                     <span></span>
-                  
+              {/*    )}   */}
                 </UncontrolledDropdown>
               </NavItem>
               <NavItem>
@@ -171,17 +174,18 @@ const Header = ({ logout, auth }) => {
               </NavItem>
               {/* This Section has to be like depending upon the authenticated state of the user */}
 
-              
+          {/*  {auth.isAuthenticated ? (     */}
                 <Fragment>
                   <NavItem>
-                    <NavLink to="/login" onClick={logout}>
+                    <NavLink to="/login" >
+                   {/*} <NavLink to="/login" onClick={logout}>  */}
                       <Button outline>
                         <span className="fa fa-sign-in fa-lg"></span> Logout
                       </Button>
                     </NavLink>
                   </NavItem>{" "}
                 </Fragment>
-              
+           {/*}   ) : (   */}
                 <Fragment>
                   <NavItem>
                     <NavLink to="/login">
@@ -196,7 +200,7 @@ const Header = ({ logout, auth }) => {
                     </Button>
                   </NavItem>
                 </Fragment>
-             
+           {/*   )}  */}
             </Nav>
           </Collapse>
         </div>
@@ -213,10 +217,16 @@ const Header = ({ logout, auth }) => {
   );
 };
 
-Header.propTypes = {
+/*Header.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  user: state.user,
+});
+*/
+//export default connect(mapStateToProps, { logout })(Header);
 export default (Header);
