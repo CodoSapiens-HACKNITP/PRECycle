@@ -1,6 +1,7 @@
 import React /* useState */ from "react";
 import "./signup-seller.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 // import { Redirect } from "react-router-dom";
 // import { connect } from "react-redux";
 // import { setAlert } from "../../actions/alert";
@@ -249,10 +250,7 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                   <input type="checkbox" id="TnC" required />
                   <label for="TnC">
                     {" "}
-                    I agree to the{" "}
-                    <a href=" " alt="terms and conditions" className="tnc">
-                      terms and conditions and the privacy policy
-                    </a>
+                    I agree to the <Link to="/tnc" target="_blank">terms and conditions and the privacy policy</Link>
                   </label>
                 </div>
                 <input

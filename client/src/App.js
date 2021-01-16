@@ -8,6 +8,7 @@ import { Register } from "./components/signup-seller/SignupSeller";
 import Footer from "./components/Footer/FooterComponent";
 import Home from "./components/Home/HomeComponent";
 import Login from "./components/Login/LoginComponent";
+import { TnC } from "./components/TnC/TnC";
 
 import { SignupVendor } from "./components/Vendor_SignUp/signup-vendor";
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" component={() => <Login />} />
           <Route exact path="/contactus" component={() => <Contact />} />
           <Route exact path="/aboutus" component={() => <About />} />
+          <Route exact path="/tnc" component={() => <TnC />} />
           <Route exact path="/signup/seller" component={() => <Register />} />
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Route

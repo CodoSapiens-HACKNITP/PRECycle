@@ -1,0 +1,41 @@
+.container {
+  background-image: linear-gradient(to right, #008891, black);
+  padding: 2% 0;
+}
+
+.content {
+  border: none;
+  width: 60%;
+  margin: 10px auto;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: aliceblue;
+}
+
+.paragraph {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin: 50px auto;
+}
+
+.division {
+  width: 90%;
+  border-top: 2px solid rgb(139, 137, 137);
+  margin: 0 auto;
+}
+
+.heading {
+  margin-top: 1%;
+}
+
+@media (max-width: 800px) {
+  .content {
+    width: 90%;
+  }
+}

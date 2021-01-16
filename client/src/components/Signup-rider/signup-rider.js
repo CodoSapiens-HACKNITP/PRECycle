@@ -7,6 +7,7 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 // import { setAlert } from "../../actions/alert";
 // import { registerRider } from "../../actions/auth";
 import { Input } from "reactstrap";
+import { Link } from 'react-router-dom'
 
 export const SignupRider = (/*{ setAlert, registerRider }*/) => {
   // const [formData, setFormData] = useState({
@@ -418,10 +419,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   <input type="checkbox" id="TnC" required />
                   <label for="TnC">
                     {" "}
-                    I agree to the{" "}
-                    <a href=" " alt="Terms and conditions" className="tnc">
-                      terms and conditions and the privacy policy
-                    </a>
+                    I agree to the <Link to="/tnc" target="_blank">terms and conditions and the privacy policy</Link>
                   </label>
                 </div>
                 <div className="signup-button">
