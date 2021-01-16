@@ -1,3 +1,4 @@
+
 .row-header{
   margin:0px auto;
   padding:0px auto;
@@ -11,14 +12,14 @@
 }
 
 .footer{
-  background-color: #D1C4E9;
+  background-color: #b3b3ff;
   margin:0px auto;
   padding: 20px 0px 20px 0px;
 }
-.jumbotron {
+.Jumbotron{
   padding:70px 30px 70px 30px;
   margin:0px auto;
-  background: #9575CD ;
+  background: #d6beff ;
   color:floralwhite;
 }
 
@@ -28,8 +29,54 @@ address{
   color:#0f0f0f;
 }
 
-.navbar-dark {
-  background-color: #512DA8;
+.navbar-dark{
+  background-color: rgb(0,0,0,0.85);
+}
+
+input[type="radio"]{
+  display:none;
+}
+
+.star{
+  cursor: pointer;
+}
+
+.block {    
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+.headings {
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.box {
+  background-color: #F0F0F0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  border-radius: 0 0px 10px 10px;
+  border: 1px solid #F0F0F0;
+  transition: transform .4s cubic-bezier(0.25, 0.45, 0.45, 0.95)
+}
+
+.box-image img {
+  width: 100%;
+}
+
+.box-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 30px;
+}
+
+.box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 16px rgba(42, 50, 73, 0.16);
 }
 
 .page-enter {
@@ -53,3 +100,153 @@ address{
   transform: translateX(100%);
   transition: all 300ms ease-out;
 }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Joti One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jotione/v9/Z9XVDmdJQAmWm9TwabTX6OymlLGDzCs.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Joti One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jotione/v9/Z9XVDmdJQAmWm9TwabTZ6OymlLGD.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.carousel-root {
+  width: 64% !important;
+  margin: auto !important;
+  margin-top: 3% !important;
+}
+
+.carousel .slide {
+  background: #fff !important;
+  color: black;
+  height: 100%;
+}
+
+.carousel .slide img {
+  width: 139px !important;
+  border-radius: 50%;
+}
+
+.myCarousel {
+  background: #fafafa;
+  margin-top: -6%;
+  width: 54%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 6%;
+  padding-bottom: 8%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border: 1px solid #ddd;
+  height: 286px;
+}
+
+.carousel .control-dots {
+  padding-left: 5px !important;
+  outline: 0;
+  bottom: 5% !important;
+}
+
+.myCarousel h3 {
+  color: #222;
+  font-weight: 100;
+  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+
+.myCarousel h4 {
+  text-transform: uppercase;
+  margin-top: 0;
+  padding-top: 0;
+  font-weight: 500;
+  color: #787878;
+  font-size: 14px;
+}
+
+.myCarousel p {
+  font-weight: 100 !important;
+  line-height: 29px !important;
+  color: #222;
+  font-size: 15px;
+  font-family: sans-serif;
+  max-height: 67px;
+}
+
+.myCarousel p:before {
+  content: "“";
+  color: #aaa;
+  font-size: 26px;
+  font-family: monospace;
+  font-weight: 100;
+}
+
+.myCarousel p:after {
+  content: "”";
+  color: #aaa;
+  font-size: 26px;
+  font-family: monospace;
+  font-weight: 100;
+  line-height: 0;
+}
+
+.carousel .control-dots .dot {
+  box-shadow: none !important;
+  background: #454545 !important;
+  outline: 0;
+}
+
+.carousel.carousel-slider .control-arrow {
+  background: #000 !important;
+  height: 50px !important;
+  position: absolute;
+  top: 35% !important;
+}
+
+
+@media only screen and (max-width: 934px) {
+  .carousel-root {
+    outline: 0;
+    width: 93% !important;
+    margin: auto !important;
+  }
+
+  .carousel.carousel-slider .control-arrow {
+    display: none !important;
+  }
+  .myCarousel {
+    background: #fafafa;
+    margin-top: -9%;
+    width: 88%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 8%;
+    padding-bottom: 12.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid #ddd;
+    height: 269px;
+  }
+
+  .carousel .slide img {
+    width: 24% !important;
+    border-radius: 50%;
+  }
+}
+
+.DropdownMenu {
+    background-color: rgb(0,0,0,0.65) !important;
+}
+
