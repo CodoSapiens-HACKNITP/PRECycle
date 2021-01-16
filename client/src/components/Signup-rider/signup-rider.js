@@ -1,6 +1,7 @@
 import React from "react";
 import "./signup-rider.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import { RadioGroup, RadioButton } from "react-radio-buttons";
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
 // import { Redirect } from "react-router-dom";
@@ -263,7 +264,16 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   {/* RADIO BUTTONS FOR GENDER */}
 
                   <div className="radios">
-                    <div class="form-check radio-items">
+                    <RadioGroup /*onChange={this.onChange}*/ horizontal>
+                      <RadioButton value="apple">Male</RadioButton>
+
+                      <RadioButton value="orange">Female</RadioButton>
+
+                      <RadioButton value="melon">Other</RadioButton>
+
+                      {/* <ReversedRadioButton value="melon">Melon</ReversedRadioButton> */}
+                    </RadioGroup>
+                    {/* <div class="form-check radio-items">
                       <input
                         class="form-check-input"
                         type="radio"
@@ -294,8 +304,8 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       />
                       <label class="form-check-label" for="other">
                         Other
-                      </label>
-                    </div>
+                      </label> */}
+                    {/* </div> */}
                   </div>
                 </div>
                 <div className="reg-pin">
@@ -356,8 +366,18 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   </p>
 
                   {/* RADIO BUTTONS FOR THE SELECTION OF OPERATION RADIUS */}
+                  <div className="radios">
+                    <RadioGroup /*onChange={this.onChange}*/ horizontal>
+                      <RadioButton value="apple">2km</RadioButton>
+                      <RadioButton value="orange">5km</RadioButton>
+                      <RadioButton value="melon">10km</RadioButton>
+                      <RadioButton value="melon">15km</RadioButton>
 
-                  <div className="radios ">
+                      {/* <ReversedRadioButton value="melon">Melon</ReversedRadioButton> */}
+                    </RadioGroup>
+                  </div>
+
+                  {/* <div className="radios ">
                     <div class="form-check radio-items">
                       <input
                         class="form-check-input"
@@ -400,9 +420,9 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       />
                       <label class="form-check-label" for="15km">
                         15km
-                      </label>
-                    </div>
-                  </div>
+                      </label> */}
+                  {/* </div> */}
+                  {/* </div> */}
                 </div>
                 {/* UPLOAD YOUR PHOTO SECTION */}
                 <div class="mb-3">
