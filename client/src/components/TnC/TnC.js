@@ -6,7 +6,7 @@ export const TnC = () => {
     <div className={style.container}>
       <div className={style.content}>
         <center>
-          <h2 className={style.heading}><a id="TandC">Terms and Conditions</a></h2>
+          <h2 className={style.heading}>Terms and Conditions</h2>
         </center>
         <p className={style.paragraph}>
           <p>"PRECycle" is the brand name of the recyclable scrap pickup service promoted by SapiensWorks Private Limited. Any mention of either of the names in this document refer to the online recyclable scrap pickup service provided by SapiensWorks Private Limited.</p>
@@ -115,7 +115,7 @@ export const TnC = () => {
           <h2 className={style.heading}>Privacy Policy</h2>
         </center>
         <p className={style.paragraph}>
-          <p>This privacy policy requires that you agree to our <a href="#TandC">terms and conditions</a>.</p>
+          <p>This privacy policy requires that you agree to our terms and conditions.</p>
           <p>PRECycle’s sole aim is to make India free from recyclable waste materials via our sell scrap community for exchange of valuable currency. We understand the importance of personal information to be utilized and we take your privacy concerns very acutely and sincerely. Utilizing our website PRECycle, you agree to the rules and regulations outlined by us-</p>
           <p>We totally commit to your right to privacy and keeping your personal data protected. We also encourage our customers to read our policies to take a perfect observation of, how we deal with restricted and specialized data we collect and how we carry out the entire legal process with utter commitment.</p>
           <p>This policy does not have any significant bearing to the acts of third-party involvement that PRECycle does not possess or control, or to people that PRECycle does not utilize or oversee.</p>
