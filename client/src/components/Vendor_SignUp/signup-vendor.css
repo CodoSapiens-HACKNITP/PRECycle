@@ -1,0 +1,164 @@
+/* MAIN CONTAINER */
+.signup-vendor {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-region {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+}
+.division {
+  width: 90%;
+  border-top: 2px solid rgb(102, 100, 100);
+  margin: 20px 0 0;
+}
+
+/* WELCOME SECTION */
+.vendor-flex-left {
+  flex: 50%;
+  justify-content: center;
+  background-image: url("./bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  border-radius: 25px 0 0 25px;
+}
+
+/* .greeting {
+  background-image: url("./bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  position: relative;
+  margin: 0;
+} */
+
+.greet-text,
+.org-name {
+  text-align: center;
+  color: white;
+  background-color: rgba(224, 220, 210, 0.56);
+  /* font-size: 4rem; */
+}
+
+.greet-text {
+  width: fit-content;
+
+  font-size: 3rem;
+  margin: 40% auto 0;
+}
+
+.org-name {
+  font-family: "Montserrat", sans-serif;
+  width: fit-content;
+  font-size: 6rem;
+  font-weight: bolder;
+  margin: 20% auto 0;
+}
+
+/* SIGNUP USING GOOGLE SECTION */
+
+.vendor-flex-right {
+  flex: 50%;
+  margin: 0;
+  background-image: linear-gradient(to right, #008891, #70af85);
+  width: 100%;
+  border: none;
+  border-radius: 0 25px 25px 0;
+}
+
+.signup-area {
+  margin-left: 50px;
+}
+
+.signup-with {
+  margin-top: 10px;
+}
+
+.google-button {
+  margin: 10px 0;
+}
+
+.google-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+}
+
+.google-name {
+  display: inline;
+  font-size: 1.4rem;
+  color: white;
+  margin: 10px 0 10px 5px;
+}
+
+.or-division {
+  position: relative;
+  color: black;
+}
+
+.hr-1 {
+  position: absolute;
+  width: 35%;
+  left: 7.5%;
+  border-style: none;
+  border-color: rgb(46, 38, 38);
+}
+
+.hr-2 {
+  position: absolute;
+  width: 35%;
+  right: 12.5%;
+  border-style: none;
+  border-color: rgb(46, 38, 38);
+}
+
+.or-text {
+  position: absolute;
+  left: 45%;
+  color: rgb(37, 35, 35);
+}
+
+/* SIGNUP HERE SECTION */
+.signup {
+  position: relative;
+  margin: 8% 0 4%;
+  width: 70%;
+  color: black;
+}
+
+.signup-key {
+  margin-left: 75%;
+  margin-bottom: 5%;
+}
+
+@media (max-width: 800px) {
+  .vendor-flex-right {
+    flex: 100%;
+    border-radius: 25px;
+  }
+  .vendor-flex-left {
+    display: none;
+  }
+}
+
+.tnc {
+  color: rgb(37, 3, 3);
+  font-weight: bold;
+}
+
+.req {
+  color: red;
+  /* font-weight: bold; */
+}
