@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/tnc" component={() => <TnC />} />
           <Route exact path="/signup/seller" component={() => <Register />} />
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
+          <Route exact path="/dashboard/seller" component={() => <SellerDashboard1 />} />
           <Route
             exact
             path="/signup/vendor"
@@ -40,7 +41,7 @@ function App() {
           />
           <Redirect to="/home" />
         </Switch>
-        <SellerDashboard1 />
+       
         <Footer />
       </div>
     </BrowserRouter>
