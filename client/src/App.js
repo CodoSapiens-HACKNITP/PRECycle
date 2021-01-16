@@ -3,6 +3,7 @@ import Header from "./components/HeaderComponent/HeaderComponent";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { SignupRider } from "./components/Signup-rider/signup-rider";
 import { Register } from "./components/signup-seller/SignupSeller";
+import Footer from "./components/Footer/FooterComponent";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   />   */}
           <Redirect to="/home" />
         </Switch>
+        <Footer />
         
       </div>
     </BrowserRouter>
