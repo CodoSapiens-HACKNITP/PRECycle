@@ -68,6 +68,10 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
   // if (isAuthenticated) {
   //   return <Redirect to="/dashboard/rider" />;
   // }
+
+  function Req() {
+    return <span className="req">*</span>;
+  }
   return (
     <div className="signup-Rider">
       {/* GOOGLE FONTS */}
@@ -143,6 +147,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Name
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -158,6 +163,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Email address
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -173,6 +179,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Password
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -188,6 +195,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Confirm Password
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -202,6 +210,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Phone No.
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -216,6 +225,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Address
+                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -230,6 +240,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="floatingInput" className="floating-txt">
                     Aadhar No.
+                    <Req />
                   </label>
                 </div>
                 <div className="age-radio">
@@ -244,6 +255,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     />
                     <label for="floatingInput" className="floating-txt">
                       DOB
+                      <Req />
                     </label>
                   </div>
 
@@ -298,6 +310,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     />
                     <label for="pincode" className="floating-txt">
                       Landmark
+                      <Req />
                     </label>
                   </div>
                   <div class="form-floating mb-3  reg-pin-items2">
@@ -312,6 +325,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     />
                     <label for="pincode" className="floating-txt">
                       Pin Code
+                      <Req />
                     </label>
                   </div>
                 </div>
@@ -331,6 +345,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   />
                   <label for="txtBox" className="floating-txt">
                     Registration no. of vehicle(other than bicycle)
+                    <Req />
                   </label>
                 </div>
                 <div className="operation-radius">
@@ -403,7 +418,10 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   <input type="checkbox" id="TnC" required />
                   <label for="TnC">
                     {" "}
-                    I agree to the terms and conditions and the privacy policy
+                    I agree to the{" "}
+                    <a href=" " alt="Terms and conditions" className="tnc">
+                      terms and conditions and the privacy policy
+                    </a>
                   </label>
                 </div>
                 <div className="signup-button">
