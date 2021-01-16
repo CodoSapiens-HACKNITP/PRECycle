@@ -10,6 +10,7 @@ import Home from "./components/Home/HomeComponent";
 import Login from "./components/Login/LoginComponent";
 import { TnC } from "./components/TnC/TnC";
 import { SellerDashboard1 } from "./components/seller-dashboard1/seller-dashboard1";
+import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboard2";
 
 import { SignupVendor } from "./components/Vendor_SignUp/signup-vendor";
 
@@ -41,6 +42,7 @@ function App() {
           <Redirect to="/home" />
         </Switch>
         <SellerDashboard1 />
+        <SellerDashboard2 />
         <Footer />
       </div>
     </BrowserRouter>
