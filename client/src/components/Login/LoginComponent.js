@@ -33,8 +33,8 @@ const Login = ({login, isAuthenticated }) => {
     <div className="loginRounded">
       <div className={styles.parent_div}>
         <div className={styles.button_div}>
-          <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button> or
-          <button className={styles.facebook_btn}>SIGN IN WITH FACEBOOK</button>
+          <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button>
+          
         </div>
 
         <div className={styles.form_div}>
