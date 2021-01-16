@@ -62,14 +62,21 @@ function App() {
             exact
             path="/signup/vendor"
             component={() => <SignupVendor />}
+            
           />
+          <Route
+                  exact
+                  path="/dashboard/rider"
+                  component={() => <RiderDashboard />}
+                />
+           <Route
+                  exact
+                  path="/dashboard/vendor"
+                  component={() => <VendorDashboard />}
+                />     
           <Redirect to="/home" />
         </Switch>
-        <SellerDashboard1 />
-        <SellerDashboard2 />
-        <RiderDashboard />
-        <VendorDashboard />
-
+     
         <Footer />
       </div>
     </BrowserRouter>
