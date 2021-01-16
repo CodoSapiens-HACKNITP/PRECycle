@@ -15,6 +15,7 @@ import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboar
 import { RiderDashboard } from "./components/Dashboard_Rider/rider_dashboard";
 import { VendorDashboard } from "./components/Dashboard_Vendor/vendor_dashboard";
 import { SignupVendor } from "./components/Vendor_SignUp/signup-vendor";
+import  Faqs from "./components/Faqs/Faqs"; 
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -62,6 +63,11 @@ function App() {
             exact
             path="/signup/vendor"
             component={() => <SignupVendor />}
+          />
+          <Route
+            exact
+            path="/faqs"
+            component={() => <Faqs />}
           />
           <Redirect to="/home" />
         </Switch>
