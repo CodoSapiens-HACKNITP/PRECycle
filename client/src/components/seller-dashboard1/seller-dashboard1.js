@@ -56,7 +56,7 @@ export const SellerDashboard1 = (/*{ user, vendor }*/) => {
         {/* {vendor && vendor.length > 0 ? ( */}
         <div>
           <Link to="/requestPickup">
-            <Button variant="warning" className="request-to-pickup">
+            <Button variant="dark" className="request-to-pickup">
               <span className="request-text">Request To Pickup</span>
             </Button>
           </Link>{" "}
