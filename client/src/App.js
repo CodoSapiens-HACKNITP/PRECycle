@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/HeaderComponent/HeaderComponent";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { SignupRider } from "./components/Signup-rider/signup-rider";
+import { Register } from "./components/signup-seller/SignupSeller";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <Switch>
           <Route />
+          <Route exact path="/signup/seller" component={() => <Register />} />
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Redirect to="/home" />
         </Switch>
