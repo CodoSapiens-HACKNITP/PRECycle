@@ -112,7 +112,7 @@ export const VendorDashboard = () => {
         {" "}
         {/* CONTAINS ALLOTTED AND PENDING CARDS*/}
         <div class="row">
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-lg-6">
             <div className="upcoming">
               <div className={ VDstyles.vendor_heading }>
                 <h1>UPCOMING ORDERS</h1>
@@ -139,7 +139,7 @@ export const VendorDashboard = () => {
             </div>
           </div>
 
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-lg-6">
             <div className="accepted">
               <div className={ VDstyles.vendor_heading }>
                 <h1>ACCEPTED ORDERS</h1>
