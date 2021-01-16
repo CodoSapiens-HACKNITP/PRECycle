@@ -1,5 +1,7 @@
 import "./App.css";
 import Header from "./components/Header/HeaderComponent";
+import Contact from "./components/ContactUs/ContactComponent";
+import About from "./components/AboutUs/AboutComponent";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { SignupRider } from "./components/Signup-rider/signup-rider";
 import { Register } from "./components/signup-seller/SignupSeller";
@@ -17,6 +19,8 @@ function App() {
         <Switch>
           <Route exact path="/home" component={() => <Home />} />
           <Route exact path="/login" component={() => <Login />} />
+          <Route exact path="/contactus" component={() => <Contact />} />
+          <Route exact path="/aboutus" component={() => <About />} />
           <Route exact path="/signup/seller" component={() => <Register />} />
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Route
@@ -24,7 +28,13 @@ function App() {
             path="/signup/vendor"
             component={() => <SignupVendor />}
           />
-          
+          <Route exact path="/signup/seller" component={() => <Register />} />
+          <Route exact path="/signup/rider" component={() => <SignupRider />} />
+          <Route
+            exact
+            path="/signup/vendor"
+            component={() => <SignupVendor />}
+          />
           <Redirect to="/home" />
         </Switch>
         <Footer />
