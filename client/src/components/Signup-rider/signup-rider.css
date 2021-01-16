@@ -1,0 +1,196 @@
+/* MAIN CONTAINER */
+.signup-Rider {
+  font-family: "Roboto", sans-serif;
+
+  width: 100%;
+  height: 100%;
+}
+
+/* FLEXING BOX */
+
+.flex-container-rider,
+.radios,
+.age-radio,
+.reg-pin {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-container-rider {
+  width: 90%;
+  border: none;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+}
+
+/* WELCOME SECTION */
+.flex-item-left-rider {
+  flex: 50%;
+  justify-content: center;
+  background-image: url("./bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  border-radius: 25px 0 0 25px;
+}
+
+/* .welcome {
+  /* background-image: url("./blobby.png"); */
+/* background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  margin: 0;
+} */
+
+.welcome-text-rider,
+.name-rider {
+  text-align: center;
+  color: white;
+  background-color: rgba(224, 220, 210, 0.56);
+  /* font-size: 4rem; */
+}
+
+.welcome-text-rider {
+  width: fit-content;
+
+  font-size: 3rem;
+  margin: 40% auto 0;
+}
+
+.name-rider {
+  font-family: "Montserrat", sans-serif;
+  width: fit-content;
+  font-size: 6rem;
+  font-weight: bolder;
+  margin: 20% auto 0;
+}
+
+/* SIGNUP USING GOOGLE SECTION */
+
+.flex-item-right {
+  flex: 50%;
+  margin: 0;
+  background-image: linear-gradient(to right, #008891, #70af85);
+  width: 100%;
+  border: none;
+  border-radius: 0 25px 25px 0;
+}
+
+.content {
+  margin-left: 50px;
+}
+
+.radios {
+  flex: 50%;
+}
+
+.signup-with-rider {
+  margin-top: 10px;
+}
+
+.button-google-rider {
+  margin: 10px 0;
+}
+
+.icon {
+  color: white;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  /* margin-top: 8px; */
+}
+.google {
+  display: inline;
+  font-size: 1.4rem;
+  color: white;
+  margin: 10px 0 10px 5px;
+}
+
+.hr1 {
+  width: 90%;
+  border-top: 2px solid rgb(102, 100, 100);
+  margin: 20px 0;
+}
+
+/* SIGNUP HERE SECTION */
+.signup-here {
+  position: relative;
+  margin: 0 0 4%;
+  width: 70%;
+  color: black;
+}
+.age {
+  flex: 20%;
+}
+.radio-items {
+  flex: 5%;
+  align-items: flex-end;
+}
+
+.google-api {
+  margin-left: 50px;
+}
+.google-div {
+  margin-bottom: 15px;
+}
+.signup-button {
+  margin-left: 75%;
+
+  /* text-align: right; */
+}
+.signup-button-lg {
+  width: 150px;
+  margin: 10px 0;
+}
+.reg-pin-items1 {
+  flex: 60%;
+}
+.reg-pin-items2 {
+  flex: 20%;
+  margin-left: 10px;
+}
+
+.operation-radius {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.upload-rider {
+  color: black;
+}
+.floating-txt {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.register {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+@media (max-width: 800px) {
+  .flex-item-right {
+    flex: 100%;
+  }
+  .flex-item-left-rider {
+    display: none;
+  }
+  .flex-item-right {
+    border-radius: 25px;
+  }
+}
+input[type="radio"] {
+  -webkit-appearance: radio;
+}
+
+#dvtext {
+  display: none;
+}
+#chkYes:checked ~ #dvtext {
+  display: block;
+}
