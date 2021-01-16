@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
 });
 
 //TO_DO Define routes
+//define routes
+app.use("/users", require("./routes/users"));  //For registration
 
 //run the server
 app.listen(process.env.port || 1000, () =>
