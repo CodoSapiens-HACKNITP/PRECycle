@@ -1,7 +1,7 @@
 import React /*useState*/ from "react";
 import "./signup-vendor.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
 // import { Redirect } from "react-router-dom";
@@ -332,7 +332,10 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                     <input type="checkbox" id="TnC" required />
                     <label for="TnC">
                       {" "}
-                      I agree to the <Link to="/tnc" target="_blank">terms and conditions and the privacy policy</Link>
+                      I agree to the{" "}
+                      <Link to="/tnc" target="_blank" className="tnc">
+                        terms and conditions and the privacy policy
+                      </Link>
                     </label>
                   </div>
                   <div className="signup-key">

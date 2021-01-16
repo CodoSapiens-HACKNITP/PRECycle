@@ -1,0 +1,225 @@
+/* MAIN CONTAINER */
+.seller-dashboard1 {
+  width: 80%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+  background-image: linear-gradient(to right, #008891, #70af85);
+  /* background-color: #ffcda3; */
+}
+
+.loginRounded {
+  width: 80%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+}
+
+.seller-dashboard3 {
+  width: 80%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+  background-image: linear-gradient(to right, #fecd1a, #fd3a69);
+  /* background-color: #ffcda3; */
+}
+
+.gradient-section1 {
+  background-image: linear-gradient( to right, #008891, #70af85);
+  width: 100%;
+  height: 100px;
+  border: none;
+  border-radius: 25px 25px 0 0;
+}
+
+/* BUTTONS DESIGN */
+.request-to-pickup,
+.pickup-button {
+  margin: 4% 45%;
+  width: 9rem;
+}
+.request-text,
+.pickup-button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+/* UPPER GRADIENT SECTION */
+
+.gradient-section {
+  background-image: linear-gradient(to right, #fecd1a, #fd3a69);
+  width: 100%;
+  height: 100px;
+  border: none;
+  border-radius: 25px 25px 0 0;
+}
+/* WELCOME MESSAGE SECTION */
+
+.Profile-image-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: right;
+  width: 200px;
+  margin: 30px 3%;
+  float: right;
+}
+
+.intro {
+  float: right;
+  width: fit-content;
+  color: antiquewhite;
+}
+
+.profile-image {
+  margin-left: 5px;
+}
+
+.seller-profile-pic {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+}
+
+/* HR TAGS STYLING */
+
+.division1 {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* SEARCH FOR VENDOR SECTION */
+
+.search-inst {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.form-row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.address-input {
+  flex: 60%;
+}
+
+.pincode-input {
+  flex: 30%;
+  margin-left: 30px;
+}
+
+@media (max-width: 800px) {
+  .form-container {
+    flex-flow: column wrap;
+  }
+
+  .pincode-input {
+    flex: 30%;
+    margin-left: 0px;
+  }
+
+  .request-to-pickup,
+  .pickup-button {
+    margin-left: 30%;
+  }
+}
+
+/* STYLING OF THE CUSTOM RADIO BUTTONS */
+
+/* The container */
+.container404 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  margin-left: 27%;
+  background-color: #999999;
+  width: 40%;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container404 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 95%;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container404:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container404 input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container404 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container404 .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: white;
+}
+
+input[type="radio" i] {
+  appearance: radio;
+  -webkit-appearance: checkbox;
+}
+
+.radio-button {
+  appearance: radio;
+}
+
+.vendorlist {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}

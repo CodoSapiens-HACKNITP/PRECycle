@@ -9,6 +9,7 @@ import Footer from "./components/Footer/FooterComponent";
 import Home from "./components/Home/HomeComponent";
 import Login from "./components/Login/LoginComponent";
 import { TnC } from "./components/TnC/TnC";
+import { SellerDashboard1 } from "./components/seller-dashboard1/seller-dashboard1";
 
 import { SignupVendor } from "./components/Vendor_SignUp/signup-vendor";
 
@@ -39,6 +40,7 @@ function App() {
           />
           <Redirect to="/home" />
         </Switch>
+        <SellerDashboard1 />
         <Footer />
       </div>
     </BrowserRouter>
