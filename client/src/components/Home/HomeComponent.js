@@ -19,17 +19,17 @@ import 'aos/dist/aos.css';
 
 const items = [
   {
-    src: "https://www.w3schools.com/howto/img_mountains_wide.jpg",
+    src: "./assets/C1.jpeg",
     altText: "",
     caption: "",
   },
   {
-    src: "https://www.w3schools.com/howto/img_nature_wide.jpg",
+    src: "./assets/C2.jpeg",
     altText: "",
     caption: "",
   },
   {
-    src: "https://www.w3schools.com/howto/img_snow_wide.jpg",
+    src: "./assets/C3.jpeg",
     altText: "",
     caption: "",
   },

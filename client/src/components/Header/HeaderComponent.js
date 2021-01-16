@@ -175,16 +175,16 @@ const Header = (/* logout, auth */) => {
               {/* This Section has to be like depending upon the authenticated state of the user */}
 
           {/*  {auth.isAuthenticated ? (     */}
-                <Fragment>
+           {/*  <Fragment>
                   <NavItem>
                     <NavLink to="/login" >
-                   {/*} <NavLink to="/login" onClick={logout}>  */}
-                      <Button outline>
+                   } <NavLink to="/login" onClick={logout}>  */}
+                     {/* <Button outline>
                         <span className="fa fa-sign-in fa-lg"></span> Logout
                       </Button>
                     </NavLink>
                   </NavItem>{" "}
-                </Fragment>
+                </Fragment>   </Navbar> */}
            {/*}   ) : (   */}
                 <Fragment>
                   <NavItem>
