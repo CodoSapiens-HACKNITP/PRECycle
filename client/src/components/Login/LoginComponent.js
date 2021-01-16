@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-//import { login } from "../../actions/auth";
+import { login } from "../../actions/auth";
 import styles from "./logIn.module.css";
-//import PropTypes from "prop-types";
-//import { connect } from "react-redux";
-//import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Login = (/* login, isAuthenticated */) => {
+const Login = ({login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     loginDetail: "",
     password: "",
@@ -21,14 +21,14 @@ const Login = (/* login, isAuthenticated */) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-   // login(loginDetail, password, typeOfUser);
+   login(loginDetail, password, typeOfUser);
   };
 
   //redirect if logged in
- /* if (isAuthenticated) {
+ if (isAuthenticated) {
     const url = `/dashboard/${localStorage.getItem("typeofuser")}`;
     return <Redirect to={url} />;
-  } */
+  } 
   return (
     <div className="loginRounded">
       <div className={styles.parent_div}>
@@ -90,14 +90,14 @@ const Login = (/* login, isAuthenticated */) => {
   );
 };
 
-/*Login.propTypes = {
+Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.object.isRequired,
-}; */
+}; 
 
-/*const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-}); */
+}); 
 
-//export default connect(mapStateToProps, { login })(Login);
-export default (Login);
+export default connect(mapStateToProps, { login })(Login);
+

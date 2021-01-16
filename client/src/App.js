@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import "./App.css";
 import Header from "./components/Header/HeaderComponent";
 import Contact from "./components/ContactUs/ContactComponent";
@@ -14,8 +15,20 @@ import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboar
 
 import { SignupVendor } from "./components/Vendor_SignUp/signup-vendor";
 
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+
 function App() {
-  return (
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    useEffect(() => {
+      store.dispatch(loadUser(localStorage.typeofuser));
+    });
+    return (
+    <Provider store={store}>
     <BrowserRouter>
       <div className="App">
         <Header />
@@ -48,6 +61,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
+    </Provider>
   );
 }
 
