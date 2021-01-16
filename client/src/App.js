@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/signup/seller" component={() => <Register />} />
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Route exact path="/dashboard/seller" component={() => <SellerDashboard1 />} />
-          <Route exact path="/dashboard/seller" component={() => <SellerDashboard2 />} />
+          <Route exact path="/sellerDashboardProgress" component={() => <SellerDashboard2 />} />
           <Route
             exact
             path="/signup/vendor"
