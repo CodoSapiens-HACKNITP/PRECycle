@@ -148,6 +148,21 @@ const Header = (/* logout, auth */) => {
                             Rider Dashboard
                           </NavLink>
                         </DropdownItem>
+                        <DropdownItem className="DropdownMenu">
+                          <NavLink className="nav-link" to="/history/order">
+                            Order History
+                          </NavLink>
+                        </DropdownItem>
+                        <DropdownItem className="DropdownMenu">
+                          <NavLink className="nav-link" to="/history/delivery">
+                            Delivery History
+                          </NavLink>
+                        </DropdownItem>
+                        <DropdownItem className="DropdownMenu">
+                          <NavLink className="nav-link" to="/history/pickup">
+                            Pickup History
+                          </NavLink>
+                        </DropdownItem>
                    {/*   ) : (  */}
                         <span></span>
                    {/*   )}  */}  
@@ -158,13 +173,14 @@ const Header = (/* logout, auth */) => {
                             Request pickup
                           </NavLink>
                         </DropdownItem>
-                   {/*   ) : (  */}
-                        <span></span>
-                   {/*   )}  */}
-                    </DropdownMenu>
-              {/*    ) : (   */}
-                    <span></span>
-              {/*    )}   */}
+
+                        {/*   ) : (  */}
+                              <span></span>
+                        {/*   )}  */}
+                          </DropdownMenu>
+                    {/*    ) : (   */}
+                          <span></span>
+                    {/*    )}   */}
                 </UncontrolledDropdown>
               </NavItem>
               <NavItem>
