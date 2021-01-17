@@ -109,7 +109,7 @@ function App() {
                   component={() => <RateList />}
                 />
 
-<PrivateRoute
+                <PrivateRoute
                   exact
                   path="/profile/rider"
                   component={() => <RiderProfile />}
