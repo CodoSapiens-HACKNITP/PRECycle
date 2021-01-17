@@ -70,7 +70,7 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0">
-        What are the most common items that are recyclable?
+        <center>What are the most common items that are recyclable?</center>
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="0">
@@ -92,7 +92,7 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle  as={Button} variant="link" eventKey="1">
-        How does recycling work?
+        <center>How does recycling work?</center>
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="1">
@@ -109,7 +109,7 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="2">
-        Is recycling truly beneficial for the environment?
+        <center>Is recycling truly beneficial for the environment?</center>
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="2">
@@ -120,7 +120,7 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle  as={Button} variant="link" eventKey="3">
-        Why do we have to sort our recyclables?
+        <center>Why do we have to sort our recyclables?</center>
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="3">
@@ -132,7 +132,7 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="4">
-        How do I know what my local recycling options are?
+        <center>How do I know what my local recycling options are?</center>
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="4">
