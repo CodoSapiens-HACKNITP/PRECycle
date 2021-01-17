@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import VDstyles from "./vendor_dashboard.module.css";
 import vendorpic from "./vendor.jpg";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { FcOk } from "react-icons/fc";
 
 const VendorDashboard = ({ user }) => {
   function UpcomingCard(props) {
@@ -94,14 +96,54 @@ const VendorDashboard = ({ user }) => {
           <div>
             <hr></hr>
           </div>
-          <Button variant="warning" className={VDstyles.vendor_update_button}>
-            CHECK STATUS
-          </Button>
+          <CheckStatus />
           <Button variant="light" className={VDstyles.vendor_invoice_button}>
             VIEW INVOICE
           </Button>
         </Card.Body>
       </Card>
+    );
+  }
+
+  function StatusUpdates(props) {
+    return (
+      <div className="status-updates">
+        <FcOk className="tick-icon" />
+        <p>{props.status}</p>
+      </div>
+    );
+  }
+
+  function CheckStatus() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Button variant="warning" className={ VDstyles.vendor_update_button } onClick={handleShow}>
+          UPDATE
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>STATUS UPDATE</Modal.Title>
+          </Modal.Header>
+          <Modal.Body><form>
+            <StatusUpdates status="Approved by rider" />
+            <StatusUpdates status="Rider on way" />
+            <StatusUpdates status="Waste collected" />
+            <StatusUpdates status="Paid to seller" />
+            <StatusUpdates status="Dropped at vendor" /> </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
     );
   }
 
