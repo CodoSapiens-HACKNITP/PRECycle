@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, render } from "react";
 import { Link } from "react-router-dom";
 import RDstyles from "./rider_dashboard.module.css";
 import profile from "./rider.png";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 //import PropTypes from "prop-types";
 //import { connect } from "react-redux";
 // import { Redirect } from "react-router-dom";
@@ -51,7 +52,7 @@ export const RiderDashboard = () => {
             </Table>            
           </Card.Text>
           <div><hr></hr></div>
-          <Button variant="warning" className={ RDstyles.rider_update_button }>UPDATE</Button>
+          <Update />
           <Button variant="light" className={ RDstyles.rider_invoice_button }>GENERATE INVOICE</Button>
         </Card.Body>
       </Card>
@@ -103,6 +104,45 @@ export const RiderDashboard = () => {
       </Card>
     );
   }
+
+  function Update() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Button variant="warning" className={ RDstyles.rider_update_button } onClick={handleShow}>
+          UPDATE
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>STATUS UPDATE</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form method="post" classname= { RDstyles.statusupdate }>      
+              <fieldset>      
+                  <legend>What is the status?</legend>      
+                  <input type="checkbox" name="status_update" value=""/>On my Way<br/>      
+                  <input type="checkbox" name="status_update" value=""/>Waste collected<br/>      
+                  <input type="checkbox" name="status_update" value=""/>Paid the seller<br/>  
+                  <input type="checkbox" name="status_update" value=""/>Dropped at vendor's<br/>   
+              </fieldset>      
+          </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+
+  
 
   return (
     <div className={ RDstyles.rider_dashboard }>
