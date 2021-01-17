@@ -12,7 +12,6 @@ import SignupRider from "./components/Signup-rider/signup-rider";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/signup-seller/SignupSeller";
 import SignupVendor from "./components/Vendor_SignUp/signup-vendor";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SellerDashboard1 from "./components/seller-dashboard1/seller-dashboard1";
 import { RiderDashboard } from "./components/Dashboard_Rider/rider_dashboard";
 import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboard2";
@@ -108,6 +107,22 @@ function App() {
                   exact
                   path="/ratelist"
                   component={() => <RateList />}
+                />
+
+<PrivateRoute
+                  exact
+                  path="/profile/rider"
+                  component={() => <RiderProfile />}
+                />
+                <PrivateRoute
+                  exact
+                  path="/profile/seller"
+                  component={() => <SellerProfile />}
+                />
+                <PrivateRoute
+                  exact
+                  path="/profile/vendor"
+                  component={() => <VendorProfile />}
                 />
           <Redirect to="/home" />
         </Switch>
