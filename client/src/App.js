@@ -72,11 +72,6 @@ function App() {
               path="/faqs"
               component={() => <Faqs />}
             />
-            <Route
-              exact
-              path="/dashboard/vendor"
-              component={() => <VendorDashboard />}
-            /> 
           <Redirect to="/home" />
         </Switch>
      

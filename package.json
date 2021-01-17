@@ -1,7 +1,7 @@
 {
   "name": "precycle",
   "version": "1.0.0",
-  "description": "'",
+  "description": "Site for recyclable waste management",
   "main": "server.js",
   "scripts": {
     "start": "node server",
@@ -10,16 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodoSapiens-HACKNITP/PRECycle.git"
-  },
   "author": "CodoSapiens",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CodoSapiens-HACKNITP/PRECycle/issues"
-  },
-  "homepage": "https://github.com/CodoSapiens-HACKNITP/PRECycle#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
