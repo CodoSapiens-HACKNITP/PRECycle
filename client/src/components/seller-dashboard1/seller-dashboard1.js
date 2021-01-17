@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./seller-dashboard1.css";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import { FcBusinessman } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -87,7 +88,11 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
                   <Spinner />
                 )
               ) : (
-                "We Don't Serve in your area"
+                <div className="msg_display">
+                    <Alert variant="danger">
+                      Sorry! We don't serve in your area.
+                    </Alert>
+                </div>
               )}
               <hr className="division1" />
               {/* PICKUP HISTORY SECTION */}
