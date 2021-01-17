@@ -1,0 +1,59 @@
+.p_container{
+    margin: 50px 25px 50px 25px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(to right, #008891, #70af85);
+  }
+  
+  .greet_rider{
+    border: none;
+    border-radius: 25px 25px 0px 0px;
+    position: relative;
+    background-image: linear-gradient(to right, #fecd1a, #fd3a69);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .rider_img {
+    border-radius: 50%;
+    width: 10%;
+    margin-left: 88%;
+    margin-top: 1%;
+  }
+  
+  .rider_greeting_text {
+    text-align: right;
+    margin-right: 2%;
+    color: antiquewhite;
+  }
+  
+  .rider_delivery_history{  
+    padding-top: 2%;
+    padding-bottom: 5%;
+    text-align: center;
+  }
+  
+  .list_heading{
+    padding-bottom: 2%;
+  }
+  
+  .invoice{
+    color:blue;
+    border: none;
+  }
+  
+  .bgeffect{
+    background-color: #ffa62b;
+    border: none;
+    display: inline-block;  
+    width: 80%;
+  }
+  
+  .return_btn{
+    padding-top: 2%;
+    }
+  
+  
