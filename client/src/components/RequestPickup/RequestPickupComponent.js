@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { loadNearbyVendors } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 
-const RenderWasteTable = ({wasteDetails}) => {
+const RenderWasteTable = ({data}) => {
   return (
     <div className="table-responsive">
       <table class="table table-striped table-dark">
@@ -21,7 +21,7 @@ const RenderWasteTable = ({wasteDetails}) => {
           </tr>
         </thead>
         <tbody>
-          {wasteDetails !== undefined ? (wasteDetails.map((waste,index) => {
+          {data !== undefined ? (data.map((waste,index) => {
             <tr>
             <th scope="row">{index+1}</th>
             <td>{waste.selectedOption.value}</td>
@@ -100,6 +100,9 @@ const onAdd = (e) => {
   useEffect(() => {
     loadNearbyVendors(pincode, city);
   }, [pincode, city]); 
+
+  var { city, pincode, state, firstLine, landmark, wasteType, wasteAdded } = formData;
+
   function Vendors(props) {
     return (
       <div className="vendor-list">
@@ -236,7 +239,7 @@ const onAdd = (e) => {
                 </Button>
               </Col>
             </FormGroup>
-            <RenderWasteTable wasteDetails={wasteAdded}/>
+            <RenderWasteTable data={formData.wasteAdded}/>
             <hr />
             <h3>Select Slot</h3>
             <br />
