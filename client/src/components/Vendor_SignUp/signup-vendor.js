@@ -1,12 +1,11 @@
-import React /*useState*/ from "react";
+import React, { useState } from "react";
 import "./signup-vendor.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
-// import { setAlert } from "../../actions/alert";
-// import { registerVendor } from "../../actions/auth";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import { registerVendor } from "../../actions/auth";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
@@ -20,59 +19,59 @@ const options = [
   { value: "others", label: "Others" },
 ];
 
-export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) => {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   password2: "",
-  //   phone: "",
-  //   gstin: "",
-  //   pincode: "",
-  //   firstline: "",
-  //   landmark: "",
-  //   aadhar: "",
-  // });
+const SignupVendor = ({ setAlert, registerVendor, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+    phone: "",
+    gstin: "",
+    pincode: "",
+    firstline: "",
+    landmark: "",
+    aadhar: "",
+  });
 
-  // const {
-  //   name,
-  //   email,
-  //   password,
-  //   password2,
-  //   phone,
-  //   gstin,
-  //   pincode,
-  //   firstline,
-  //   landmark,
-  //   aadhar,
-  // } = formData;
+  const {
+    name,
+    email,
+    password,
+    password2,
+    phone,
+    gstin,
+    pincode,
+    firstline,
+    landmark,
+    aadhar,
+  } = formData;
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (password !== password2) {
-  //     setAlert("Password do not match", "danger");
-  //   } else {
-  //     registerVendor(
-  //       name,
-  //       email,
-  //       password,
-  //       phone,
-  //       gstin,
-  //       pincode,
-  //       firstline,
-  //       landmark,
-  //       aadhar
-  //     );
-  //   }
-  // };
-  // const onChange = async (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert("Password do not match", "danger");
+    } else {
+      registerVendor(
+        name,
+        email,
+        password,
+        phone,
+        gstin,
+        pincode,
+        firstline,
+        landmark,
+        aadhar
+      );
+    }
+  };
+  const onChange = async (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   //redirect after successfull signup
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard/vendor" />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard/vendor" />;
+  }
 
   function Req() {
     return <span className="req">*</span>;
@@ -137,7 +136,7 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                 <p>
                   Fields marked with <Req /> represents the required fields.
                 </p>
-                <form /*onSubmit={(e) => onSubmit(e)}*/>
+                <form onSubmit={(e) => onSubmit(e)}>
                   <div class="form-floating mb-3 ">
                     <input
                       type="text"
@@ -145,8 +144,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="organisation-name"
                       placeholder="Organisation Name"
                       name="name"
-                      // value={name}
-                      // onChange={(e) => onChange(e)}
+                      value={name}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="organisation-name">
                       Organisation Name
@@ -162,8 +161,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="email"
                       placeholder="name@example.com"
                       name="email"
-                      // value={email}
-                      // onChange={(e) => onChange(e)}
+                      value={email}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="email">
                       Email address
@@ -179,8 +178,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="password"
                       placeholder="Password"
                       name="password"
-                      // value={password}
-                      // onChange={(e) => onChange(e)}
+                      value={password}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="password">
                       Password
@@ -195,8 +194,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="password2"
                       placeholder="Confirm Password"
                       name="password2"
-                      // value={password2}
-                      // onChange={(e) => onChange(e)}
+                      value={password2}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="password">
                       Confirm Password
@@ -212,8 +211,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="Contact"
                       placeholder="Phone No."
                       name="phone"
-                      // value={phone}
-                      // onChange={(e) => onChange(e)}
+                      value={phone}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="Contact">
                       Phone No.
@@ -229,8 +228,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="gsti"
                       placeholder="GSTI No."
                       name="gstin"
-                      // value={gstin}
-                      // onChange={(e) => onChange(e)}
+                      value={gstin}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="gsti">
                       GSTI No.
@@ -278,8 +277,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="firstline"
                       placeholder="First Line"
                       name="firstline"
-                      // value={firstline}
-                      // onChange={(e) => onChange(e)}
+                      value={firstline}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="firstline">
                       Address
@@ -306,8 +305,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="pincode"
                       placeholder="Pincode"
                       name="pincode"
-                      // value={pincode}
-                      // onChange={(e) => onChange(e)}
+                      value={pincode}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="pincode">
                       Pincode
@@ -323,8 +322,8 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                       id="landmark"
                       placeholder="landmark"
                       name="landmark"
-                      // value={landmark}
-                      // onChange={(e) => onChange(e)}
+                      value={landmark}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="landmark">Landmark</label> {/* LANDMARK */}
                   </div>
@@ -333,14 +332,14 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
                     <label for="TnC">
                       {" "}
                       I agree to the{" "}
-                      <Link to="/tnc"  className="tnc">
+                      <a href=" " alt="terms and conditions" className="tnc">
                         terms and conditions and the privacy policy
-                      </Link>
+                      </a>
                     </label>
                   </div>
                   <div className="signup-key">
                     <button
-                      // onClick={(e) => onSubmit(e)}
+                      onClick={(e) => onSubmit(e)}
                       type="button"
                       class="btn btn-warning btn-lg"
                     >
@@ -356,16 +355,16 @@ export const SignupVendor = (/*{ setAlert, registerVendor, isAuthenticated }*/) 
     </div>
   );
 };
-// SignupVendor.propTypes = {
-//   registerVendor: PropTypes.func.isRequired,
-//   setAlert: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.object.isRequired,
-// };
+SignupVendor.propTypes = {
+  registerVendor: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.object.isRequired,
+};
 
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: state.auth.isAuthenticated,
-// });
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-// export default connect(mapStateToProps, { registerVendor, setAlert })(
-//   SignupVendor
-// );
+export default connect(mapStateToProps, { registerVendor, setAlert })(
+  SignupVendor
+);

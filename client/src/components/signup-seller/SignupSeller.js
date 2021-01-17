@@ -1,61 +1,59 @@
-import React /* useState */ from "react";
+import React, { useState } from "react";
 import "./signup-seller.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
-// import { connect } from "react-redux";
-// import { setAlert } from "../../actions/alert";
-// import { registerSeller } from "../../actions/auth";
-// import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { registerSeller } from "../../actions/auth";
+import PropTypes from "prop-types";
 
-export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   password2: "",
-  //   phone: "",
-  //   pincode: "",
-  //   firstline: "",
-  //   landmark: "",
-  // });
+const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+    phone: "",
+    pincode: "",
+    firstline: "",
+    landmark: "",
+  });
 
-  // const {
-  //   name,
-  //   email,
-  //   password,
-  //   password2,
-  //   phone,
-  //   pincode,
-  //   firstline,
-  //   landmark,
-  // } = formData;
+  const {
+    name,
+    email,
+    password,
+    password2,
+    phone,
+    pincode,
+    firstline,
+    landmark,
+  } = formData;
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (password !== password2) {
-  //     setAlert("Password do not match", "danger");
-  //   } else {
-  //     registerSeller(
-  //       name,
-  //       email,
-  //       password,
-  //       phone,
-  //       pincode,
-  //       firstline,
-  //       landmark
-  //     );
-  //   }
-  // };
-  // const onChange = async (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert("Password do not match", "danger");
+    } else {
+      registerSeller(
+        name,
+        email,
+        password,
+        phone,
+        pincode,
+        firstline,
+        landmark
+      );
+    }
+  };
+  const onChange = async (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   //redirect after successfull signup
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
-
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   function Req() {
     return <span className="req">*</span>;
   }
@@ -110,7 +108,7 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
               <p>
                 Fields marked with <Req /> represents the required fields.
               </p>
-              <form /*onSubmit={(e) => onSubmit(e)}*/>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <div class="form-floating mb-3 ">
                   <input
                     type="text"
@@ -118,8 +116,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="name"
                     placeholder="Name"
                     name="name"
-                    // value={name}
-                    // onChange={(e) => onChange(e)}
+                    value={name}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="name">
                     Name
@@ -133,8 +131,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="email"
                     placeholder="name@example.com"
                     name="email"
-                    // value={email}
-                    // onChange={(e) => onChange(e)}
+                    value={email}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="email">
@@ -149,8 +147,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="password"
                     placeholder="Password"
                     name="password"
-                    // value={password}
-                    // onChange={(e) => onChange(e)}
+                    value={password}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="password">
@@ -165,8 +163,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="Password2"
                     placeholder="Password"
                     name="password2"
-                    // value={password2}
-                    // onChange={(e) => onChange(e)}
+                    value={password2}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="password2">
@@ -181,10 +179,10 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="Contact"
                     placeholder="Phone no."
                     name="phone"
-                    // value={phone}
-                    // onChange={(e) => onChange(e)}
+                    value={phone}
+                    onChange={(e) => onChange(e)}
                   />
-                  <label for="Contact">Phone No.<Req /></label>
+                  <label for="Contact">Phone No.</label>
                 </div>
                 <div class="form-floating mb-3">
                   <input
@@ -193,8 +191,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="firstline"
                     placeholder="First Line"
                     name="firstline"
-                    // value={firstline}
-                    // onChange={(e) => onChange(e)}
+                    value={firstline}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="firstline">
                     Address
@@ -217,8 +215,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="pincode"
                     placeholder="Pincode"
                     name="pincode"
-                    // value={pincode}
-                    // onChange={(e) => onChange(e)}
+                    value={pincode}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="pincode">
                     Pincode
@@ -232,8 +230,8 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                     id="landmark"
                     placeholder="landmark"
                     name="landmark"
-                    // value={landmark}
-                    // onChange={(e) => onChange(e)}
+                    value={landmark}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="landmark">landmark</label>
                 </div>
@@ -251,9 +249,9 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
-                    <Link to="/tnc"  className="tnc">
+                    <a href=" " alt="terms and conditions" className="tnc">
                       terms and conditions and the privacy policy
-                    </Link>
+                    </a>
                   </label>
                 </div>
                 <input
@@ -270,14 +268,14 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
   );
 };
 
-// Register.propTypes = {
-//   setAlert: PropTypes.func.isRequired,
-//   registerSeller: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.bool.isRequired,
-// };
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  registerSeller: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: state.auth.isAuthenticated,
-// });
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-// export default connect(mapStateToProps, { setAlert, registerSeller })(Register);
+export default connect(mapStateToProps, { setAlert, registerSeller })(Register);
