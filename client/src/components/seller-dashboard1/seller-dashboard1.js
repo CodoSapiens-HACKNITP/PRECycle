@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import { loadNearbyVendors } from "../../actions/pickup";
 import { loadUser } from "../../actions/auth";
+import Facts from "../FactsFigures/FactsFigures";
 
 const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
   function Vendors(props) {
@@ -35,6 +36,7 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
       <div className="seller-dashboard1">
         {/* HEADER SECTION */}
         <div className="gradient-section">
+        <Link to="/profile/seller">
           <div className="Profile-image-container">
             <div className="intro">
               <h5>
@@ -46,7 +48,9 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
               <FcBusinessman className="seller-profile-pic" />
             </div>
           </div>
+          </Link>
         </div>
+       
         {/* REQUEST TO PICKUP SECTION */}
             <div>
               <Link to="/requestPickup">

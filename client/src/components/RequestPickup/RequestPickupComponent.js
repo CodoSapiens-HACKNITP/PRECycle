@@ -102,6 +102,7 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
       <div className="seller-dashboard3">
         {/* HEADER SECTION */}
         <div className="gradient-section1">
+        <Link to="/profile/seller">
           <div className="Profile-image-container">
             <div className="intro">
               <h5>
@@ -113,6 +114,7 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
               <FcBusinessman className="seller-profile-pic" />
             </div>
           </div>
+          </Link>
         </div>
         {/* REQUEST TO PICKUP SECTION */}
         <br />
