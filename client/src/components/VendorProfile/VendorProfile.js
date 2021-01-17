@@ -6,11 +6,10 @@ import Button from "react-bootstrap/Button";
 import { AiFillEdit } from "react-icons/ai";
 import Card from "../SellerProfile/Card.js";
 import pic from "./digvijay.jpeg";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
+import MultiSelect from "react-multi-select-component";
 import AddressForm from "../SellerProfile/EditAddress";
 
-const animatedComponents = makeAnimated();
+
 
 const options = [
   { value: "newspaper", label: "Newspaper" },
@@ -24,6 +23,7 @@ export const VendorProfile = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [readOnlyAbout, setReadOnlyAbout] = useState(true);
   const [WasteType, setWasteType] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   function editAddress() {
     setIsClicked(!isClicked);
@@ -136,11 +136,11 @@ export const VendorProfile = () => {
               style={{ display: !WasteType ? "block" : "none" }}
               className={style.SelectType}
             >
-              <div class="input-group mb-3">
+             
                 <label class="input-group-text" for="waste_type">
                   Type of Waste
                 </label>
-                <Select
+               {/*} <Select
                   options={options}
                   isMulti
                   closeMenuOnSelect={false}
@@ -148,9 +148,16 @@ export const VendorProfile = () => {
                   name="waste_type"
                   className="basic-multi-select form-select"
                   classNamePrefix="select"
-                />
+                />  */}
+
+<MultiSelect
+        options={options}
+        value={selected}
+        onChange={setSelected}
+        labelledBy={"Select"}
+      />
               </div>
-            </div>
+            
 
             {/* CHANGE YOUR PASSWORD SECTION*/}
 
