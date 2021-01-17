@@ -45,14 +45,14 @@ export default function abc(state = initialState, action) {
     case LOGOUT:
     case ACCOUNT_DELETED:
       localStorage.removeItem("token");
-      localStorage.removeItem("typeofuser")
+      localStorage.removeItem("typeofuser");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
         loading: false,
         user: null,
-        typeofuser: ""
+        typeofuser: "",
       };
 
     default:
