@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./seller-dashboard1.css";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
@@ -24,9 +24,11 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
     );
   }
 
-  useEffect((pincode, city) => {
-    loadNearbyVendors(221010, "Varanasi");
-  });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    loadNearbyVendors(localStorage.pincode, localStorage.city);
+  }
+
 
   return (
     <div>
@@ -71,28 +73,32 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
                   </div>
 
                   {/* PINCODE INPUT */}
-
+                  <div className="pincode-input">
+                    <Form.Group controlId="city">
+                      <Form.Label></Form.Label>
+                      <Form.Control type="text" placeholder="City" value={localStorage.city} />
+                    </Form.Group>
+                  </div>
                   <div className="pincode-input">
                     <Form.Group controlId="pincode">
                       <Form.Label></Form.Label>
-                      <Form.Control type="text" placeholder="Pin Code" />
+                      <Form.Control type="text" placeholder="Pin Code" value={localStorage.pincode} />
                     </Form.Group>
                   </div>
+                </div>
+                <div>
+                  <input type="submit" value="Find Nearby Vendors" onClick={(e) => onSubmit(e)}></input>
                 </div>
               </Form>
               {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
               {vendor ? (
                 vendor.length > 0 ? (
-                  vendor.map((ven) => <Vendors vendor={ven.name} />)
+                  vendor.map((ven, index) => <Vendors vendor={ven.name} index={index} />)
                 ) : (
                   <Spinner />
                 )
               ) : (
-                <div className="msg_display">
-                    <Alert variant="danger">
-                      Sorry! We don't serve in your area.
-                    </Alert>
-                </div>
+                ""
               )}
               <hr className="division1" />
               {/* PICKUP HISTORY SECTION */}
@@ -114,7 +120,7 @@ SellerDashboard1.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  vendor: state.pickup.vendor,
+  vendor: state.pickup.vendors,
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors })(

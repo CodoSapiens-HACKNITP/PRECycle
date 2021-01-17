@@ -47,23 +47,23 @@
 .org-name {
   text-align: center;
   color: white;
-  background-color: rgba(224, 220, 210, 0.56);
+
   /* font-size: 4rem; */
 }
 
 .greet-text {
   width: fit-content;
-
+  font-weight: bold;
   font-size: 3rem;
-  margin: 40% auto 0;
+  margin: 50% auto 0;
 }
 
 .org-name {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Joti one";
   width: fit-content;
   font-size: 6rem;
   font-weight: bolder;
-  margin: 20% auto 0;
+  margin: 10% auto 0;
 }
 
 /* SIGNUP USING GOOGLE SECTION */

@@ -30,7 +30,7 @@ export const updateWasteList = (wasteType) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const data = JSON.stringify(wasteType);
+    const data = JSON.stringify({wasteType});
     const res = await axios.put('/vendor/wastetype', data, config);
     dispatch({
       type: WASTELIST_UPDATED,

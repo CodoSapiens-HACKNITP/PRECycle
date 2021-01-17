@@ -1,4 +1,4 @@
-.out_container{
+.out_container {
   margin: 50px 25px 50px 25px;
   border: none;
   border-radius: 25px;
@@ -6,11 +6,11 @@
   background-image: linear-gradient(to right, #008891, #70af85);
 }
 
-.greet_vendor{
+.greet_vendor {
   border: none;
   border-radius: 25px 25px 0px 0px;
   position: relative;
-  background-image: linear-gradient(to right, #fecd1a, #fd3a69);
+  background-image: linear-gradient(to right, #003366, #1a1a1a);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
@@ -30,33 +30,31 @@
   color: antiquewhite;
 }
 
-.vendor_rate_list{  
+.vendor_rate_list {
   padding-top: 2%;
   padding-bottom: 5%;
   text-align: center;
 }
 
-.list_heading{
+.list_heading {
   padding-bottom: 2%;
 }
 
-.rate_column{
+.rate_column {
   color: blue;
   border: none;
 }
 
-.bgeffect{
-  background-color: #ffa62b;
+.bgeffect {
+  background-color: #b3ecff;
   border: none;
-  display: inline-block;  
+  display: inline-block;
 }
- .update_rate{
+.update_rate {
   padding-top: 2%;
- }
+}
 
 input {
-  background-color: #ffa62b ;
+  background-color: #ffa62b;
   color: black;
 }
-
-
