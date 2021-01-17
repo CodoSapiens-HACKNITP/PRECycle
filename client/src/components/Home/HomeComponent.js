@@ -20,17 +20,17 @@ import "aos/dist/aos.css";
 
 const items = [
   {
-    src: "./assets/C1.jpeg",
+    src: "./assets/C1.jpg",
     altText: "",
     caption: "",
   },
   {
-    src: "./assets/C2.jpeg",
+    src: "./assets/C2.jpg",
     altText: "",
     caption: "",
   },
   {
-    src: "./assets/C3.jpeg",
+    src: "./assets/C3.jpg",
     altText: "",
     caption: "",
   },

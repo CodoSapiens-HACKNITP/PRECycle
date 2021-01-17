@@ -49,12 +49,12 @@ const Login = ({ login, isAuthenticated }) => {
       <div className="flex-container-rider">
         {/* WELCOME TO PRECYCLE SECTION */}
 
-        <div className="flex-item-left-rider">
+        <div className={styles.SignIN}>
           {/* <div className="welcome"> */}
 
-          <h2 className="welcome-text-rider"> Welcome to</h2>
+          <h2 className={styles.welcomeText}> Welcome to</h2>
 
-          <h1 className="name-rider">PRECycle</h1>
+          <h1 className={styles.name}>PRECycle</h1>
           {/* </div> */}
         </div>
 
