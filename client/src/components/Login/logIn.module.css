@@ -51,6 +51,15 @@
   margin: 10% auto 0;
 }
 
+.flexRight {
+  flex: 50%;
+  margin: 0;
+  background-image: linear-gradient(to right, #008891, #70af85);
+  width: 100%;
+  border: none;
+  border-radius: 0 25px 25px 0;
+}
+
 .parent_div {
   display: flex;
   width: 100%;
@@ -180,7 +189,14 @@
     font-size: 14px;
     padding: 10px;
   }
+  .mainFlex {
+    height: 100vh;
+  }
 
+  .SignIN,
+  .flexRight {
+    border-radius: 0;
+  }
   .facebook_btn {
     width: 75%;
     font-size: 14px;
