@@ -3,14 +3,14 @@ import "./signup-rider.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { registerRider } from "../../actions/auth";
 import { Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
 
-const SignupRider = ({ setAlert, registerRider }) => {
+const SignupRider = ({ setAlert, registerRider, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -73,9 +73,9 @@ const SignupRider = ({ setAlert, registerRider }) => {
   }
 
   //redirect after successfull signup
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard/rider" />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard/rider" />;
+  }
   return (
     <div className="signup-Rider">
       {/* GOOGLE FONTS */}
