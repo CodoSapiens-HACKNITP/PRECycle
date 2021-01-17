@@ -19,7 +19,7 @@ const RenderWasteTable = ({ wasteType, quantity }) => {
             <th scope="col">Quantity</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>cd c   
           <tr>
             <th scope="row">1</th>
             <td>Mark</td>

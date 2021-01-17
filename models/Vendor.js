@@ -34,7 +34,7 @@ const orgSchema = new Schema({
       name: {
         type: String,
       },
-      price: {
+      rate: {
         type: Number,
       },
       unit: {
