@@ -67,6 +67,7 @@ function App() {
             path="/dashboard/vendor"
             component={() => <VendorDashboard />}
           /> 
+          
            <Route         
               exact
               path="/faqs"
