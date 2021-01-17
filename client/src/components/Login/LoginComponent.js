@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import GoogleLogin from 'react-google-login';
+//import GoogleLogin from 'react-google-login';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -15,9 +15,9 @@ const Login = ({ login, isAuthenticated }) => {
   });
 
   // google login response
-  const responseGoogle = (response) => {
-    console.log(response);
-  }
+//  const responseGoogle = (response) => {
+//    console.log(response);
+//  }
 
   const { loginDetail, password, typeOfUser } = formData;
   localStorage.setItem("typeofuser", typeOfUser);
@@ -50,14 +50,19 @@ const Login = ({ login, isAuthenticated }) => {
         {/* WELCOME TO PRECYCLE SECTION */}
 
         <div className="flex-item-left-rider">
-          
+          {/* <div className="welcome"> */}
+
+          <h2 className="welcome-text-rider"> Welcome to</h2>
+
+          <h1 className="name-rider">PRECycle</h1>
+          {/* </div> */}
         </div>
 
-        {/* SIGNUP SECTION */}
+        {/* SIGNIN SECTION */}
 
         <div className="flex-item-right">
           <div className="content">
-          <h2 className={styles.form_h2}>SIGN IN</h2>
+          <h2 className={styles.form_h2}><center>SIGN IN</center></h2>
 
 <form
   onSubmit={(e) => onSubmit(e)}
@@ -83,6 +88,7 @@ const Login = ({ login, isAuthenticated }) => {
   <select
     name="typeOfUser"
     value={typeOfUser}
+    className={styles.select}
     onChange={(e) => onChange(e)}
   >
     <option value="seller">Seller</option>
@@ -92,6 +98,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   <button className={styles.signin_btn}>Sign In</button>
 </form>
+<center>
 <p className={styles.or}>or</p>
 <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button>
 <h4 className={styles.form_h4}>
@@ -102,6 +109,7 @@ const Login = ({ login, isAuthenticated }) => {
     Sign Up Here
   </Link>
 </h4>
+</center>
             </div>
           </div>
         </div>
