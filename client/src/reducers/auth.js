@@ -22,6 +22,8 @@ export default function abc(state = initialState, action) {
 
   switch (type) {
     case USER_LOADED:
+      localStorage.setItem("pincode", payload.address.pin);
+      localStorage.setItem("city", payload.address.city);
       return {
         ...state,
         isAuthenticated: true,
@@ -46,6 +48,8 @@ export default function abc(state = initialState, action) {
     case ACCOUNT_DELETED:
       localStorage.removeItem("token");
       localStorage.removeItem("typeofuser");
+      localStorage.removeItem("pincode");
+      localStorage.removeItem("city");
       return {
         ...state,
         token: null,

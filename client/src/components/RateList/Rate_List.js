@@ -31,7 +31,8 @@ const RateList = ({auth, pickup, updateWasteList}) => {
     loadUser(localStorage.typeofuser)
  });
 
- var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
+  var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
+  console.log(wasteTypeArray);
   var [formData, setFormData] = useState(wasteTypeArray);
   const [data, setData] = useState({
     index: -1,
@@ -48,9 +49,10 @@ const RateList = ({auth, pickup, updateWasteList}) => {
       rate,
     };
     setFormData([...formData, dataToPush]);
+    console.log([...formData, dataToPush]);
     setData({ name: "", rate: "" });
     toggleModal(!modal);
-    updateWasteList([data]);
+    updateWasteList([...formData, dataToPush]);
   };
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
@@ -132,7 +134,7 @@ const RateList = ({auth, pickup, updateWasteList}) => {
             <Button variant="primary" onClick={(e) => {toggleModal(!modal); setData({ name: "", rate: ""});}}>
               Add New Item
             </Button>
-            <Button variant="primary" onClick={(e) => {updateWasteList(formData);}}>
+            <Button variant="primary" onClick={(e) => {onSubmit(e);}}>
               Save
             </Button>
           </div>

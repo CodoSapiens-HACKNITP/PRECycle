@@ -112,11 +112,11 @@
 }
 
 .address-input {
-  flex: 60%;
+  flex: 30%;
 }
 
 .pincode-input {
-  flex: 30%;
+  flex: 18%;
   margin-left: 30px;
 }
 

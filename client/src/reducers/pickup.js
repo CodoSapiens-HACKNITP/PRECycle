@@ -1,4 +1,4 @@
-import { VENDOR_LOADED, WASTELIST_UPDATED, FAIL_WASTELIST_UPDATE } from "../actions/types";
+import { VENDOR_LOADED, WASTELIST_UPDATED, FAIL_WASTELIST_UPDATE , CLEAR_PROFILE} from "../actions/types";
 const initialState = {
   vendors: [],
   loading: true,
@@ -12,10 +12,11 @@ export default function abc(state = initialState, action) {
     case WASTELIST_UPDATED:
       return {
         ...state,
-        user: payload,
+        vendors: payload,
         loading: false,
       };
     case FAIL_WASTELIST_UPDATE:
+    case CLEAR_PROFILE:
     default:
       return {
         ...state,

@@ -41,29 +41,34 @@ const RenderWasteTable = ({ wasteType, quantity }) => {
   );
 };
 
-const RequestPickup = ({ user, loadNearbyVendors, vendor }) => {
+const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
+
+  const [index, setIndex] = useState(0);
+  const [data,  setData ] =  useState()
   const [formData, setFormData] = useState({
     city: user ? user.address.city : "",
     pincode: user ? user.address.pin : "",
     state: user ? user.address.state : "",
     firstLine: user ? user.address.firstLine : "",
     landmark: user ? user.address.landmark : "",
-    // Digvijay's added states onwards
-    wasteTypes: ["newspaper", "container", "bottle", "ewaste", "others"],
-    wasteType: "",
-    quantity: 0,
-    wasteAdded: [],
   });
 
-  const options = [
-    { value: formData.wasteType[0], label: "Newspaper" },
-    { value: formData.wasteType[1], label: "Plastic Containers" },
-    { value: formData.wasteType[2], label: "Plastic bottles" },
-    { value: formData.wasteType[3], label: "E-Waste" },
-    { value: formData.wasteType[4], label: "Others" },
-  ];
+  useEffect(() => {
+    setFormData({...formData, wasteType: vendors !== undefined && vendors[0] !== undefined ? vendors[0].wasteType : []});
+  }, [vendors]);
+  var options;
+  useEffect(() => {
+    options = formData.wasteType !== undefined ? [
+      formData.wasteType.map((waste) => {
+        return {name: waste, label: waste}
+      })
+  ] : [];
+  }, [formData]);
 
-  const { city, pincode, state, firstLine, landmark } = formData;
+  const { city, pincode, state, firstLine, landmark } = user;
+ 
+
+  
 
   if (user) {
     //var address;
@@ -75,6 +80,9 @@ const RequestPickup = ({ user, loadNearbyVendors, vendor }) => {
   const onChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    loadNearbyVendors(pincode, city);
+  }, []);
   function Vendors(props) {
     return (
       <div className="vendor-list">
@@ -86,9 +94,6 @@ const RequestPickup = ({ user, loadNearbyVendors, vendor }) => {
       </div>
     );
   }
-  useEffect(() => {
-    loadNearbyVendors(pincode, city);
-  }, []);
 
   function addWaste() {}
 
@@ -167,9 +172,9 @@ const RequestPickup = ({ user, loadNearbyVendors, vendor }) => {
               <h3>Select Vendor</h3>
               <br />
               {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
-              {vendor ? (
-                vendor.length > 0 ? (
-                  vendor.map((ven) => <Vendors vendor={ven.name} />)
+              {vendors ? (
+                vendors.length > 0 ? (
+                  vendors.map((ven, index) => <Vendors vendor={ven.name} index={index} />)
                 ) : (
                   <Spinner />
                 )
@@ -272,7 +277,7 @@ RequestPickup.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  vendor: state.pickup.vendors,
+  vendors: state.pickup.vendors,
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors })(RequestPickup);
