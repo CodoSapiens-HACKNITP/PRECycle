@@ -15,11 +15,14 @@ app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-//TO_DO Define routes
 //define routes
-app.use("/users", require("./routes/users"));  //For registration
+app.use("/users", require("./routes/users"));
+app.use("/auth", require("./routes/auth"));
+app.use("/seller", require("./routes/seller"));
+app.use("/rider", require("./routes/rider"));
+app.use("/vendor", require("./routes/vendor"));
 
 //run the server
-app.listen(process.env.port || 1000, () =>
-  console.log("Server started on port 1000")
+app.listen(process.env.port || 1206, () =>
+  console.log("Server started on port 1206")
 );
