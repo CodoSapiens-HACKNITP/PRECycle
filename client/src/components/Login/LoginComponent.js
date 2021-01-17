@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import GoogleLogin from 'react-google-login';
+//import GoogleLogin from 'react-google-login';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -15,9 +15,9 @@ const Login = ({ login, isAuthenticated }) => {
   });
 
   // google login response
-  const responseGoogle = (response) => {
-    console.log(response);
-  }
+//  const responseGoogle = (response) => {
+//    console.log(response);
+//  }
 
   const { loginDetail, password, typeOfUser } = formData;
   localStorage.setItem("typeofuser", typeOfUser);
@@ -50,7 +50,12 @@ const Login = ({ login, isAuthenticated }) => {
         {/* WELCOME TO PRECYCLE SECTION */}
 
         <div className="flex-item-left-rider">
-          
+          {/* <div className="welcome"> */}
+
+          <h2 className="welcome-text-rider"> Welcome to</h2>
+
+          <h1 className="name-rider">PRECycle</h1>
+          {/* </div> */}
         </div>
 
         {/* SIGNIN SECTION */}
