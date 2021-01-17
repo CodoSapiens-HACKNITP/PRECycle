@@ -68,6 +68,12 @@ const SignupVendor = ({ setAlert, registerVendor, isAuthenticated }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [disabled, setDisabled] = useState(true);
+
+  function activate() {
+    setDisabled(!disabled);
+  }
+
   //redirect after successfull signup
   if (isAuthenticated) {
     return <Redirect to="/dashboard/vendor" />;
@@ -328,7 +334,12 @@ const SignupVendor = ({ setAlert, registerVendor, isAuthenticated }) => {
                     <label for="landmark">Landmark</label> {/* LANDMARK */}
                   </div>
                   <div className="tnc">
-                    <input type="checkbox" id="TnC" required />
+                    <input
+                      type="checkbox"
+                      id="TnC"
+                      required
+                      onChange={activate}
+                    />
                     <label for="TnC">
                       {" "}
                       I agree to the{" "}
@@ -342,6 +353,7 @@ const SignupVendor = ({ setAlert, registerVendor, isAuthenticated }) => {
                       onClick={(e) => onSubmit(e)}
                       type="button"
                       class="btn btn-warning btn-lg"
+                      disabled={disabled}
                     >
                       Sign up {/* SIGN UP BUTTON */}
                     </button>

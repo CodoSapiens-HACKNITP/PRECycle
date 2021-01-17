@@ -12,7 +12,7 @@ export default function abc(state = initialState, action) {
     case WASTELIST_UPDATED:
       return {
         ...state,
-        vendors: payload,
+        user: payload,
         loading: false,
       };
     case FAIL_WASTELIST_UPDATE:

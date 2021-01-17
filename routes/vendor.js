@@ -44,6 +44,22 @@ router.get("/request", auth, async (req, res) => {
   }
 });
 
+//route     PUT /wastetype
+//desc:     To Put the rate list of the waste
+//access:   Private
+router.put("/wastetype", auth, async (req, res) => {
+  const wasteType = req.body.wasteType;
+  try {
+    let vendor = await Vendor.findById(req.vendor.id);
+    vendor.wasteType = wasteType;
+    await vendor.save()
+    res.status(200).json(vendor);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+})
+
 //route     PUT /request/accept/:id
 //desc:     To accept particular request
 //access:   Private

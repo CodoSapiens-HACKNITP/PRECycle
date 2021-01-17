@@ -50,6 +50,12 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [disabled, setDisabled] = useState(true);
+
+  function activate() {
+    setDisabled(!disabled);
+  }
+
   //redirect after successfull signup
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
@@ -245,7 +251,12 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
                           <label for="cityList">Name Of Area</label>
                   </div> */}
                 <div className="tnc">
-                  <input type="checkbox" id="TnC" required />
+                  <input
+                    type="checkbox"
+                    id="TnC"
+                    required
+                    onChange={activate}
+                  />
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
@@ -258,6 +269,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
                   type="submit"
                   className="btn btn-warning btn-lg"
                   value="Register"
+                  disabled={disabled}
                 />
               </form>
             </div>

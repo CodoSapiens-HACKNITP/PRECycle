@@ -58,37 +58,37 @@ function App() {
             path="/signup/vendor"
             component={() => <SignupVendor />}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/dashboard/seller"
             component={() => <SellerDashboard1 />}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/sellerDashboardProgress"
             component={() => <SellerDashboard2 />}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/dashboard/rider"
             component={() => <RiderDashboard />}
           />
-          <Route
+          <PrivateRoute
           exact
           path="/dashboard/vendor"
           component={() => <VendorDashboard />}
           /> 
-          <Route
+          <PrivateRoute
             exact
             path="/history/order"
             component={() => <OrderHistory />}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/history/delivery"
             component={() => <DeliveryHistory />}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/history/pickup"
             component={() => <PickupHistory />}

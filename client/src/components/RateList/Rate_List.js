@@ -10,9 +10,9 @@ import { loadUser } from "../../actions/auth";
 
 
 
-const RateList = ({auth, updateWasteList}) => {
+const RateList = ({auth, pickup, updateWasteList}) => {
     
-    const [modal, toggleModal] = useState("false")
+  const [modal, toggleModal] = useState("false")
   function WasteRate(props) {
     return (
       <tr>
@@ -25,13 +25,14 @@ const RateList = ({auth, updateWasteList}) => {
     );
   }
   
-  var wasteTypeArray = auth.user ? auth.user.wasteType : []
-  var [formData, setFormData] = useState(wasteTypeArray);
+  
   
   useEffect(() => {
     loadUser(localStorage.typeofuser)
- }, []);
- 
+ });
+
+ var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
+  var [formData, setFormData] = useState(wasteTypeArray);
   const [data, setData] = useState({
     index: -1,
     name: "",
@@ -49,7 +50,7 @@ const RateList = ({auth, updateWasteList}) => {
     setFormData([...formData, dataToPush]);
     setData({ name: "", rate: "" });
     toggleModal(!modal);
-    // updateWasteList(formData);
+    updateWasteList([data]);
   };
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
@@ -61,7 +62,7 @@ const RateList = ({auth, updateWasteList}) => {
             }
         });
         toggleModal(!modal);
-        // updateWasteList(formData);
+        updateWasteList(formData);
   }
 
   return (
@@ -145,11 +146,13 @@ RateList.propTypes = {
     auth: PropTypes.object.isRequired,
     vendor: PropTypes.object.isRequired,
     updateWasteList: PropTypes.func.isRequired,
+    pickup: PropTypes.object.isRequired,
   };
   
   const mapStateToProps = (state) => ({
     auth: state.auth,
     vendor: state.pickup.vendor,
+    pickup: state.auth
   });
   
   export default connect(mapStateToProps, {updateWasteList })(
