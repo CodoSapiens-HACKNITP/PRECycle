@@ -141,9 +141,7 @@ const RateList = ({auth, pickup, updateWasteList}) => {
             <Button variant="primary" onClick={(e) => {toggleModal(!modal); setData({ name: "", rate: ""});}}>
               Add New Item
             </Button>
-            <Button variant="primary" onClick={(e) => {onSubmit(e);}}>
-              Save
-            </Button>
+            
           </div>
         </div>
       </div>
