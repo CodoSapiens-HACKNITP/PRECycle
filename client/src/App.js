@@ -8,9 +8,10 @@ import { SignupRider } from "./components/Signup-rider/signup-rider";
 import { Register } from "./components/signup-seller/SignupSeller";
 import Footer from "./components/Footer/FooterComponent";
 import Home from "./components/Home/HomeComponent";
+import Alert from "./components/layout/Alert";
 import Login from "./components/Login/LoginComponent";
 import { TnC } from "./components/TnC/TnC";
-import { SellerDashboard1 } from "./components/seller-dashboard1/seller-dashboard1";
+import  SellerDashboard1  from "./components/seller-dashboard1/seller-dashboard1";
 import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboard2";
 import { RiderDashboard } from "./components/Dashboard_Rider/rider_dashboard";
 import { VendorDashboard } from "./components/Dashboard_Vendor/vendor_dashboard";
@@ -34,6 +35,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
+        <Alert />
         <Switch>
           <Route exact path="/home" component={() => <Home />} />
           <Route exact path="/login" component={() => <Login />} />
