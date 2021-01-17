@@ -25,7 +25,7 @@ const Faqs = () => {
         <Col md={{offset:1,size:7}}>
         <Media body className="ml-1">
         <Media heading><h2 style={{ fontFamily: "Joti one", color: "black" }}>Seller</h2></Media>
-          <p>Lorem Ipsum There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+          <p>A seller is anyone who has recyclable waste in a considerable quantity and wants it to be recycled. All they have to do is sign-in/sign-up on our website or App and fill a "Request to Pick-up" form. After the vendor chosen by them accepts the request, and so does a rider, the seller can get rid of that scrap in exchange for money. As a bonus, the seller can stay updated with the order status from the comfort of their abode. So, they save time and earn money... sound like a win-win?</p>
         </Media>
         </Col>
         </Row>
@@ -37,7 +37,7 @@ const Faqs = () => {
         <Col md={7}>
         <Media body className="ml-1">
         <Media heading><h2 style={{ fontFamily: "Joti one", color: "black" }}>Rider</h2></Media>
-          <p>Lorem Ipsum There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+          <p>Riders are authentic volunteers who serve as local ragpickers. People have a lot of recyclable waste but not that much time to get it recycled. So, the riders provide the facility of "pickup at the doorstep." Once they accept an order, they approach the seller with a weighing scale and pay them according to the scrap collected on behalf of the vendors. The riders then deliver this waste to the vendors. All of it while giving regular status updates to both sellers and vendors.</p>
         </Media>
         </Col>    
         <Col md={{size:4, offset:1}}>
@@ -56,7 +56,7 @@ const Faqs = () => {
         <Col md={{offset:1,size:7}}>
         <Media body className="ml-1">
         <Media heading><h2 style={{ fontFamily: "Joti one", color: "black" }}>Vendor</h2></Media>
-          <p>Lorem Ipsum There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+          <p>Vendors are verified recyclable waste collection centres that regularly send waste to recycling units. Sellers can choose a vendor depending on the type of waste they collect and its rate. They coordinate with PRECycle riders to collect scrap at a large scale based on a rate list decided solely by them. The collaboration helps them in becoming more noticeable so that a larger population opts for recycling their waste.</p>
         </Media>
         </Col>
         </Row>

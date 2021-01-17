@@ -146,7 +146,7 @@ function About(props) {
               <Team src="./assets/fuhar.jpeg" name="Fuhar Suman" post="Team Captain" />
               <Team src="./assets/palak.jpeg" name="Palak Kumari" post="Chief Managing Director" />
               <Team src="./assets/rishabh.jpeg" name="Rishabh Mishra" post="Chief Operating Officer" />
-              <Team src="./assets/dig.png" name="Digvijay Srivastava" post="OP" />
+              <Team src="./assets/dig.png" name="Digvijay Srivastava" post="Chief Technology Officer" />
       </div>
     </div>
   );
