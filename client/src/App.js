@@ -126,9 +126,6 @@ function App() {
             />
             <Redirect to="/home" />
           </Switch>
-          {/* <RiderProfile />
-          <SellerProfile />
-          <VendorProfile /> */}
 
           <Footer />
         </div>
