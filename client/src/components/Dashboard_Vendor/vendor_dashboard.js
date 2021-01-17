@@ -123,7 +123,7 @@ const VendorDashboard = ({ user }) => {
     return (
       <>
         <Button variant="warning" className={ VDstyles.vendor_update_button } onClick={handleShow}>
-          UPDATE
+          CHECK STATUS
         </Button>
 
         <Modal show={show} onHide={handleClose}>
