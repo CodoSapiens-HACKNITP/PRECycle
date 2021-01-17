@@ -31,9 +31,13 @@ const RateList = ({auth, pickup, updateWasteList}) => {
     loadUser(localStorage.typeofuser)
  });
 
+ 
+
   var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
-  console.log(wasteTypeArray);
   var [formData, setFormData] = useState(wasteTypeArray);
+  useEffect(() => {
+    setFormData(wasteTypeArray);
+  }, [auth.user])
   const [data, setData] = useState({
     index: -1,
     name: "",
@@ -48,6 +52,7 @@ const RateList = ({auth, pickup, updateWasteList}) => {
       name,
       rate,
     };
+    if(dataToPush.name === "" || dataToPush.rate === "") return alert("Please fill the form"); 
     setFormData([...formData, dataToPush]);
     console.log([...formData, dataToPush]);
     setData({ name: "", rate: "" });
