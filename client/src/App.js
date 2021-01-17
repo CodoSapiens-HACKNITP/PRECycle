@@ -44,6 +44,11 @@ function App() {
           <Route exact path="/signup/rider" component={() => <SignupRider />} />
           <Route
             exact
+            path="/signup/vendor"
+            component={() => <SignupVendor />}
+          />
+          <Route
+            exact
             path="/dashboard/seller"
             component={() => <SellerDashboard1 />}
           />
@@ -54,32 +59,24 @@ function App() {
           />
           <Route
             exact
-            path="/signup/vendor"
-            component={() => <SignupVendor />}
+            path="/dashboard/rider"
+            component={() => <RiderDashboard />}
           />
-          <Route exact path="/signup/seller" component={() => <Register />} />
-          <Route exact path="/signup/rider" component={() => <SignupRider />} />
-          <Route
-            exact
-            path="/signup/vendor"
-            component={() => <SignupVendor />}
-            
-          />
-          <Route
-                  exact
-                  path="/dashboard/rider"
-                  component={() => <RiderDashboard />}
-                />
            <Route
-                  exact
-                  path="/dashboard/vendor"
-                  component={() => <VendorDashboard />}
-                /> 
-           <Route         
             exact
-            path="/faqs"
-            component={() => <Faqs />}
-          />
+            path="/dashboard/vendor"
+            component={() => <VendorDashboard />}
+          /> 
+           <Route         
+              exact
+              path="/faqs"
+              component={() => <Faqs />}
+            />
+            <Route
+              exact
+              path="/dashboard/vendor"
+              component={() => <VendorDashboard />}
+            /> 
           <Redirect to="/home" />
         </Switch>
      
