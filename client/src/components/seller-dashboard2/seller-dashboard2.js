@@ -3,6 +3,7 @@ import "./seller-dashboard2.css";
 import Button from "react-bootstrap/Button";
 import { FcBusinessman } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 export const SellerDashboard2 = () => {
   function KeyValue(props) {
@@ -31,6 +32,7 @@ export const SellerDashboard2 = () => {
       <div className="seller-dashboard1">
         {/* HEADER SECTION */}
         <div className="gradient-section">
+        <Link to="/profile/seller">
           <div className="Profile-image-container">
             <div className="intro">
               <h5>Hi! FirstName</h5>
@@ -40,6 +42,7 @@ export const SellerDashboard2 = () => {
               <FcBusinessman className="seller-profile-pic" />
             </div>
           </div>
+          </Link>
         </div>
         {/* CURRENT REQUEST SECTION */}
         <div className="Current-request ">
@@ -96,9 +99,11 @@ export const SellerDashboard2 = () => {
         </div>
         <hr className="division1" />
         {/* PICKUP HISTORY SECTION */}
+        <Link to="/history/pickup">
         <Button variant="primary" className="pickup-button">
           <span className="request-text">Pickup History</span>
         </Button>{" "}
+        </Link>
       </div>
     </div>
   );

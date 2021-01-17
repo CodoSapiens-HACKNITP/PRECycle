@@ -151,6 +151,7 @@ const VendorDashboard = ({ user }) => {
     <div className={VDstyles.vendor_dashboard}>
       <div className={VDstyles.greet_vendor}>
         {" "}
+        <Link to="/profile/vendor">
         {/* GRADIENT BAR */}
         <div className="vendor-image">
           <img
@@ -163,6 +164,7 @@ const VendorDashboard = ({ user }) => {
         <div className={VDstyles.greeting_vendor}>
           <h2>Welcome, {user ? user.name : ""}</h2> {/* GREET VENDOR */}
         </div>
+        </Link>
       </div>
 
       <div className="card-groups">

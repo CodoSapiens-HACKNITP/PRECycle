@@ -192,6 +192,7 @@ export const RiderDashboard = () => {
 
       <div className={ RDstyles.greet_rider }>
         {" "}
+        <Link to="/profile/rider">
         {/* GRADIENT BAR */}
         <div className="rider-image">
           <img src={profile} alt="profile_img" className={ RDstyles.rider_img }></img>{" "}
@@ -201,6 +202,7 @@ export const RiderDashboard = () => {
           <h2>Hi, Rider!</h2>{" "}
           {/* GREET RIDER */}
         </div>
+        </Link>
       </div>
 
       <div className="card-groups">
