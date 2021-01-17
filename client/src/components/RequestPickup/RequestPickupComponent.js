@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { loadNearbyVendors } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 
-const RenderWasteTable = ({ wasteType, quantity }) => {
+const RenderWasteTable = ({wasteDetails}) => {
   return (
     <div className="table-responsive">
       <table class="table table-striped table-dark">
@@ -20,22 +20,14 @@ const RenderWasteTable = ({ wasteType, quantity }) => {
             <th scope="col">Quantity</th>
           </tr>
         </thead>
-        <tbody>cd c   
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+        <tbody>
+          {wasteDetails !== undefined ? (wasteDetails.map((waste,index) => {
+            <tr>
+            <th scope="row">{index+1}</th>
+            <td>{waste.selectedOption.value}</td>
+            <td>{waste.qty}</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-          </tr>
+          })):(<span></span>)}   
         </tbody>
       </table>
     </div>
@@ -44,46 +36,70 @@ const RenderWasteTable = ({ wasteType, quantity }) => {
 
 const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
 
-  const [index, setIndex] = useState(0);
-  const [data,  setData ] =  useState()
-  const [formData, setFormData] = useState({
-    city: user ? user.address.city : "",
-    pincode: user ? user.address.pin : "",
-    state: user ? user.address.state : "",
-    firstLine: user ? user.address.firstLine : "",
-    landmark: user ? user.address.landmark : "",
-  });
-
+  const [formData, setFormData] = useState({});
+  //Updating vendors when there is a change in vendors
   useEffect(() => {
     setFormData({...formData, wasteType: vendors !== undefined && vendors[0] !== undefined ? vendors[0].wasteType : []});
   }, [vendors]);
-  var options;
+
+
+ //updating teh from data with user details which are required for creating the orders
   useEffect(() => {
-    options = formData.wasteType !== undefined ? [
-      formData.wasteType.map((waste) => {
-        return {name: waste, label: waste}
-      })
-  ] : [];
-  }, [formData]);
+    setFormData({
+      city: user ? user.address.city : "",
+      pincode: user ? user.address.pin : "",
+      state: user ? user.address.state : "",
+      firstLine: user ? user.address.firstLine : "",
+      landmark: user ? user.address.landmark : "",
+      wasteAdded: []
+    })
+  }, [user])
 
-  const { city, pincode, state, firstLine, landmark } = user;
- 
+  //Destructuring the FormData
+  var { city, pincode, state, firstLine, landmark, wasteType, wasteAdded } = formData;
 
-  
+  //Creating the list of the waste type selected by the user of the vendor
+  var options =[];
+  useEffect(() => {
+      wasteType !== undefined ? wasteType.map((waste) => {
+        var data = {value:waste.name, label:waste.name};
+        options.push(data);
+      }) : options.push({value: "NewsPaper", label: "NewsPaper"})
+  }, [wasteType]);
+      
+const [selectedOption , setState] = useState({
+  selectedOption: null,
+  qty: ""
+})
 
-  if (user) {
-    //var address;
-    //if(user.address.firstLine) address += user.address.firstLine + ",";
-    //if(user.address.landmark) address += " " + user.address.landmark;
-    //address += " " + user.address.city + " " + user.address.state + " , " + user.address.pin;
-  }
+const {qty} = selectedOption
+
+const handleChange = selectedOption => {
+  setState({ selectedOption });
+};
+
+const handleQtyChange = e => {
+  setState({ ...selectedOption, [e.target.name] : e.target.value });
+}
+
+const onAdd = (e) => {
+  e.preventDefault();
+  const dataToPush = {
+    selectedOption,
+    qty,
+  };
+  if(dataToPush.selectedOption === "" || dataToPush.qty === "") return alert("Please fill the form"); 
+  wasteAdded.push(dataToPush);
+  setState({ selectedOption: null, qty: "" });
+
+};
 
   const onChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
     loadNearbyVendors(pincode, city);
-  }, []);
+  }, [pincode, city]); 
   function Vendors(props) {
     return (
       <div className="vendor-list">
@@ -96,7 +112,6 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
     );
   }
 
-  function addWaste() {}
 
   return (
     <div>
@@ -184,10 +199,6 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
               ) : (
                 ""
               )}
-              {/* <Vendors vendor=" Fuhar " />
-            <Vendors vendor=" Palak " />
-            <Vendors vendor=" Digvijay " />
-            <Vendors vendor=" GuruJi" /> */}
             </FormGroup>
             <hr />
             <h3>Enter Waste Details</h3>
@@ -197,20 +208,13 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
                 Type of waste
               </Label>
               <Col md={{ size: 3 }}>
-                {/*<Select
-                  options={options}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  name="wasteType"
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />*/}
                 <Select
                   options={options}
+                  value={selectedOption.label}
                   name="wasteType"
                   className="basic-single"
                   classNamePrefix="select"
+                  onChange={handleChange}
                 />
               </Col>
               <Label htmlFor="wasteType" md={{ size: 3, offset: 1 }}>
@@ -220,17 +224,19 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
                 <Input
                   type="number"
                   id="quantity"
-                  name="quantity"
+                  name="qty"
                   placeholder="Waste Quantity"
+                  value={qty}
+                  onChange={(e) => handleQtyChange(e)}
                 />
               </Col>
               <Col md={2}>
-                <Button outline color="warning" onClick={addWaste}>
+                <Button outline color="warning" onClick={(e) => onAdd(e)}>
                   Add
                 </Button>
               </Col>
             </FormGroup>
-            <RenderWasteTable />
+            <RenderWasteTable wasteDetails={wasteAdded}/>
             <hr />
             <h3>Select Slot</h3>
             <br />

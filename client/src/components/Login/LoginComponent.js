@@ -207,18 +207,16 @@ const Login = ({ login, isAuthenticated }) => {
 
               <button className={styles.signin_btn}>Sign In</button>
             </form>
-            <p className={styles.or}>or</p>
-            <GoogleLogin
+            <center>
+              <p className={styles.or}>or</p>
+              <GoogleLogin
               clientId="266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com"
               buttonText="Login"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}
-            />,
+            />
             <h4 className={styles.form_h4}>
-              {" "}
-              New User?{" "}
-              <Link to="/signup/seller" className={styles.form_link}>
                 {" "}
                 Sign Up Here
               </Link>
