@@ -19,7 +19,7 @@ import VendorDashboard from "./components/Dashboard_Vendor/vendor_dashboard";
 import RequestPickup from "./components/RequestPickup/RequestPickupComponent";
 import { SellerProfile } from "./components/SellerProfile/SellerProfile";
 import { RiderProfile } from "./components/RiderProfile/RiderProfile";
-import  RateList  from "./components/RateList/Rate_List";
+import RateList from "./components/RateList/Rate_List";
 import { OrderHistory } from "./components/Vendor_OrderHistory/order_history";
 import { DeliveryHistory } from "./components/Rider_DeliveryHistory/delivery_history";
 import { PickupHistory } from "./components/Seller_PickupHistory/pickup_history";
@@ -33,103 +33,106 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 function App() {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
-    useEffect(() => {
-      store.dispatch(loadUser(localStorage.typeofuser));
-    });
-    return (
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  useEffect(() => {
+    store.dispatch(loadUser(localStorage.typeofuser));
+  });
+  return (
     <Provider store={store}>
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Alert />
-        <Switch>
-          <Route exact path="/home" component={() => <Home />} />
-          <Route exact path="/contactus" component={() => <Contact />} />
-          <Route exact path="/aboutus" component={() => <About />} />          
-          <Route exact path="/login" component={() => <Login />} />
-          <Route exact path="/signup/seller" component={() => <Register />} />
-          <Route exact path="/signup/rider" component={() => <SignupRider />} />
-          <Route
-            exact
-            path="/signup/vendor"
-            component={() => <SignupVendor />}
-          />
-          <PrivateRoute
-            exact
-            path="/dashboard/seller"
-            component={() => <SellerDashboard1 />}
-          />
-          <PrivateRoute
-            exact
-            path="/sellerDashboardProgress"
-            component={() => <SellerDashboard2 />}
-          />
-          <PrivateRoute
-            exact
-            path="/dashboard/rider"
-            component={() => <RiderDashboard />}
-          />
-          <PrivateRoute
-          exact
-          path="/dashboard/vendor"
-          component={() => <VendorDashboard />}
-          /> 
-          <PrivateRoute
-            exact
-            path="/history/order"
-            component={() => <OrderHistory />}
-          />
-          <PrivateRoute
-            exact
-            path="/history/delivery"
-            component={() => <DeliveryHistory />}
-          />
-          <PrivateRoute
-            exact
-            path="/history/pickup"
-            component={() => <PickupHistory />}
-          />    
-          <Route         
-            exact
-            path="/faqs"
-            component={() => <Faqs />}
-          />
-          <Route exact path="/tnc" component={() => <TnC />} />
-          <PrivateRoute
-                  exact
-                  path="/requestPickup"
-                  component={() => <RequestPickup />}
-                />
-                <PrivateRoute
-                  exact
-                  path="/ratelist"
-                  component={() => <RateList />}
-                />
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Alert />
+          <Switch>
+            <Route exact path="/home" component={() => <Home />} />
+            <Route exact path="/contactus" component={() => <Contact />} />
+            <Route exact path="/aboutus" component={() => <About />} />
+            <Route exact path="/login" component={() => <Login />} />
+            <Route exact path="/signup/seller" component={() => <Register />} />
+            <Route
+              exact
+              path="/signup/rider"
+              component={() => <SignupRider />}
+            />
+            <Route
+              exact
+              path="/signup/vendor"
+              component={() => <SignupVendor />}
+            />
+            <PrivateRoute
+              exact
+              path="/dashboard/seller"
+              component={() => <SellerDashboard1 />}
+            />
+            <PrivateRoute
+              exact
+              path="/sellerDashboardProgress"
+              component={() => <SellerDashboard2 />}
+            />
+            <PrivateRoute
+              exact
+              path="/dashboard/rider"
+              component={() => <RiderDashboard />}
+            />
+            <PrivateRoute
+              exact
+              path="/dashboard/vendor"
+              component={() => <VendorDashboard />}
+            />
+            <PrivateRoute
+              exact
+              path="/history/order"
+              component={() => <OrderHistory />}
+            />
+            <PrivateRoute
+              exact
+              path="/history/delivery"
+              component={() => <DeliveryHistory />}
+            />
+            <PrivateRoute
+              exact
+              path="/history/pickup"
+              component={() => <PickupHistory />}
+            />
+            <Route exact path="/faqs" component={() => <Faqs />} />
+            <Route exact path="/tnc" component={() => <TnC />} />
+            <PrivateRoute
+              exact
+              path="/requestPickup"
+              component={() => <RequestPickup />}
+            />
+            <PrivateRoute
+              exact
+              path="/ratelist"
+              component={() => <RateList />}
+            />
 
-                <PrivateRoute
-                  exact
-                  path="/profile/rider"
-                  component={() => <RiderProfile />}
-                />
-                <PrivateRoute
-                  exact
-                  path="/profile/seller"
-                  component={() => <SellerProfile />}
-                />
-                <PrivateRoute
-                  exact
-                  path="/profile/vendor"
-                  component={() => <VendorProfile />}
-                />
-          <Redirect to="/home" />
-        </Switch>
-     
-        <Footer />
-      </div>
-    </BrowserRouter>
+            <PrivateRoute
+              exact
+              path="/profile/rider"
+              component={() => <RiderProfile />}
+            />
+            <PrivateRoute
+              exact
+              path="/profile/seller"
+              component={() => <SellerProfile />}
+            />
+            <PrivateRoute
+              exact
+              path="/profile/vendor"
+              component={() => <VendorProfile />}
+            />
+            <Redirect to="/home" />
+          </Switch>
+          {/* <RiderProfile />
+          <SellerProfile />
+          <VendorProfile /> */}
+
+          <Footer />
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 }

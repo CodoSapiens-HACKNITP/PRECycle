@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./RiderProfile.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiFillEdit } from "react-icons/ai";
 import Card from "../SellerProfile/Card.js";
+import AddressForm from "../SellerProfile/EditAddress";
 
 export const RiderProfile = () => {
+  // EDITABLE FIELD CODE
+
+  const [isClicked, setIsClicked] = useState(false);
+  const [readOnlyRadius, setReadOnlyRadius] = useState(true);
+  const [readOnlyRegistration, setReadOnlyRegistration] = useState(true);
+
+  function editAddress() {
+    setIsClicked(!isClicked);
+  }
+
+  function EnableWriteRegistration() {
+    setReadOnlyRegistration(!readOnlyRegistration);
+  }
+
+  function EnableWriteRadius() {
+    setReadOnlyRadius(!readOnlyRadius);
+  }
+
   return (
     <div>
       <div className={style.container}>
@@ -30,7 +49,7 @@ export const RiderProfile = () => {
             <h3 className={style.heading}>
               {" "}
               Address
-              <AiFillEdit className={style.editable} />
+              <AiFillEdit className={style.editable} onClick={editAddress} />
             </h3>
             <div className={style.addressField}>
               <Form.Group controlId="Address">
@@ -44,6 +63,11 @@ export const RiderProfile = () => {
                 />
               </Form.Group>
             </div>
+            {/* HIDDEN ADDRESS FORM */}
+
+            <div style={{ display: isClicked ? "block" : "none" }}>
+              <AddressForm />
+            </div>
 
             {/* REGISTRATION NO AND RADIUS SECTION */}
 
@@ -52,7 +76,10 @@ export const RiderProfile = () => {
                 <h3 className={style.heading}>
                   {" "}
                   Registration No.
-                  <AiFillEdit className={style.editable} />
+                  <AiFillEdit
+                    className={style.editable}
+                    onClick={EnableWriteRegistration}
+                  />
                 </h3>
 
                 <Form.Group controlId="Registration">
@@ -61,15 +88,31 @@ export const RiderProfile = () => {
                     type="text"
                     placeholder="Registration Number"
                     className=""
-                    readOnly
+                    readOnly={readOnlyRegistration}
                   />
+                  {/* HIDDEN SAVE BUTTON */}
+                  <Button
+                    variant="primary"
+                    style={{
+                      display: !readOnlyRegistration ? "block" : "none",
+                    }}
+                    className={style.button123}
+                  >
+                    Save
+                  </Button>{" "}
                 </Form.Group>
               </div>
+
+              {/* OPERSTION RADIUS FIELD */}
+
               <div className={style.flexItem}>
                 <h3 className={style.heading}>
                   {" "}
                   Operation Radius
-                  <AiFillEdit className={style.editable} />
+                  <AiFillEdit
+                    className={style.editable}
+                    onClick={EnableWriteRadius}
+                  />
                 </h3>
 
                 <Form.Group controlId="operationRadius">
@@ -78,8 +121,16 @@ export const RiderProfile = () => {
                     type="text"
                     placeholder="Operation Radius"
                     className=""
-                    readOnly
+                    readOnly={readOnlyRadius}
                   />
+                  {/* HIDDEN SAVE BUTTON */}
+                  <Button
+                    variant="primary"
+                    style={{ display: !readOnlyRadius ? "block" : "none" }}
+                    className={style.button123}
+                  >
+                    Save
+                  </Button>{" "}
                 </Form.Group>
               </div>
             </div>

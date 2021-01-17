@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 //import PropTypes from "prop-types";
 //import { connect } from "react-redux";
 // import { Redirect } from "react-router-dom";
@@ -53,7 +54,7 @@ export const RiderDashboard = () => {
           </Card.Text>
           <div><hr></hr></div>
           <Update />
-          <Button variant="light" className={ RDstyles.rider_invoice_button }>GENERATE INVOICE</Button>
+          <Invoice />
         </Card.Body>
       </Card>
     );
@@ -142,6 +143,48 @@ export const RiderDashboard = () => {
     );
   }
 
+  function Invoice() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Button variant="light" className={ RDstyles.rider_invoice_button } onClick={handleShow}>
+          GENERATE INVOICE
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>ENTER DETAILS</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group >
+                <Form.Label>Waste Type</Form.Label>
+                <Form.Control type="WasteType" placeholder="Enter the types of waste collected">
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Waste Quantity</Form.Label>
+                <Form.Control type="WasteQuantity" placeholder="Enter the respective waste quantity with appropriate units" />
+              </Form.Group>
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="The seller approves of the above mentioned details" />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" type="submit" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
   
 
   return (
