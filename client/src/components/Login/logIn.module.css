@@ -112,6 +112,7 @@
 
 .form_h4 {
     margin-top: 60px;
+    margin-bottom: 20px;
     color: white;
 }
 
@@ -123,6 +124,7 @@
 .form_link {
     color: white;
     cursor: pointer;
+    
 }
 
 @media only screen and (max-width: 768px) {
@@ -204,4 +206,15 @@
         margin-bottom: 20px;
         border-radius: 0 0 25px 25px;
     }
+}
+
+.select {
+    background-color: transparent;
+    width: auto;
+    padding: 10px 30px;
+    font-size: medium;
+    color: white;
+    border: 1px solid;
+    margin-top: 10px;
+    
 }

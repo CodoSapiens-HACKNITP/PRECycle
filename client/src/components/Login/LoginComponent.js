@@ -47,11 +47,11 @@ const Login = ({ login, isAuthenticated }) => {
           
         </div>
 
-        {/* SIGNUP SECTION */}
+        {/* SIGNIN SECTION */}
 
         <div className="flex-item-right">
           <div className="content">
-          <h2 className={styles.form_h2}>SIGN IN</h2>
+          <h2 className={styles.form_h2}><center>SIGN IN</center></h2>
 
 <form
   onSubmit={(e) => onSubmit(e)}
@@ -77,6 +77,7 @@ const Login = ({ login, isAuthenticated }) => {
   <select
     name="typeOfUser"
     value={typeOfUser}
+    className={styles.select}
     onChange={(e) => onChange(e)}
   >
     <option value="seller">Seller</option>
@@ -86,6 +87,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   <button className={styles.signin_btn}>Sign In</button>
 </form>
+<center>
 <p className={styles.or}>or</p>
 <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button>
 <h4 className={styles.form_h4}>
@@ -96,6 +98,7 @@ const Login = ({ login, isAuthenticated }) => {
     Sign Up Here
   </Link>
 </h4>
+</center>
             </div>
           </div>
         </div>
