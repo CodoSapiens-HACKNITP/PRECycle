@@ -45,3 +45,7 @@ After cloning project:
 4. cd ..
 5. npm run dev
 6. Application Started working on port 3000
+
+# Link to video walkthrough and presentation:
+
+https://drive.google.com/drive/folders/1ObOQ32-lF9U2eJXFznFdVJqLi-EhOkK4?usp=sharing
