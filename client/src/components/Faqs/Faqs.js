@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { Media,Row,Col } from 'reactstrap';
+import { Link } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
@@ -69,66 +70,76 @@ const Faqs = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0">
-        How to get good CG in Sem 4?
+        What are the most common items that are recyclable?
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="0">
-      <Card.Body>Hello! I'm the body</Card.Body>
+      <Card.Body>
+        <p>1. Cardboard</p>
+        <p>2. Paper</p>
+        <p>3. Packaging boxes</p>
+        <p>4. Print Outs</p>
+        <p>5. Beverage cans</p>
+        <p>6. Food cans</p>
+        <p>7. Plastic bottles</p>
+        <p>8. Jugs & Jars (plastic)</p>
+        <p>9. All types of metals like Iron, Copper, Brass, etc.</p>
+        <p>10. AC, Fridge, Home Appliances</p>
+      </Card.Body>
     </Accordion.Collapse>
   </Card>
     <br/>
   <Card>
     <Card.Header>
       <Accordion.Toggle  as={Button} variant="link" eventKey="1">
-        Who are the benefits?
+        How does recycling work?
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="1">
-      <Card.Body>Hello! I'm another body</Card.Body>
+      <Card.Body>
+        <p>There are three parts to the recycling process: collection, manufacturing and buying</p>
+        <p>Collection - Don't Send Recyclables To The Landfill</p>
+        <p>In first phase, dry materials are separated from the wet waste and sorted to become raw materials.</p>
+        <p>Manufacturing - Using recovered Materials for recycling instead of Virgin product as Raw Materials by sorting as stated above.</p>
+        <p>Buying - "Close The Loop" By Buying Products With Recycled Content</p>
+        <p>In order to make recycling economically viable, people should buy recycled products, companies will be encouraged to make them, and the whole system works.</p>  
+      </Card.Body>
     </Accordion.Collapse>
   </Card><br/>
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="2">
-        How to get good CG in Sem 4?
+        Is recycling truly beneficial for the environment?
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="2">
-      <Card.Body>Hello! I'm the body</Card.Body>
+      <Card.Body><p>Recycling conserves energy and natural resources. It is a small step towards the greater good. By recycling, we aim to bring about sustainability.  It is the answer to a lot of ongoing environmental concerns. For e.g., As recycling saves energy it also reduces greenhouse gas emissions, which helps to tackle climate change.</p></Card.Body>
     </Accordion.Collapse>
   </Card>
     <br/>
   <Card>
     <Card.Header>
       <Accordion.Toggle  as={Button} variant="link" eventKey="3">
-        Who are the benefits?
+        Why do we have to sort our recyclables?
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="3">
-      <Card.Body>Hello! I'm another body</Card.Body>
+      <Card.Body>
+        <p>Mixing different dry recyclables or contaminating them with wet waste or garbage makes it more difficult to prepare them as raw material for production. People should sort material into cardboard, paper, plastics, and metals etc to make it more economical to use as raw material for industries.</p>
+      </Card.Body>
     </Accordion.Collapse>
   </Card><br/>
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="4">
-        How to get good CG in Sem 4?
+        How do I know what my local recycling options are?
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="4">
-      <Card.Body>Hello! I'm the body</Card.Body>
+      <Card.Body>Please <Link to="/contactus">contact us</Link> to fulfil your recycling needs in most secured way. Our rider will come to your doorstep in uniform, weigh your material with digital weigh scale and pay you through cash. So, sell your scrap, tension free!</Card.Body>
     </Accordion.Collapse>
   </Card>
     <br/>
-  <Card>
-    <Card.Header>
-      <Accordion.Toggle  as={Button} variant="link" eventKey="5">
-        Who are the benefits?
-      </Accordion.Toggle>
-    </Card.Header>
-    <Accordion.Collapse eventKey="5">
-      <Card.Body>Hello! I'm another body</Card.Body>
-    </Accordion.Collapse>
-  </Card><br/>
 </Accordion>
         </div>
     </div>
