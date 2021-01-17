@@ -5,6 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
+import Workflow from "../Workflow/Workflow.js";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -62,6 +63,9 @@ const Faqs = () => {
         </Col>
         </Row>
       </Media>
+    </div> <br/><hr/><br/>
+    <div data-aos="flip-left">
+    <Workflow/>
     </div>
     <br/><hr/><br/>
     <h1 style={{ fontFamily: "Joti one", color: "black" }}><center>Frequently asked Questions</center></h1><br/><br/>
