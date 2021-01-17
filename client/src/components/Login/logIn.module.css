@@ -7,12 +7,9 @@
 }
 
 .button_div {
-    background-color: #ffffff;
+    
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+   
 }
 
 .google_btn {
@@ -116,6 +113,11 @@
 .form_h4 {
     margin-top: 60px;
     color: white;
+}
+
+.or{
+    color: #fff;
+    margin-top: 10px;
 }
 
 .form_link {

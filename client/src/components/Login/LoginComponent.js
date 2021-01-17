@@ -33,7 +33,7 @@ const Login = ({login, isAuthenticated }) => {
     <div className="loginRounded">
       <div className={styles.parent_div}>
         <div className={styles.button_div}>
-          <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button>
+          <image src="./assets/signin.jpg" alt="signin"/>
           
         </div>
 
@@ -74,7 +74,8 @@ const Login = ({login, isAuthenticated }) => {
 
               <button className={styles.signin_btn}>Sign In</button>
             </form>
-
+            <p className={styles.or}>or</p>
+            <button className={styles.google_btn}>SIGN IN WITH GOOGLE</button>
             <h4 className={styles.form_h4}>
               {" "}
               New User?{" "}
