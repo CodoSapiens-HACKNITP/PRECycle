@@ -14,6 +14,7 @@ import image1 from "../../assests/seller.png";
 import image2 from "../../assests/rider.png";
 import image3 from "../../assests/vendor.png";
 import Testimonials from "../Testimonials/Testimonials.js";
+import Facts from "../FactsFigures/FactsFigures";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -162,6 +163,11 @@ const Home = (props) => {
         </Col>
         </Row>
       </Media>
+      </div>
+      <br/><hr/><br/>
+      <div data-aos="fade-up">
+      <center><h2 style={{ fontFamily: "Joti one", color: "black" }}>Did you know?</h2></center>
+          <Facts />
       </div>
       <br/><hr/><br/>
       <div data-aos="fade-up">
