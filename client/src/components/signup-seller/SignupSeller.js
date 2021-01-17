@@ -251,7 +251,7 @@ export const Register = (/*{ setAlert, registerSeller, isAuthenticated }*/) => {
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
-                    <Link to="/tnc" target="_blank" className="tnc">
+                    <Link to="/tnc"  className="tnc">
                       terms and conditions and the privacy policy
                     </Link>
                   </label>
