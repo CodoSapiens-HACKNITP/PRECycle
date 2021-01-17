@@ -39,7 +39,7 @@
 }
 
 .addressField {
-  width: 60%;
+  width: 70%;
   margin-top: 0%;
   margin-left: auto;
   margin-right: auto;
@@ -116,7 +116,13 @@
 
 /* 
 SELECT TYPE OF WASTE */
-.SelectType {
+/* .SelectType {
   display: none;
   width: 90%;
+} */
+
+.button123 {
+  margin-left: 62%;
+  width: 20%;
+  margin-top: 10px;
 }

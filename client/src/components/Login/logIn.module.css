@@ -1,220 +1,264 @@
+.SigninParent {
+  font-family: "Roboto", sans-serif;
+
+  width: 100%;
+  height: 100%;
+}
+
+/* FLEXING BOX */
+
+.mainFlex {
+  display: flex;
+  flex-flow: row wrap;
+  height: 70vh;
+  width: 90%;
+  border: none;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px auto 50px auto;
+}
+
+/* WELCOME SECTION */
+.SignIN {
+  flex: 50%;
+  justify-content: center;
+  background-image: url("./background6.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  border-radius: 25px 0 0 25px;
+}
+
+.welcomeText,
+.name {
+  text-align: center;
+  color: white;
+}
+
+.welcomeText {
+  width: fit-content;
+
+  font-size: 3rem;
+  margin: 20% auto 0;
+}
+
+.name {
+  font-family: "Joti one";
+  width: fit-content;
+  font-size: 6rem;
+  font-weight: bolder;
+  margin: 10% auto 0;
+}
+
 .parent_div {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .button_div {
-    
-    width: 50%;
-   
+  width: 50%;
 }
 
 .google_btn {
-    background-color: #ea4335;
-    color: white;
-    border: none;
-    width: 300px;
-    padding: 8px 0 8px 0;
-    font-size: 18px;
-    border-radius: 50px;
-    margin-bottom: 20px;
+  background-color: #ea4335;
+  color: white;
+  border: none;
+  width: 300px;
+  padding: 8px 0 8px 0;
+  font-size: 18px;
+  border-radius: 50px;
+  margin-bottom: 20px;
 }
 
 .google_btn:focus {
-    outline: none;
-    color: yellow;
+  outline: none;
+  color: yellow;
 }
 
 .facebook_btn {
-    background-color: #3b5998;
-    color: white;
-    border: none;
-    width: 300px;
-    padding: 8px 0 8px 0;
-    font-size: 18px;
-    border-radius: 50px;
-    margin-top: 20px;
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  width: 300px;
+  padding: 8px 0 8px 0;
+  font-size: 18px;
+  border-radius: 50px;
+  margin-top: 20px;
 }
 
 .facebook_btn:focus {
-    outline: none;
-    color: yellow;
+  outline: none;
+  color: yellow;
 }
 
 .form_div {
-    background-color: #1c8ef8;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: #1c8ef8;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form_div_inner {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form_h2 {
-    padding: 40px 0 40px 0;
-    color: white;
+  padding: 40px 0 40px 0;
+  color: white;
 }
-
 
 .form_component {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .form_component input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid white;
-    width: 300px;
-    height: 36px;
-    margin: 20px 0;
-    padding-bottom: 2px;
-    font-size: 20px;
-    color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+  width: 300px;
+  height: 36px;
+  margin: 20px 0;
+  padding-bottom: 2px;
+  font-size: 20px;
+  color: white;
 }
 
-.form_component input::placeholder{
-    color: white;
-    font-size: 20px;
-    padding: 10px 10px;
+.form_component input::placeholder {
+  color: white;
+  font-size: 20px;
+  padding: 10px 10px;
 }
 
 .signin_btn {
-    width: 300px;
-    border: none;
-    border-radius: 50px;
-    background-color: #ffffff;
-    color: #1c8ef8;
-    font-size: 20px;
-    padding: 8px 0 8px 0;
-    margin-top: 40px;
+  width: 300px;
+  border: none;
+  border-radius: 50px;
+  background-color: #ffffff;
+  color: #1c8ef8;
+  font-size: 20px;
+  padding: 8px 0 8px 0;
+  margin-top: 40px;
 }
 
 .signin_btn:focus {
-    outline: none;
-    color: black;
+  outline: none;
+  color: black;
 }
 
 .form_h4 {
-    margin-top: 60px;
-    margin-bottom: 20px;
-    color: white;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  color: white;
 }
 
-.or{
-    color: #fff;
-    margin-top: 10px;
+.or {
+  color: #fff;
+  margin-top: 10px;
 }
 
 .form_link {
-    color: white;
-    cursor: pointer;
-    
+  color: white;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
-    .google_btn {
-        width: 75%;
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-    .facebook_btn {
-        width: 75%;
-        font-size: 14px;
-        padding: 10px;
-    }
+  .google_btn {
+    width: 75%;
+    font-size: 14px;
+    padding: 10px;
+  }
 
-    .form_h2 {
-        font-size: 28px;
-    }
+  .facebook_btn {
+    width: 75%;
+    font-size: 14px;
+    padding: 10px;
+  }
 
-    .form_component input {
-        width: 75%;
-        font-size: 18px;
-    }
+  .form_h2 {
+    font-size: 28px;
+  }
 
-    .form_component input::placeholder{
-        font-size: 16px;
-        padding: 5px 5px;
-    }
+  .form_component input {
+    width: 75%;
+    font-size: 18px;
+  }
 
-    .signin_btn {
-        width: 75%;
-        font-size: 16px;
-        padding: 10px;
-    }
+  .form_component input::placeholder {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
 
-    .form_h4 {
-        font-size: 18px;
-    }
+  .signin_btn {
+    width: 75%;
+    font-size: 16px;
+    padding: 10px;
+  }
 
+  .form_h4 {
+    font-size: 18px;
+  }
 }
-  
-  /* SMARTPHONES LANDSCAPE */
-  @media only screen and (max-width: 550px) {
 
-    .parent_div {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-    .form_div {
-        width: 90vw;
-        padding: 0 0 20px 0;
-        /* margin-top: 20px; */
-        border: 1px solid grey;
-        border-bottom: none;
-        border-radius: 25px 25px 0 0;
-    }
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (max-width: 550px) {
+  .parent_div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .form_div {
+    width: 90vw;
+    padding: 0 0 20px 0;
+    /* margin-top: 20px; */
+    border: 1px solid grey;
+    border-bottom: none;
+    border-radius: 25px 25px 0 0;
+  }
 
-    .form_h2 {
-        padding: 20px 0 ;
-    }
+  .form_h2 {
+    padding: 20px 0;
+  }
 
-    .form_h4{
-        margin-top: 20px;
-    }
+  .form_h4 {
+    margin-top: 20px;
+  }
 
-    .signin_btn{
-        margin-top: 20px;
-    }
+  .signin_btn {
+    margin-top: 20px;
+  }
 
-    .button_div {
-        width: 90vw;
-        padding-top: 40px;
-        border: 1px solid grey;
-        border-top: 1px solid grey;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        border-radius: 0 0 25px 25px;
-    }
+  .button_div {
+    width: 90vw;
+    padding-top: 40px;
+    border: 1px solid grey;
+    border-top: 1px solid grey;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 0 25px 25px;
+  }
 }
 
 .select {
-    background-color: transparent;
-    width: auto;
-    padding: 10px 30px;
-    font-size: medium;
-    color: white;
-    border: 1px solid;
-    margin-top: 10px;
-    
+  background-color: transparent;
+  width: auto;
+  padding: 10px 30px;
+  font-size: medium;
+
+  border: 1px solid;
+  margin-top: 10px;
 }

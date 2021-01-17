@@ -7,8 +7,7 @@ import {
   CardHeader,
   Jumbotron,
   Media,
-  Row,
-  Col,
+ 
 } from "reactstrap";
 import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
@@ -17,19 +16,20 @@ import "aos/dist/aos.css";
 
 
 function Team(props) { 
-  return(<Media>
-    <Row>
-      <Col md={4}>
+  return(
+  <div classname="container">
+  <Media>
+ 
         <Image
           src={props.src}
-          style={{ maxWidth: 125, maxHeight: 125}}
+          style={{ maxWidth: 175, maxHeight: 175}}
           alt="Precycle"
           roundedCircle
           fluid
         />
-      </Col>
-      <Col md={{ offset: 1, size: 7 }}>
-        <Media body className="ml-1">
+  
+      
+        <Media body align-self-center className="ml-1">
           <Media heading>
             <h2 style={{ fontFamily: "Joti one", color: "black" }}>
               {props.name}
@@ -39,9 +39,10 @@ function Team(props) {
             {props.post}
           </p>
         </Media>
-      </Col>
-    </Row>
-  </Media>);
+     
+    
+  </Media>
+  </div>);
 }
 
 function About(props) {
@@ -139,15 +140,19 @@ function About(props) {
         </div>
       </div>
       
-        <div data-aos="fade-up">
+        
           
             <h2>Meet our team</h2>
             <br/><br/>
-              <Team src="./assets/fuhar.jpeg" name="Fuhar Suman" post="Team Captain" />
-              <Team src="./assets/palak.jpeg" name="Palak Kumari" post="Chief Managing Director" />
-              <Team src="./assets/rishabh.jpeg" name="Rishabh Mishra" post="Chief Operating Officer" />
-              <Team src="./assets/dig.png" name="Digvijay Srivastava" post="Chief Technology Officer" />
-      </div>
+          
+            
+            <div data-aos="slide-left"> <Team src="./assets/fuhar.jpeg" name="Fuhar Suman" post="Team Captain" /><hr/></div>
+            <div data-aos="slide-right"><Team src="./assets/palak.jpeg" name="Palak Kumari" post="Chief Managing Director" /><hr/></div>
+            <div data-aos="slide-left"> <Team src="./assets/rishabh.jpeg" name="Rishabh Mishra" post="Chief Operating Officer" /><hr/></div>
+            <div data-aos="slide-right"> <Team src="./assets/dig.png" name="Digvijay Srivastava" post="Chief Technology Officer" /><hr/></div>
+           
+          
+      
     </div>
   );
 }

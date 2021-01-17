@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./SellerProfile.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiFillEdit } from "react-icons/ai";
 import Card from "./Card";
+import AddressForm from "./EditAddress";
 
 export const SellerProfile = () => {
+  //  FOR EDITABLE ADDRESS FORM FUNCTIONALITY
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  function editAddress() {
+    setIsClicked(!isClicked);
+  }
+
   return (
     <div>
       <div className={style.container}>
@@ -29,7 +38,7 @@ export const SellerProfile = () => {
             <h3 className={style.heading}>
               {" "}
               Address
-              <AiFillEdit className={style.editable} />
+              <AiFillEdit className={style.editable} onClick={editAddress} />
             </h3>
             <div className={style.addressField}>
               <Form.Group controlId="Address">
@@ -42,6 +51,9 @@ export const SellerProfile = () => {
                   readOnly
                 />
               </Form.Group>
+            </div>
+            <div style={{ display: isClicked ? "block" : "none" }}>
+              <AddressForm />
             </div>
             {/* CHANGE YOUR PASSWORD SECTION*/}
 

@@ -106,28 +106,30 @@ const RateList = ({auth, pickup, updateWasteList}) => {
                   return (
                     <WasteRate waste={waste.name} rate={ waste.rate} index={index} />
                   );
-                })}
+                })}  
               </tbody>
+
             </Table>
-            {!modal? (<form>
-              <input
+
+            {!modal? (<form className="rate_form"><input
                 type="text"
-                placeholder="name"
+                placeholder="Waste Type"
                 name="name"
                 value={name}
                 onChange={(e) => onChange(e)}
                 required={true}
-              ></input>
+              >
+              </input>
               <input
                 type="text"
-                placeholder="rate"
+                placeholder="Rate"
                 name="rate"
                 value={rate}
                 onChange={(e) => onChange(e)}
                 required={true}
               ></input>
              {index < (formData.length) ? (<button onClick={(e) => updateList(e)}>Update</button>) : (<button onClick={(e) => onSubmit(e)}>Add</button>)}
-            </form>): ("")}
+             </form>): ("")}           
           </div>
 
           <div className={RLstyles.update_rate}>

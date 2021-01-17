@@ -83,7 +83,7 @@
 }
 
 .addressField {
-  width: 60%;
+  width: 70%;
   margin-top: 0%;
   margin-left: auto;
   margin-right: auto;
@@ -140,6 +140,10 @@
   .changePassword {
     width: 70%;
   }
+  .addressField,
+  .editableForm {
+    width: 80%;
+  }
 }
 
 @media (max-width: 400px) {
@@ -153,4 +157,15 @@
   .name {
     font-size: 1em;
   }
+}
+.editableForm {
+  width: 40%;
+  /* background-color: blueviolet; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.button123 {
+  margin-left: 58%;
+  width: 40%;
+  margin-bottom: 20px;
 }

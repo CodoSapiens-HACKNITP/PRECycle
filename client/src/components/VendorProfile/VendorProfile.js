@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./VendorProfile.module.css";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,7 @@ import Card from "../SellerProfile/Card.js";
 import pic from "./digvijay.jpeg";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import AddressForm from "../SellerProfile/EditAddress";
 
 const animatedComponents = makeAnimated();
 
@@ -20,13 +21,19 @@ const options = [
 ];
 
 export const VendorProfile = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [readOnlyAbout, setReadOnlyAbout] = useState(true);
+  const [WasteType, setWasteType] = useState(false);
+
+  function editAddress() {
+    setIsClicked(!isClicked);
+  }
+  function EnableWriteAbout() {
+    setReadOnlyAbout(!readOnlyAbout);
+  }
+
   function selectWaste() {
-    var x = document.getElementById("type");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
+    setWasteType(!WasteType);
   }
 
   return (
@@ -52,7 +59,7 @@ export const VendorProfile = () => {
             <h3 className={style.heading}>
               {" "}
               Address
-              <AiFillEdit className={style.editable} />
+              <AiFillEdit className={style.editable} onClick={editAddress} />
             </h3>
             <div className={style.addressField}>
               <Form.Group controlId="address">
@@ -66,12 +73,19 @@ export const VendorProfile = () => {
                 />
               </Form.Group>
             </div>
+            {/* HIDDEN ADDRESS FORM */}
+            <div style={{ display: isClicked ? "block" : "none" }}>
+              <AddressForm />
+            </div>
 
             {/* ABOUT YOU SECTION*/}
             <h3 className={style.heading}>
               {" "}
               About You
-              <AiFillEdit className={style.editable} />
+              <AiFillEdit
+                className={style.editable}
+                onClick={EnableWriteAbout}
+              />
             </h3>
             <div className={style.addressField}>
               <Form.Group controlId="bio">
@@ -81,8 +95,18 @@ export const VendorProfile = () => {
                   rows={3}
                   className={style.addressField}
                   placeholder="About you"
-                  readOnly
+                  readOnly={readOnlyAbout}
                 />
+                {/* HIDDEN SAVE BUTTON */}
+                <Button
+                  variant="primary"
+                  style={{
+                    display: !readOnlyAbout ? "block" : "none",
+                  }}
+                  className={style.button123}
+                >
+                  Save
+                </Button>{" "}
               </Form.Group>
             </div>
 
@@ -108,7 +132,10 @@ export const VendorProfile = () => {
 
             {/* SELECT TYPE OF WASTE HIDDEN COMPONENT */}
 
-            <div id="type" className={style.SelectType}>
+            <div
+              style={{ display: !WasteType ? "block" : "none" }}
+              className={style.SelectType}
+            >
               <div class="input-group mb-3">
                 <label class="input-group-text" for="waste_type">
                   Type of Waste
