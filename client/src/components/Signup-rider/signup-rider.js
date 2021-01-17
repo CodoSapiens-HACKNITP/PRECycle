@@ -1,79 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signup-rider.css";
 import { AiFillGoogleCircle } from "react-icons/ai";
-import { RadioGroup, RadioButton } from "react-radio-buttons";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 // import { Redirect } from "react-router-dom";
-// import { setAlert } from "../../actions/alert";
-// import { registerRider } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
+import { registerRider } from "../../actions/auth";
 import { Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import { RadioGroup, RadioButton } from "react-radio-buttons";
 
-export const SignupRider = (/*{ setAlert, registerRider }*/) => {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   password2: "",
-  //   phone: "",
-  //   pincode: "",
-  //   firstline: "",
-  //   typeofvehicle: "cycle",
-  //   regnumber: "",
-  //   landmark: "",
-  //   aadhar: "",
-  //   dob: "",
-  // });
+const SignupRider = ({ setAlert, registerRider }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+    phone: "",
+    pincode: "",
+    firstline: "",
+    typeofvehicle: "cycle",
+    regnumber: "",
+    landmark: "",
+    aadhar: "",
+    dob: "",
+  });
 
-  // const {
-  //   name,
-  //   email,
-  //   password,
-  //   password2,
-  //   phone,
-  //   pincode,
-  //   firstline,
-  //   landmark,
-  //   typeofvehicle,
-  //   regnumber,
-  //   aadhar,
-  //   dob,
-  // } = formData;
+  const {
+    name,
+    email,
+    password,
+    password2,
+    phone,
+    pincode,
+    firstline,
+    landmark,
+    typeofvehicle,
+    regnumber,
+    aadhar,
+    dob,
+  } = formData;
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (password !== password2) {
-  //     setAlert("Password do not match", "danger");
-  //   } else {
-  //     registerRider(
-  //       name,
-  //       email,
-  //       password,
-  //       password2,
-  //       phone,
-  //       pincode,
-  //       firstline,
-  //       landmark,
-  //       typeofvehicle,
-  //       regnumber,
-  //       aadhar,
-  //       dob
-  //     );
-  //   }
-  // };
-  // const onChange = async (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert("Password do not match", "danger");
+    } else {
+      registerRider(
+        name,
+        email,
+        password,
+        password2,
+        phone,
+        pincode,
+        firstline,
+        landmark,
+        typeofvehicle,
+        regnumber,
+        aadhar,
+        dob
+      );
+    }
+  };
+  const onChange = async (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   //redirect after successfull signup
   // if (isAuthenticated) {
   //   return <Redirect to="/dashboard/rider" />;
   // }
-
-  function Req() {
-    return <span className="req">*</span>;
-  }
   return (
     <div className="signup-Rider">
       {/* GOOGLE FONTS */}
@@ -144,12 +140,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Name"
                     name="name"
-                    // value={name}
-                    // onChange={(e) => onChange(e)}
+                    value={name}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="floatingInput" className="floating-txt">
                     Name
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -159,13 +154,12 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="name@example.com"
                     name="email"
-                    // value={email}
-                    // onChange={(e) => onChange(e)}
+                    value={email}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="floatingInput" className="floating-txt">
                     Email address
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -175,13 +169,12 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Password"
                     name="password"
-                    // value={password}
-                    // onChange={(e) => onChange(e)}
+                    value={password}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="floatingInput" className="floating-txt">
                     Password
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -191,13 +184,12 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Password"
                     name="password2"
-                    // value={password2}
-                    // onChange={(e) => onChange(e)}
+                    value={password2}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <label for="floatingInput" className="floating-txt">
                     Confirm Password
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -207,12 +199,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Phone no."
                     name="phone"
-                    // value={phone}
-                    // onChange={(e) => onChange(e)}
+                    value={phone}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="floatingInput" className="floating-txt">
                     Phone No.
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -222,12 +213,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Address"
                     name="firstline"
-                    // value={firstline}
-                    // onChange={(e) => onChange(e)}
+                    value={firstline}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="floatingInput" className="floating-txt">
                     Address
-                    <Req />
                   </label>
                 </div>
                 <div class="form-floating mb-3">
@@ -237,12 +227,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="floatingInput"
                     placeholder="Aadhar No."
                     name="aadhar"
-                    // value={aadhar}
-                    // onChange={(e) => onChange(e)}
+                    value={aadhar}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="floatingInput" className="floating-txt">
                     Aadhar No.
-                    <Req />
                   </label>
                 </div>
                 <div className="age-radio">
@@ -252,12 +241,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       id="date"
                       placeholder="Pickup date"
                       name="dob"
-                      // value={dob}
-                      // onChange={(e) => onChange(e)}
+                      value={dob}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="floatingInput" className="floating-txt">
                       DOB
-                      <Req />
                     </label>
                   </div>
 
@@ -304,8 +292,8 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       />
                       <label class="form-check-label" for="other">
                         Other
-                      </label> */}
-                    {/* </div> */}
+                      </label>
+                    </div> */}
                   </div>
                 </div>
                 <div className="reg-pin">
@@ -316,12 +304,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       id="landmark"
                       placeholder="Land Mark"
                       name="landmark"
-                      // value={landmark}
-                      // onChange={(e) => onChange(e)}
+                      value={landmark}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="pincode" className="floating-txt">
                       Landmark
-                      <Req />
                     </label>
                   </div>
                   <div class="form-floating mb-3  reg-pin-items2">
@@ -331,12 +318,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       id="pincode"
                       placeholder="Pin Code"
                       name="pincode"
-                      // value={pincode}
-                      // onChange={(e) => onChange(e)}
+                      value={pincode}
+                      onChange={(e) => onChange(e)}
                     />
                     <label for="pincode" className="floating-txt">
                       Pin Code
-                      <Req />
                     </label>
                   </div>
                 </div>
@@ -351,12 +337,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                     id="txtBox"
                     placeholder="Registration no."
                     name="regnumber"
-                    // value={regnumber}
-                    // onChange={(e) => onChange(e)}
+                    value={regnumber}
+                    onChange={(e) => onChange(e)}
                   />
                   <label for="txtBox" className="floating-txt">
                     Registration no. of vehicle(other than bicycle)
-                    <Req />
                   </label>
                 </div>
                 <div className="operation-radius">
@@ -420,10 +405,11 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                       />
                       <label class="form-check-label" for="15km">
                         15km
-                      </label> */}
-                  {/* </div> */}
+                      </label>
+                    </div> */}
                   {/* </div> */}
                 </div>
+                {/* TESTING AREA */}
                 {/* UPLOAD YOUR PHOTO SECTION */}
                 <div class="mb-3">
                   <label for="chooseFile" class="form-label upload-rider">
@@ -440,7 +426,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
-                    <Link to="/tnc"  className="tnc">
+                    <Link to="/tnc" target="_blank">
                       terms and conditions and the privacy policy
                     </Link>
                   </label>
@@ -448,7 +434,7 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
                 <div className="signup-button">
                   <button
                     type="button"
-                    // onClick={(e) => onSubmit(e)}
+                    onClick={(e) => onSubmit(e)}
                     class="btn btn-warning btn-lg registar"
                   >
                     Register
@@ -463,16 +449,16 @@ export const SignupRider = (/*{ setAlert, registerRider }*/) => {
   );
 };
 
-// SignupRider.propTypes = {
-//   registerRider: PropTypes.func.isRequired,
-//   setAlert: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.object.isRequired,
-// };
+SignupRider.propTypes = {
+  registerRider: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.object.isRequired,
+};
 
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: state.auth.isAuthenticated,
-// });
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-// export default connect(mapStateToProps, { registerRider, setAlert })(
-//   SignupRider
-// );
+export default connect(mapStateToProps, { registerRider, setAlert })(
+  SignupRider
+);

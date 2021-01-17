@@ -1,0 +1,157 @@
+import React, { useState, useEffect } from "react";
+import RLstyles from "./Rate_List.module.css";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import vendor_ic from "../Dashboard_Vendor/vendor.jpg";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {updateWasteList} from '../../actions/pickup'
+import { loadUser } from "../../actions/auth";
+
+
+
+const RateList = ({auth, updateWasteList}) => {
+    
+    const [modal, toggleModal] = useState("false")
+  function WasteRate(props) {
+    return (
+      <tr>
+        <td>{props.waste}</td>
+        <td className={RLstyles.rate_column}>{`Rs ${props.rate}/-`}</td>
+        <td>
+          <button id={props.index} onClick={(e) => {toggleModal(!modal); setData({name: props.waste, rate:props.rate, index:props.index});}} ><span>&#9998;</span></button>
+        </td>
+      </tr>
+    );
+  }
+  
+  var wasteTypeArray = auth.user ? auth.user.wasteType : []
+  var [formData, setFormData] = useState(wasteTypeArray);
+  
+  useEffect(() => {
+    loadUser(localStorage.typeofuser)
+ }, []);
+ 
+  const [data, setData] = useState({
+    index: -1,
+    name: "",
+    rate: "",
+  });
+
+  const { index, name, rate } = data;
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const dataToPush = {
+      name,
+      rate,
+    };
+    setFormData([...formData, dataToPush]);
+    setData({ name: "", rate: "" });
+    toggleModal(!modal);
+    // updateWasteList(formData);
+  };
+
+  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+  const updateList = (e) => {
+      e.preventDefault();
+        formData.map((data) => {
+            if(data.name === name) {
+                data.rate=rate;
+            }
+        });
+        toggleModal(!modal);
+        // updateWasteList(formData);
+  }
+
+  return (
+    <div className={RLstyles.out_container}>
+      <div>
+        <div className={RLstyles.greet_vendor}>
+          {/* GRADIENT BAR */}
+          <div className="vendor-image">
+            <img
+              src={vendor_ic}
+              alt="profile_img"
+              className={RLstyles.vendor_img}
+            ></img>
+            {/* VENDOR IMAGE */}
+          </div>
+          <div className={RLstyles.vendor_greeting_text}>
+            <h2>Welcome, {auth.user ? auth.user.name : ""}</h2>
+            {/* GREET VENDOR */}
+          </div>
+        </div>
+
+        <div className={RLstyles.vendor_rate_list}>
+          <div className={RLstyles.list_heading}>
+            <h2>RATE LIST</h2>
+          </div>
+
+          <div className={RLstyles.bgeffect}>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>WASTE ITEM</th>
+                  <th>RATE</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {formData.map((waste, index) => {
+                  return (
+                    <WasteRate waste={waste.name} rate={ waste.rate} index={index} />
+                  );
+                })}
+              </tbody>
+            </Table>
+            {!modal? (<form>
+              <input
+                type="text"
+                placeholder="name"
+                name="name"
+                value={name}
+                onChange={(e) => onChange(e)}
+                required={true}
+              ></input>
+              <input
+                type="text"
+                placeholder="rate"
+                name="rate"
+                value={rate}
+                onChange={(e) => onChange(e)}
+                required={true}
+              ></input>
+             {index < (formData.length) ? (<button onClick={(e) => updateList(e)}>Update</button>) : (<button onClick={(e) => onSubmit(e)}>Add</button>)}
+            </form>): ("")}
+          </div>
+
+          <div className={RLstyles.update_rate}>
+            <Button variant="primary" onClick={(e) => {toggleModal(!modal); setData({ name: "", rate: ""});}}>
+              Add New Item
+            </Button>
+            <Button variant="primary" onClick={(e) => {updateWasteList(formData);}}>
+              Save
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+RateList.propTypes = {
+    auth: PropTypes.object.isRequired,
+    vendor: PropTypes.object.isRequired,
+    updateWasteList: PropTypes.func.isRequired,
+  };
+  
+  const mapStateToProps = (state) => ({
+    auth: state.auth,
+    vendor: state.pickup.vendor,
+  });
+  
+  export default connect(mapStateToProps, {updateWasteList })(
+    RateList
+  );

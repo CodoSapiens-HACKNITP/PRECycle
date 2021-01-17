@@ -1,0 +1,122 @@
+.container {
+  width: 90%;
+  margin: 10px auto;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(to right, #008891, #70af85);
+}
+
+/* HR TAG STYLING */
+.division {
+  width: 90%;
+  border-top: 2px solid rgb(102, 100, 100);
+  margin: 0 auto;
+}
+
+.cardDiv {
+  padding-top: 1%;
+}
+
+/* REGISTRATION NO SECTION */
+
+.regContainer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.flexItem {
+  flex: auto;
+  margin: 10px auto;
+  width: 30%;
+}
+
+/* ADDRESS SECTION STYLING */
+.address {
+  width: 50%;
+  margin: 5px auto;
+}
+
+.addressField {
+  width: 60%;
+  margin-top: 0%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading {
+  text-align: center;
+  color: #2d3436;
+  size: 1em;
+  margin-bottom: 0;
+}
+
+/* CHANGE PASSWORD SECTION STYLING  */
+.changePassword {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.changeButton {
+  margin-left: 35%;
+}
+
+.lastButton {
+  margin: 2% 0;
+  margin-left: 44%;
+}
+
+.editable {
+  margin-left: 10px;
+  color: #2d3436;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.editable:hover {
+  color: rgb(212, 235, 212);
+  transform: scale(1, 1.1);
+  transition: all 1s;
+}
+
+@media (max-width: 800px) {
+  .card {
+    width: 90%;
+  }
+  .address {
+    width: 90%;
+  }
+  .lastButton {
+    margin-left: 30%;
+  }
+  .changeButton {
+    margin-left: 23%;
+  }
+  .changePassword {
+    width: 70%;
+  }
+  .flexItem {
+    width: 60%;
+  }
+  .addressField {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .changeButton {
+    margin-left: 0;
+  }
+  .lastButton {
+    margin-left: 15%;
+  }
+}
+
+/* 
+SELECT TYPE OF WASTE */
+.SelectType {
+  display: none;
+  width: 90%;
+}

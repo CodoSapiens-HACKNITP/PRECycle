@@ -5,46 +5,53 @@ import vendorpic from "./vendor.jpg";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export const VendorDashboard = () => {
-
+const VendorDashboard = ({ user }) => {
   function UpcomingCard(props) {
     return (
-      <Card classname={ VDstyles.card_orders }>
-        <Card.Body className={ VDstyles.card_u }>
+      <Card classname={VDstyles.card_orders}>
+        <Card.Body className={VDstyles.card_u}>
           <Card.Text>
             <Table>
               <tbody>
                 <tr>
                   <td>ORDER NO.</td>
-                  <td>{ props.OrderNo }</td>
+                  <td>{props.OrderNo}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S NAME</td>
-                  <td>{ props.SellerName }</td>
+                  <td>{props.SellerName}</td>
                 </tr>
                 <tr>
                   <td>RIDER'S NAME</td>
-                  <td>{ props.RiderName }</td>
+                  <td>{props.RiderName}</td>
                 </tr>
                 <tr>
                   <td>SLOT</td>
-                  <td>{ props.Slot }</td>
+                  <td>{props.Slot}</td>
                 </tr>
                 <tr>
                   <td>WASTE TYPE</td>
-                  <td>{ props.WasteType }</td>
+                  <td>{props.WasteType}</td>
                 </tr>
                 <tr>
                   <td>WASTE QUANTITY</td>
-                  <td>{ props.WasteQuantity }</td>
+                  <td>{props.WasteQuantity}</td>
                 </tr>
               </tbody>
-            </Table>            
+            </Table>
           </Card.Text>
-          <div><hr></hr></div>
-          <Button variant="success" className={ VDstyles.vendor_accept }>ACCEPT</Button>
-          <Button variant="danger" className={ VDstyles.vendor_decline }>DECLINE</Button>
+          <div>
+            <hr></hr>
+          </div>
+          <Button variant="success" className={VDstyles.vendor_accept}>
+            ACCEPT
+          </Button>
+          <Button variant="danger" className={VDstyles.vendor_decline}>
+            DECLINE
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -52,59 +59,67 @@ export const VendorDashboard = () => {
 
   function AcceptedCard(props) {
     return (
-      <Card classname={ VDstyles.card_pickups }>
-        <Card.Body className={ VDstyles.card_ac }>
+      <Card classname={VDstyles.card_pickups}>
+        <Card.Body className={VDstyles.card_ac}>
           <Card.Text>
             <Table>
-            <tbody>
+              <tbody>
                 <tr>
                   <td>ORDER NO.</td>
-                  <td>{ props.OrderNo }</td>
+                  <td>{props.OrderNo}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S NAME</td>
-                  <td>{ props.SellerName }</td>
+                  <td>{props.SellerName}</td>
                 </tr>
                 <tr>
                   <td>RIDER'S NAME</td>
-                  <td>{ props.RiderName }</td>
+                  <td>{props.RiderName}</td>
                 </tr>
                 <tr>
                   <td>SLOT</td>
-                  <td>{ props.Slot }</td>
+                  <td>{props.Slot}</td>
                 </tr>
                 <tr>
                   <td>WASTE TYPE</td>
-                  <td>{ props.WasteType }</td>
+                  <td>{props.WasteType}</td>
                 </tr>
                 <tr>
                   <td>WASTE QUANTITY</td>
-                  <td>{ props.WasteQuantity }</td>
+                  <td>{props.WasteQuantity}</td>
                 </tr>
               </tbody>
-            </Table>            
+            </Table>
           </Card.Text>
-          <div><hr></hr></div>
-          <Button variant="warning" className={ VDstyles.vendor_update_button }>CHECK STATUS</Button>
-          <Button variant="light" className={ VDstyles.vendor_invoice_button }>VIEW INVOICE</Button>
+          <div>
+            <hr></hr>
+          </div>
+          <Button variant="warning" className={VDstyles.vendor_update_button}>
+            CHECK STATUS
+          </Button>
+          <Button variant="light" className={VDstyles.vendor_invoice_button}>
+            VIEW INVOICE
+          </Button>
         </Card.Body>
       </Card>
     );
   }
 
-
   return (
-    <div className={ VDstyles.vendor_dashboard}>
-
-      <div className={ VDstyles.greet_vendor }>
+    <div className={VDstyles.vendor_dashboard}>
+      <div className={VDstyles.greet_vendor}>
         {" "}
         {/* GRADIENT BAR */}
         <div className="vendor-image">
-          <img src={vendorpic} alt="profile_img" className={ VDstyles.vendor_img }></img>{" "}
+          <img
+            src={vendorpic}
+            alt="profile_img"
+            className={VDstyles.vendor_img}
+          ></img>{" "}
           {/* VENDOR IMAGE */}
         </div>
-        <div className={ VDstyles.greeting_vendor }>
-          <h2>Welcome, The Org!</h2> {/* GREET VENDOR */}
+        <div className={VDstyles.greeting_vendor}>
+          <h2>Welcome, {user ? user.name : ""}</h2> {/* GREET VENDOR */}
         </div>
       </div>
 
@@ -114,7 +129,7 @@ export const VendorDashboard = () => {
         <div class="row">
           <div class="col-12 col-lg-6">
             <div className="upcoming">
-              <div className={ VDstyles.vendor_heading }>
+              <div className={VDstyles.vendor_heading}>
                 <h1>UPCOMING ORDERS</h1>
               </div>
 
@@ -135,13 +150,12 @@ export const VendorDashboard = () => {
                 WasteType="Answer Sheets"
                 WasteQuantity="5kg"
               />
-
             </div>
           </div>
 
           <div class="col-12 col-lg-6">
             <div className="accepted">
-              <div className={ VDstyles.vendor_heading }>
+              <div className={VDstyles.vendor_heading}>
                 <h1>ACCEPTED ORDERS</h1>
               </div>
 
@@ -162,17 +176,27 @@ export const VendorDashboard = () => {
                 WasteType="Answer Sheets"
                 WasteQuantity="5kg"
               />
-
-              </div>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-      <div className={ VDstyles.vendor_order_hist_button }>
+      <div className={VDstyles.vendor_order_hist_button}>
         <Link to="/history/order">
           <Button variant="info">ORDER HISTORY</Button>
-        </Link>  
+        </Link>
       </div>
     </div>
   );
 };
+VendorDashboard.propTypes = {
+  user: PropTypes.object.isRequired,
+  vendor: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  vendor: state.pickup.vendor,
+});
+
+export default connect(mapStateToProps, {})(VendorDashboard);
