@@ -120,6 +120,12 @@
   margin-left: 30px;
 }
 
+.msg_display{
+  display: inline-block;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
 @media (max-width: 800px) {
   .form-container {
     flex-flow: column wrap;

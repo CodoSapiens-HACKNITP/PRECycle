@@ -66,6 +66,12 @@ const SignupRider = ({ setAlert, registerRider }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [disabled, setDisabled] = useState(true);
+
+  function activate() {
+    setDisabled(!disabled);
+  }
+
   //redirect after successfull signup
   // if (isAuthenticated) {
   //   return <Redirect to="/dashboard/rider" />;
@@ -261,39 +267,6 @@ const SignupRider = ({ setAlert, registerRider }) => {
 
                       {/* <ReversedRadioButton value="melon">Melon</ReversedRadioButton> */}
                     </RadioGroup>
-                    {/* <div class="form-check radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="male"
-                      />
-                      <label class="form-check-label" for="male">
-                        Male
-                      </label>
-                    </div>
-                    <div class="form-check  radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="female"
-                      />
-                      <label class="form-check-label" for="female">
-                        Female
-                      </label>
-                    </div>
-                    <div class="form-check radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="other"
-                      />
-                      <label class="form-check-label" for="other">
-                        Other
-                      </label>
-                    </div> */}
                   </div>
                 </div>
                 <div className="reg-pin">
@@ -361,53 +334,6 @@ const SignupRider = ({ setAlert, registerRider }) => {
                       {/* <ReversedRadioButton value="melon">Melon</ReversedRadioButton> */}
                     </RadioGroup>
                   </div>
-
-                  {/* <div className="radios ">
-                    <div class="form-check radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="2km"
-                      />
-                      <label class="form-check-label" for="2km">
-                        2km
-                      </label>
-                    </div>
-                    <div class="form-check  radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="5km"
-                      />
-                      <label class="form-check-label" for="5km">
-                        5km
-                      </label>
-                    </div>
-                    <div class="form-check radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="10km"
-                      />
-                      <label class="form-check-label" for="10km">
-                        10km
-                      </label>
-                    </div>
-                    <div class="form-check radio-items">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="15km"
-                      />
-                      <label class="form-check-label" for="15km">
-                        15km
-                      </label>
-                    </div> */}
-                  {/* </div> */}
                 </div>
                 {/* TESTING AREA */}
                 {/* UPLOAD YOUR PHOTO SECTION */}
@@ -422,11 +348,16 @@ const SignupRider = ({ setAlert, registerRider }) => {
                   />
                 </div>
                 <div className="tnc">
-                  <input type="checkbox" id="TnC" required />
+                  <input
+                    type="checkbox"
+                    id="TnC"
+                    required
+                    onChange={activate}
+                  />
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
-                    <Link to="/tnc" target="_blank">
+                    <Link to="/tnc" target="_blank" className="tnc">
                       terms and conditions and the privacy policy
                     </Link>
                   </label>
@@ -436,6 +367,7 @@ const SignupRider = ({ setAlert, registerRider }) => {
                     type="button"
                     onClick={(e) => onSubmit(e)}
                     class="btn btn-warning btn-lg registar"
+                    disabled={disabled}
                   >
                     Register
                   </button>
