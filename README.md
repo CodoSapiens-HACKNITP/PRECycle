@@ -39,5 +39,13 @@ The fact that local ragpickers still are not comfortable with using apps and web
 
 After cloning project:
 
-1. npm run dev
-2. Application Started working on port 3000
+1. npm i
+2. cd client
+3. npm i
+4. cd ..
+5. npm run dev
+6. Application Started working on port 3000
+
+# Link to video walkthrough and presentation:
+
+https://drive.google.com/drive/folders/1ObOQ32-lF9U2eJXFznFdVJqLi-EhOkK4?usp=sharing
