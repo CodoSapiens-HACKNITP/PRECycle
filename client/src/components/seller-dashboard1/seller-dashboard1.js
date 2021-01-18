@@ -91,7 +91,7 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
                   </div>
                 </div>
                 <div>
-                  <input type="submit" value="Find Nearby Vendors" onClick={(e) => onSubmit(e)}></input>
+                 <center> <input type="submit" value="Find Nearby Vendors" onClick={(e) => onSubmit(e)}></input></center><br/>
                 </div>
               </Form>
               {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
@@ -106,9 +106,11 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
               )}
               <hr className="division1" />
               {/* PICKUP HISTORY SECTION */}
+              <Link to="/history/pickup">
               <Button variant="primary" className="pickup-button">
                 <span className="request-text">Pickup History</span>
               </Button>{" "}
+              </Link>
             </div>
        
       </div>

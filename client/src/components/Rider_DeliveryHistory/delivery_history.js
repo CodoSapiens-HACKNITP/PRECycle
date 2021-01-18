@@ -32,7 +32,7 @@ export const DeliveryHistory = () => {
             {/* RIDER IMAGE */}
           </div>
           <div className={DHstyles.rider_greeting_text}>
-            <h2>Hi, FirstName!</h2>
+            <h2>Hi, Chris Gayle!</h2>
             {/* GREET RIDER */}
           </div>
         </div>

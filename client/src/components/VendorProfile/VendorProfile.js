@@ -44,8 +44,8 @@ export const VendorProfile = () => {
         <div>
           <div className={style.cardDiv}>
             <Card
-              name="Digvijay Srivastava"
-              email="digvijay@gmail.com"
+              name="ABC Recyclers"
+              email="abcr@gmail.com"
               img={pic}
               tel="645342453"
               gsti="5H4DRR465"
@@ -68,7 +68,7 @@ export const VendorProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="Your address"
+                  placeholder="N- 8/2,  Renusagar"
                   readOnly
                 />
               </Form.Group>
@@ -94,7 +94,7 @@ export const VendorProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="About you"
+                  placeholder="You sell, We buy!"
                   readOnly={readOnlyAbout}
                 />
                 {/* HIDDEN SAVE BUTTON */}
@@ -124,7 +124,7 @@ export const VendorProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="Types of waste"
+                  placeholder="Paper, Plastics"
                   readOnly
                 />
               </Form.Group>

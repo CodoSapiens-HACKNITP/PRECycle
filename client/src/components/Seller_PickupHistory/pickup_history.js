@@ -32,7 +32,7 @@ export const PickupHistory = () => {
             {/* SELLER IMAGE */}
           </div>
           <div className={PHstyles.seller_greeting_text}>
-            <h2>Hi, FirstName!</h2>
+            <h2>Hi, David Warner!</h2>
             {/* GREET SELLER */}
           </div>
         </div>

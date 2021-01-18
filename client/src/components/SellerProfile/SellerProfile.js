@@ -24,8 +24,8 @@ export const SellerProfile = () => {
         <div>
           <div className={style.cardDiv}>
             <Card
-              name="Emma Watson"
-              email="palak@gmail.com"
+              name="David Warner"
+              email="dw@gmail.com"
               img="https://static.wixstatic.com/media/ea883b_9f64e50b22fe47c4af0f50ed65e6729f~mv2.jpg/v1/fill/w_1000,h_750,al_c,q_90,usm_0.66_1.00_0.01/ea883b_9f64e50b22fe47c4af0f50ed65e6729f~mv2.jpg"
               tel="645342453"
             />
@@ -47,7 +47,7 @@ export const SellerProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="Your Address"
+                  placeholder="I - 950 , Hindalco Colony"
                   readOnly
                 />
               </Form.Group>

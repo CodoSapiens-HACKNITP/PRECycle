@@ -33,7 +33,7 @@ export const OrderHistory = () => {
             {/* VENDOR IMAGE */}
           </div>
           <div className={OHstyles.vendor_greeting_text}>
-            <h2>Welcome, The Org!</h2>
+            <h2>Welcome, ABC Recyclers!</h2>
             {/* GREET VENDOR */}
           </div>
           </Link>

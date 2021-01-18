@@ -34,8 +34,8 @@ export const RiderProfile = () => {
         <div>
           <div className={style.cardDiv}>
             <Card
-              name="Chris Hemsworth"
-              email="chrish@gmail.com"
+              name="Chris Gayle"
+              email="cg@gmail.com"
               img="https://www.gstatic.com/tv/thumb/persons/528854/528854_v9_bb.jpg"
               tel="645342453"
               aadhar="123456789012"
@@ -58,7 +58,7 @@ export const RiderProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="Your address"
+                  placeholder="IR - 23/12 Renusagar"
                   readOnly
                 />
               </Form.Group>
@@ -86,7 +86,7 @@ export const RiderProfile = () => {
                   <Form.Label></Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Registration Number"
+                    placeholder="UP64 Z 4123"
                     className=""
                     readOnly={readOnlyRegistration}
                   />
@@ -119,7 +119,7 @@ export const RiderProfile = () => {
                   <Form.Label></Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Operation Radius"
+                    placeholder="5 KM"
                     className=""
                     readOnly={readOnlyRadius}
                   />

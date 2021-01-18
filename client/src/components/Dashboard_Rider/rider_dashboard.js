@@ -199,7 +199,7 @@ export const RiderDashboard = () => {
           {/* RIDER IMAGE */}
         </div>
         <div className={ RDstyles.rider_greeting_text }>
-          <h2>Hi, Rider!</h2>{" "}
+          <h2>Hi, Chris Gayle!</h2>{" "}
           {/* GREET RIDER */}
         </div>
         </Link>
