@@ -239,7 +239,9 @@ const onAdd = (e) => {
                 </Button>
               </Col>
             </FormGroup>
-            <RenderWasteTable data={formData.wasteAdded}/>
+            {
+            <RenderWasteTable />
+            }
             <hr />
             <h3>Select Slot</h3>
             <br />

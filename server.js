@@ -23,6 +23,7 @@ app.use("/rider", require("./routes/rider"));
 app.use("/vendor", require("./routes/vendor"));
 
 //run the server
-app.listen(process.env.port || 1210, () =>
-  console.log("Server started on port 1210")
+const port = process.env.port || 1210;
+app.listen(port, () =>
+  console.log(`Server started on port ${port}`)
 );

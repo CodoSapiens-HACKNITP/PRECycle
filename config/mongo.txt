@@ -1,2 +1,0 @@
-mongodb+srv://rishu:12345@devconnector.ao3hi.mongodb.net/test?retryWrites=true&w=majority
-"mongodb://localhost:27017/devconnector"
