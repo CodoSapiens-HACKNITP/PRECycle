@@ -8,10 +8,11 @@
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "heroku-postbuild": "NPM CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "CodoSapiens",
-  "license": "ISC",
+  "license": "ISC", 
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
