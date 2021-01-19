@@ -32,12 +32,12 @@ const RateList = ({auth, pickup, updateWasteList}) => {
  });
 
  
-
-  var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
-  var [formData, setFormData] = useState(wasteTypeArray);
+ var wasteTypeArray
+  // var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
+  var [formData, setFormData] = useState();
   useEffect(() => {
     setFormData(wasteTypeArray);
-  }, [auth.user])
+  }, [wasteTypeArray, auth.user])
   const [data, setData] = useState({
     index: -1,
     name: "",
@@ -65,8 +65,9 @@ const RateList = ({auth, pickup, updateWasteList}) => {
       e.preventDefault();
         formData.map((data) => {
             if(data.name === name) {
-                data.rate=rate;
+                  data.rate=rate;
             }
+            return 1;
         });
         toggleModal(!modal);
         updateWasteList(formData);

@@ -22,11 +22,11 @@ const RenderWasteTable = ({data}) => {
         </thead>
         <tbody>
           {data !== undefined ? (data.map((waste,index) => {
-            <tr>
+            return (<tr>
             <th scope="row">{index+1}</th>
             <td>{waste.selectedOption.value}</td>
             <td>{waste.qty}</td>
-          </tr>
+          </tr>)
           })):(<span></span>)}   
         </tbody>
       </table>
@@ -40,7 +40,7 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
   //Updating vendors when there is a change in vendors
   useEffect(() => {
     setFormData({...formData, wasteType: vendors !== undefined && vendors[0] !== undefined ? vendors[0].wasteType : []});
-  }, [vendors]);
+  }, [vendors, formData]);
 
 
  //updating teh from data with user details which are required for creating the orders
@@ -59,13 +59,15 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
   var { city, pincode, state, firstLine, landmark, wasteType, wasteAdded } = formData;
 
   //Creating the list of the waste type selected by the user of the vendor
-  var options =[];
+  var options;
+  // var options =[];
   useEffect(() => {
       wasteType !== undefined ? wasteType.map((waste) => {
         var data = {value:waste.name, label:waste.name};
         options.push(data);
+        return 1;
       }) : options.push({value: "NewsPaper", label: "NewsPaper"})
-  }, [wasteType]);
+  }, [wasteType, options]);
       
 const [selectedOption , setState] = useState({
   selectedOption: null,
@@ -99,9 +101,7 @@ const onAdd = (e) => {
   };
   useEffect(() => {
     loadNearbyVendors(pincode, city);
-  }, [pincode, city]); 
-
-  var { city, pincode, state, firstLine, landmark, wasteType, wasteAdded } = formData;
+  }, [pincode, city, loadNearbyVendors]); 
 
   function Vendors(props) {
     return (

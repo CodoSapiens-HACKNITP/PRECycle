@@ -1,4 +1,4 @@
-import React, { useState, render } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RDstyles from "./rider_dashboard.module.css";
 import profile from "./rider.png";

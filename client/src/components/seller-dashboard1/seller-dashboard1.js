@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./seller-dashboard1.css";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import { FcBusinessman } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -9,8 +8,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import { loadNearbyVendors } from "../../actions/pickup";
-import { loadUser } from "../../actions/auth";
-import Facts from "../FactsFigures/FactsFigures";
 
 const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
   function Vendors(props) {
