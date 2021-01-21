@@ -14,7 +14,7 @@ import Register from "./components/signup-seller/SignupSeller";
 import SignupVendor from "./components/Vendor_SignUp/signup-vendor";
 import SellerDashboard1 from "./components/seller-dashboard1/seller-dashboard1";
 import { RiderDashboard } from "./components/Dashboard_Rider/rider_dashboard";
-import { SellerDashboard2 } from "./components/seller-dashboard2/seller-dashboard2";
+import  SellerDashboard2  from "./components/seller-dashboard2/seller-dashboard2";
 import VendorDashboard from "./components/Dashboard_Vendor/vendor_dashboard";
 import RequestPickup from "./components/RequestPickup/RequestPickupComponent";
 import { SellerProfile } from "./components/SellerProfile/SellerProfile";
@@ -26,6 +26,7 @@ import { PickupHistory } from "./components/Seller_PickupHistory/pickup_history"
 import Faqs from "./components/Faqs/Faqs";
 import { VendorProfile } from "./components/VendorProfile/VendorProfile";
 import { TnC } from "./components/TnC/TnC";
+import {updateRequest} from './actions/pickup'
 //redux tools
 import { Provider } from "react-redux";
 import store from "./store";
@@ -38,6 +39,7 @@ function App() {
   }
   useEffect(() => {
     store.dispatch(loadUser(localStorage.typeofuser));
+    store.dispatch(updateRequest());
   });
   return (
     <Provider store={store}>

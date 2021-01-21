@@ -33,8 +33,13 @@ const orderSchema = new Schema({
     },
   },
   vendorDetail: {
+    id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "vendor",
+    ref: "vendor"
+    },
+    name: {
+      type: String
+    }
   },
   vendorAccepted: {
     type: Boolean,

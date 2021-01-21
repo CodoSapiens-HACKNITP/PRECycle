@@ -1,11 +1,39 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./seller-dashboard2.css";
 import Button from "react-bootstrap/Button";
 import { FcBusinessman } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export const SellerDashboard2 = () => {
+const SellerDashboard2 = ({user,request}) => {
+  var address = "";
+  var waste = "";
+  var vendorDetail =""
+  useEffect(() => {
+    vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : ""
+  }, [request])
+  
+  // useEffect(() => {
+  //   if(request !== undefined && request !== null){ 
+  
+  // if(request[0].address.firstLine !== undefined) address += request[0].address.firstLine;
+  // address += "";
+  // if(request[0].address.city !== undefined) address += request[0].address.city;
+  // address += "";
+  // if(request[0].address.state !== undefined) address += request[0].address.state;
+  // address += "";
+  // if(request[0].address.pin !== undefined) address += request[0].address.pin;
+  // address += "";
+
+  // request[0].orderList.map((order) => {
+  //  waste += order.nameOfWaste + "";
+  // })}
+
+  // vendorDetail = request[0].vendorDetail.name
+  // }, [request])
+  
   function KeyValue(props) {
     return (
       <div className="keyvalue-container">
@@ -35,7 +63,7 @@ export const SellerDashboard2 = () => {
           <Link to="/profile/seller">
             <div className="Profile-image-container">
               <div className="intro">
-                <h5>Hi! FirstName</h5>
+                <h5>Hi! {user ? user.name : "User Not Loaded"}</h5>
               </div>
               {/* PROFILE IMAGE OF SELLER */}
               <div className="profile-image">
@@ -52,13 +80,13 @@ export const SellerDashboard2 = () => {
 
           {/* VENDOR'S NAME */}
 
-          <KeyValue info="Vendor's Name" value="John Doe" />
+          <KeyValue info="Vendor's Name" value={vendorDetail} />
 
           {/* PICKUP ADDRESS       */}
 
           <KeyValue
             info="pickup address"
-            value="Ashok Rajpath, Nit Patna, Patna-800005,Bihar,hhdgd dhdhh dhdhdggd hddggd"
+            value={address}
           />
 
           {/* SLOT */}
@@ -67,13 +95,13 @@ export const SellerDashboard2 = () => {
 
           {/* RIDER'S NAME */}
 
-          <KeyValue info="Rider's Name" value="Chintu" />
+          <KeyValue info="Rider's Name" value={"Rider Not Alloted"} />
 
           {/* WASTE TYPE */}
 
           <KeyValue
             info="Waste Type"
-            value="Newspapers, Cartons, Plastic bottles"
+            value={waste}
           />
 
           {/* WASTE QUANTITY */}
@@ -108,3 +136,17 @@ export const SellerDashboard2 = () => {
     </div>
   );
 };
+
+SellerDashboard2.propTypes = {
+  user: PropTypes.object.isRequired,
+  vendor: PropTypes.object.isRequired,
+  request: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  vendor: state.pickup.vendors,
+  request: state.pickup.request
+});
+
+export default connect(mapStateToProps, {})( SellerDashboard2 );

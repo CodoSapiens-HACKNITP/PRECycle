@@ -86,6 +86,8 @@ router.post(
 
     try {
       const seller = await Seller.findById(req.seller.id);
+      const vendor = await Vendor.findById(vendorid);
+
       let order = new Order({
         seller: {
           id: seller._id,
@@ -97,7 +99,10 @@ router.post(
           state,
           city,
         },
-        vendorDetail: vendorid,
+        vendorDetail: {
+          id: vendorid,
+          name: vendor.name
+        },
         orderList,
         recent,
       });

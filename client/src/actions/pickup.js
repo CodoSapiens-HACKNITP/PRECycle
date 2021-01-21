@@ -86,3 +86,24 @@ export const createRequest = (formData) => async (dispatch) => {
     });
   }
 };
+
+//Update the order status
+export const updateRequest = () => async (dispatch) => {
+  try {
+    let activeRequest = await axios.get(`/seller/active/request`);
+    if(activeRequest.data.length>0){
+      dispatch({
+        type: REQUEST_CREATED,
+        payload: activeRequest.data,
+      })
+    }
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: REQUEST_FAILED,
+    });
+  }
+}
