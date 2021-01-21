@@ -14,8 +14,7 @@ const orderSchema = new Schema({
 
   address: {
     firstLine: {
-      type: String,
-      required: true,
+      type: String
     },
     landmark: {
       type: String,
@@ -55,6 +54,9 @@ const orderSchema = new Schema({
   ],
   estimatedAmount: {
     type: Number,
+  },
+  dateOfPickup: {
+    type: Date,
   },
   timeOfPickup: {
     type: Date,

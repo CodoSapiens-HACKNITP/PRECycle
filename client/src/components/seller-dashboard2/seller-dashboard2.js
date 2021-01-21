@@ -32,16 +32,16 @@ export const SellerDashboard2 = () => {
       <div className="seller-dashboard1">
         {/* HEADER SECTION */}
         <div className="gradient-section">
-        <Link to="/profile/seller">
-          <div className="Profile-image-container">
-            <div className="intro">
-              <h5>Hi! FirstName</h5>
+          <Link to="/profile/seller">
+            <div className="Profile-image-container">
+              <div className="intro">
+                <h5>Hi! FirstName</h5>
+              </div>
+              {/* PROFILE IMAGE OF SELLER */}
+              <div className="profile-image">
+                <FcBusinessman className="seller-profile-pic" />
+              </div>
             </div>
-            {/* PROFILE IMAGE OF SELLER */}
-            <div className="profile-image">
-              <FcBusinessman className="seller-profile-pic" />
-            </div>
-          </div>
           </Link>
         </div>
         {/* CURRENT REQUEST SECTION */}
@@ -100,9 +100,9 @@ export const SellerDashboard2 = () => {
         <hr className="division1" />
         {/* PICKUP HISTORY SECTION */}
         <Link to="/history/pickup">
-        <Button variant="primary" className="pickup-button">
-          <span className="request-text">Pickup History</span>
-        </Button>{" "}
+          <Button variant="primary" className="pickup-button">
+            <span className="request-text">Pickup History</span>
+          </Button>{" "}
         </Link>
       </div>
     </div>

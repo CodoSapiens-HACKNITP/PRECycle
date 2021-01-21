@@ -22,20 +22,20 @@ export const OrderHistory = () => {
     <div className={OHstyles.out_container}>
       <div>
         <div className={OHstyles.greet_vendor}>
-        <Link to="/profile/vendor">
-          {/* GRADIENT BAR */}
-          <div className="vendor-image">
-            <img
-              src={vendor_ic}
-              alt="profile_img"
-              className={OHstyles.vendor_img}
-            ></img>
-            {/* VENDOR IMAGE */}
-          </div>
-          <div className={OHstyles.vendor_greeting_text}>
-            <h2>Welcome, ABC Recyclers!</h2>
-            {/* GREET VENDOR */}
-          </div>
+          <Link to="/profile/vendor">
+            {/* GRADIENT BAR */}
+            <div className="vendor-image">
+              <img
+                src={vendor_ic}
+                alt="profile_img"
+                className={OHstyles.vendor_img}
+              ></img>
+              {/* VENDOR IMAGE */}
+            </div>
+            <div className={OHstyles.vendor_greeting_text}>
+              <h2>Welcome, ABC Recyclers!</h2>
+              {/* GREET VENDOR */}
+            </div>
           </Link>
         </div>
 

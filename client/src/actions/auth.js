@@ -69,7 +69,12 @@ export const registerSeller = (
     });
 
     // dispatch(loadUser());
-    dispatch(setAlert("Sucessfull Registration, Please login with the credentials", "success"));
+    dispatch(
+      setAlert(
+        "Sucessfull Registration, Please login with the credentials",
+        "success"
+      )
+    );
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -123,8 +128,12 @@ export const registerVendor = (
     localStorage.setItem("typeofuser", res.data.typeofuser);
 
     // dispatch(loadUser(localStorage.getItem("typeofuser")));
-    dispatch(setAlert("Sucessfull Registration, Please login with the credentials", "success"));
-
+    dispatch(
+      setAlert(
+        "Sucessfull Registration, Please login with the credentials",
+        "success"
+      )
+    );
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -184,8 +193,12 @@ export const registerRider = (
     localStorage.setItem("typeofuser", res.data.typeofuser);
 
     // dispatch(loadUser(localStorage.getItem("typeofuser")));
-    dispatch(setAlert("Sucessfull Registration, Please login with the credentials", "success"));
-
+    dispatch(
+      setAlert(
+        "Sucessfull Registration, Please login with the credentials",
+        "success"
+      )
+    );
   } catch (err) {
     const errors = err.response.data.errors;
 

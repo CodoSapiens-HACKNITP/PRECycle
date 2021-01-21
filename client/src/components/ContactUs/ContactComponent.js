@@ -12,7 +12,6 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -169,7 +168,6 @@ class Contact extends Component {
             <h3>Send us your Feedback</h3>
           </div>
           <div className="col-12 col-md-9">
-          
             <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
                 <Label htmlFor="firstname" md={2}>
@@ -297,7 +295,6 @@ class Contact extends Component {
               </FormGroup>
             </Form>
           </div>
-          
         </div>
       </div>
     );

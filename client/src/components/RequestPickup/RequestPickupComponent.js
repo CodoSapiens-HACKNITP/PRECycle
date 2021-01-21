@@ -8,42 +8,24 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadNearbyVendors } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
+import { createRequest } from "../../actions/pickup";
 
-const RenderWasteTable = ({data}) => {
-  return (
-    <div className="table-responsive">
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Waste Type</th>
-            <th scope="col">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data !== undefined ? (data.map((waste,index) => {
-            return (<tr>
-            <th scope="row">{index+1}</th>
-            <td>{waste.selectedOption.value}</td>
-            <td>{waste.qty}</td>
-          </tr>)
-          })):(<span></span>)}   
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
-
+const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest }) => {
   const [formData, setFormData] = useState({});
   //Updating vendors when there is a change in vendors
   useEffect(() => {
-    setFormData({...formData, wasteType: vendors !== undefined && vendors[0] !== undefined ? vendors[0].wasteType : []});
-  }, [vendors, formData]);
+    setFormData({
+      ...formData,
+      wasteType:
+        vendors !== undefined && vendors[0] !== undefined
+          ? vendors[0].wasteType
+          : [],
+      vendorid:
+        vendors !== undefined && vendors[0] !== undefined ? vendors[0]._id : "",
+    });
+  }, [vendors]);
 
-
- //updating teh from data with user details which are required for creating the orders
+  //updating the form data with user details which are required for creating the orders
   useEffect(() => {
     setFormData({
       city: user ? user.address.city : "",
@@ -51,57 +33,79 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors }) => {
       state: user ? user.address.state : "",
       firstLine: user ? user.address.firstLine : "",
       landmark: user ? user.address.landmark : "",
-      wasteAdded: []
-    })
-  }, [user])
+      orderList: [],
+      dateOfPickup: "",
+      timeOfPickup: "",
+      recent: true,
+    });
+  }, [user]);
 
   //Destructuring the FormData
-  var { city, pincode, state, firstLine, landmark, wasteType, wasteAdded } = formData;
+  var {
+    city,
+    pincode,
+    state,
+    firstLine,
+    landmark,
+    wasteType,
+    orderList,
+    dateOfPickup,
+    timeOfPickup,
+    recent,
+  } = formData;
 
   //Creating the list of the waste type selected by the user of the vendor
-  var options;
-  // var options =[];
+  var options = [];
   useEffect(() => {
-      wasteType !== undefined ? wasteType.map((waste) => {
-        var data = {value:waste.name, label:waste.name};
-        options.push(data);
-        return 1;
-      }) : options.push({value: "NewsPaper", label: "NewsPaper"})
-  }, [wasteType, options]);
-      
-const [selectedOption , setState] = useState({
-  selectedOption: null,
-  qty: ""
-})
+    wasteType !== undefined
+      ? wasteType.map((waste) => {
+          var data = { value: waste.name, label: waste.name };
+          options.push(data);
+          return 1;
+        })
+      : options.push({ value: "NewsPaper", label: "NewsPaper" });
+  }, [wasteType, orderList]);
 
-const {qty} = selectedOption
+  const [selectedOption, setState] = useState({
+    selectedOption: null,
+    qty: "",
+  });
 
-const handleChange = selectedOption => {
-  setState({ selectedOption });
-};
+  const { qty } = selectedOption;
 
-const handleQtyChange = e => {
-  setState({ ...selectedOption, [e.target.name] : e.target.value });
-}
-
-const onAdd = (e) => {
-  e.preventDefault();
-  const dataToPush = {
-    selectedOption,
-    qty,
+  const handleChange = (selectedOption) => {
+    setState({ selectedOption });
   };
-  if(dataToPush.selectedOption === "" || dataToPush.qty === "") return alert("Please fill the form"); 
-  wasteAdded.push(dataToPush);
-  setState({ selectedOption: null, qty: "" });
 
-};
+  const handleQtyChange = (e) => {
+    setState({ ...selectedOption, [e.target.name]: e.target.value });
+  };
+
+  const onAdd = (e) => {
+    e.preventDefault();
+    const dataToPush = {
+      nameOfWaste: selectedOption.selectedOption.value,
+      qty,
+    };
+    if (dataToPush.selectedOption === "" || dataToPush.qty === "")
+      return alert("Please fill the form");
+    orderList.push(dataToPush);
+    setState({ selectedOption: null, qty: "" });
+  };
 
   const onChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
     loadNearbyVendors(pincode, city);
-  }, [pincode, city, loadNearbyVendors]); 
+  }, [pincode, city, loadNearbyVendors]);
+
+  const [toDateDisabled, toggleDisabled] = useState(recent);
+
+  const request = (e) => {
+    e.preventDefault();
+    createRequest(formData);
+  };
 
   function Vendors(props) {
     return (
@@ -115,24 +119,28 @@ const onAdd = (e) => {
     );
   }
 
-
   return (
     <div>
       <div className="seller-dashboard3">
         {/* HEADER SECTION */}
         <div className="gradient-section1">
-        <Link to="/profile/seller">
-          <div className="Profile-image-container">
-            <div className="intro">
-              <h5>
-                Hi! {user ? <span>{user.name}</span> : <span>gadha</span>}
-              </h5>
+          <Link to="/profile/seller">
+            <div className="Profile-image-container">
+              <div className="intro">
+                <h5>
+                  Hi!{" "}
+                  {user ? (
+                    <span>{user.name}</span>
+                  ) : (
+                    <span>User Not Loaded Please Refresh The Page!</span>
+                  )}
+                </h5>
+              </div>
+              {/* PROFILE IMAGE OF SELLER */}
+              <div className="profile-image">
+                <FcBusinessman className="seller-profile-pic" />
+              </div>
             </div>
-            {/* PROFILE IMAGE OF SELLER */}
-            <div className="profile-image">
-              <FcBusinessman className="seller-profile-pic" />
-            </div>
-          </div>
           </Link>
         </div>
         {/* REQUEST TO PICKUP SECTION */}
@@ -152,7 +160,7 @@ const onAdd = (e) => {
               <Input
                 type="textarea"
                 id="address"
-                name="firstline"
+                name="firstLine"
                 rows="8"
                 placeholder={firstLine}
                 onChange={(e) => onChange(e)}
@@ -195,7 +203,9 @@ const onAdd = (e) => {
               {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
               {vendors ? (
                 vendors.length > 0 ? (
-                  vendors.map((ven, index) => <Vendors vendor={ven.name} index={index} />)
+                  vendors.map((ven, index) => (
+                    <Vendors vendor={ven.name} index={index} />
+                  ))
                 ) : (
                   <Spinner />
                 )
@@ -213,8 +223,8 @@ const onAdd = (e) => {
               <Col md={{ size: 3 }}>
                 <Select
                   options={options}
-                  value={selectedOption.label}
                   name="wasteType"
+                  value={selectedOption}
                   className="basic-single"
                   classNamePrefix="select"
                   onChange={handleChange}
@@ -239,45 +249,92 @@ const onAdd = (e) => {
                 </Button>
               </Col>
             </FormGroup>
-            {
-            <RenderWasteTable />
-            }
+            <div className="table-responsive">
+              <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Waste Type</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orderList !== undefined ? (
+                    orderList.map((waste, index) => {
+                      return (
+                        <tr>
+                          <th scope="row">{index + 1}</th>
+                          <td>{waste.nameOfWaste}</td>
+                          <td>{waste.qty}</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <span></span>
+                  )}
+                </tbody>
+              </table>
+            </div>
             <hr />
             <h3>Select Slot</h3>
             <br />
-            <FormGroup row>
-              <Label htmlFor="date" md={2}>
-                Date of Pickup
-              </Label>
-              <Col md={3}>
-                <Input
-                  type="date"
-                  id="date"
-                  name="date"
-                  placeholder="Pickup date"
-                />
-              </Col>
-              <Label htmlFor="time" md={{ size: 2, offset: 1 }}>
-                Pickup Time
-              </Label>
-              <Col md={3}>
-                <Input
-                  type="time"
-                  id="time"
-                  name="time"
-                  placeholder="Pickup time"
-                />
-              </Col>
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <center>
-                <Button type="submit" color="warning">
-                  Submit Request
-                </Button>
-              </center>
-              <br />
-            </FormGroup>
+            {/* Checkbox for recent request selection */}
+            <p>
+              <input
+                type="checkbox"
+                name="current"
+                checked={recent}
+                value={recent}
+                onChange={(e) => {
+                  setFormData({ ...formData, recent: !recent });
+                  toggleDisabled(!toDateDisabled);
+                }}
+              />{" "}
+              Create A Recent Request
+            </p>
+            {toDateDisabled ? (
+              <div>
+                <FormGroup row>
+                  <Label htmlFor="date" md={2}>
+                    Date of Pickup
+                  </Label>
+                  <Col md={3}>
+                    <input
+                      type="date"
+                      id="date"
+                      name="dateOfPickup"
+                      placeholder="ENTER PICKUP DATE"
+                      value={dateOfPickup}
+                      onChange={(e) => onChange(e)}
+                    />
+                  </Col>
+                  <Label htmlFor="time" md={{ size: 2, offset: 1 }}>
+                    Pickup Time
+                  </Label>
+                  <Col md={3}>
+                    <input
+                      type="date"
+                      id="time"
+                      name="timeOfPickup"
+                      placeholder="ENTER PICKUP TIME"
+                      value={timeOfPickup}
+                      onChange={(e) => onChange(e)}
+                    />
+                  </Col>
+                </FormGroup>
+                <br />
+                <FormGroup>
+                  <br />
+                </FormGroup>
+              </div>
+            ) : (
+              <span></span>
+            )}
+            <center>
+              <Button type="submit" color="warning" onClick={(e) => request(e)}>
+                Submit Request
+              </Button>
+            </center>
           </Form>
         </div>
       </div>
@@ -294,4 +351,6 @@ const mapStateToProps = (state) => ({
   vendors: state.pickup.vendors,
 });
 
-export default connect(mapStateToProps, { loadNearbyVendors })(RequestPickup);
+export default connect(mapStateToProps, { loadNearbyVendors, createRequest })(
+  RequestPickup
+);

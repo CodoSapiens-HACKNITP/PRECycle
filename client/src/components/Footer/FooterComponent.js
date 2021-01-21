@@ -67,7 +67,6 @@ function Footer(props) {
               <li>
                 <Link to="/tnc">TnC & Privacy Policy</Link>
               </li>
-              
             </ul>
           </div>
           <div className="col-12 col-sm-3">

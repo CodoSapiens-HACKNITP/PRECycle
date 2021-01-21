@@ -13,46 +13,47 @@ import Form from "react-bootstrap/Form";
 // import { setAlert } from "../../actions/alert";
 
 export const RiderDashboard = () => {
-
   function AllottedCard(props) {
     return (
-      <Card classname={ RDstyles.card_pickups }>
-        <Card.Body className={ RDstyles.card_a }>
+      <Card classname={RDstyles.card_pickups}>
+        <Card.Body className={RDstyles.card_a}>
           <Card.Text>
             <Table>
               <tbody>
                 <tr>
                   <td>ORDER NO.</td>
-                  <td>{ props.OrderNo }</td>
+                  <td>{props.OrderNo}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S NAME</td>
-                  <td>{ props.SellerName }</td>
+                  <td>{props.SellerName}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S ADDRESS </td>
-                  <td>{ props.SellerAddress }</td>
+                  <td>{props.SellerAddress}</td>
                 </tr>
                 <tr>
                   <td>VENDOR'S NAME</td>
-                  <td>{ props.VendorName }</td>
+                  <td>{props.VendorName}</td>
                 </tr>
                 <tr>
                   <td>SLOT</td>
-                  <td>{ props.Slot }</td>
+                  <td>{props.Slot}</td>
                 </tr>
                 <tr>
                   <td>WASTE TYPE</td>
-                  <td>{ props.WasteType }</td>
+                  <td>{props.WasteType}</td>
                 </tr>
                 <tr>
                   <td>WASTE QUANTITY</td>
-                  <td>{ props.WasteQuantity }</td>
+                  <td>{props.WasteQuantity}</td>
                 </tr>
               </tbody>
-            </Table>            
+            </Table>
           </Card.Text>
-          <div><hr></hr></div>
+          <div>
+            <hr></hr>
+          </div>
           <Update />
           <Invoice />
         </Card.Body>
@@ -62,45 +63,51 @@ export const RiderDashboard = () => {
 
   function PendingCard(props) {
     return (
-      <Card classname={ RDstyles.card_pickups }>
-        <Card.Body className={ RDstyles.card_p }>
+      <Card classname={RDstyles.card_pickups}>
+        <Card.Body className={RDstyles.card_p}>
           <Card.Text>
             <Table>
               <tbody>
                 <tr>
                   <td>ORDER NO.</td>
-                  <td>{ props.OrderNo }</td>
+                  <td>{props.OrderNo}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S NAME</td>
-                  <td>{ props.SellerName }</td>
+                  <td>{props.SellerName}</td>
                 </tr>
                 <tr>
                   <td>SELLER'S ADDRESS </td>
-                  <td>{ props.SellerAddress }</td>
+                  <td>{props.SellerAddress}</td>
                 </tr>
                 <tr>
                   <td>VENDOR'S NAME</td>
-                  <td>{ props.VendorName }</td>
+                  <td>{props.VendorName}</td>
                 </tr>
                 <tr>
                   <td>SLOT</td>
-                  <td>{ props.Slot }</td>
+                  <td>{props.Slot}</td>
                 </tr>
                 <tr>
                   <td>WASTE TYPE</td>
-                  <td>{ props.WasteType }</td>
+                  <td>{props.WasteType}</td>
                 </tr>
                 <tr>
                   <td>WASTE QUANTITY</td>
-                  <td>{ props.WasteQuantity }</td>
+                  <td>{props.WasteQuantity}</td>
                 </tr>
               </tbody>
-            </Table>            
+            </Table>
           </Card.Text>
-          <div><hr></hr></div>
-          <Button variant="success" className={ RDstyles.rider_accept }>ACCEPT</Button>
-          <Button variant="danger" className={ RDstyles.rider_decline }>DECLINE</Button>
+          <div>
+            <hr></hr>
+          </div>
+          <Button variant="success" className={RDstyles.rider_accept}>
+            ACCEPT
+          </Button>
+          <Button variant="danger" className={RDstyles.rider_decline}>
+            DECLINE
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -114,7 +121,11 @@ export const RiderDashboard = () => {
 
     return (
       <>
-        <Button variant="warning" className={ RDstyles.rider_update_button } onClick={handleShow}>
+        <Button
+          variant="warning"
+          className={RDstyles.rider_update_button}
+          onClick={handleShow}
+        >
           UPDATE
         </Button>
 
@@ -123,15 +134,23 @@ export const RiderDashboard = () => {
             <Modal.Title>STATUS UPDATE</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form method="post" classname= { RDstyles.statusupdate }>      
-              <fieldset>      
-                  <legend>What is the status?</legend>      
-                  <input type="checkbox" name="status_update" value=""/>On my Way<br/>      
-                  <input type="checkbox" name="status_update" value=""/>Waste collected<br/>      
-                  <input type="checkbox" name="status_update" value=""/>Paid the seller<br/>  
-                  <input type="checkbox" name="status_update" value=""/>Dropped at vendor's<br/>   
-              </fieldset>      
-          </form>
+            <form method="post" classname={RDstyles.statusupdate}>
+              <fieldset>
+                <legend>What is the status?</legend>
+                <input type="checkbox" name="status_update" value="" />
+                On my Way
+                <br />
+                <input type="checkbox" name="status_update" value="" />
+                Waste collected
+                <br />
+                <input type="checkbox" name="status_update" value="" />
+                Paid the seller
+                <br />
+                <input type="checkbox" name="status_update" value="" />
+                Dropped at vendor's
+                <br />
+              </fieldset>
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleClose}>
@@ -151,7 +170,11 @@ export const RiderDashboard = () => {
 
     return (
       <>
-        <Button variant="light" className={ RDstyles.rider_invoice_button } onClick={handleShow}>
+        <Button
+          variant="light"
+          className={RDstyles.rider_invoice_button}
+          onClick={handleShow}
+        >
           GENERATE INVOICE
         </Button>
 
@@ -161,18 +184,26 @@ export const RiderDashboard = () => {
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <Form.Group >
+              <Form.Group>
                 <Form.Label>Waste Type</Form.Label>
-                <Form.Control type="WasteType" placeholder="Enter the types of waste collected">
-                </Form.Control>
+                <Form.Control
+                  type="WasteType"
+                  placeholder="Enter the types of waste collected"
+                ></Form.Control>
               </Form.Group>
 
               <Form.Group>
                 <Form.Label>Waste Quantity</Form.Label>
-                <Form.Control type="WasteQuantity" placeholder="Enter the respective waste quantity with appropriate units" />
+                <Form.Control
+                  type="WasteQuantity"
+                  placeholder="Enter the respective waste quantity with appropriate units"
+                />
               </Form.Group>
               <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="The seller approves of the above mentioned details" />
+                <Form.Check
+                  type="checkbox"
+                  label="The seller approves of the above mentioned details"
+                />
               </Form.Group>
             </Form>
           </Modal.Body>
@@ -185,23 +216,24 @@ export const RiderDashboard = () => {
       </>
     );
   }
-  
 
   return (
-    <div className={ RDstyles.rider_dashboard }>
-
-      <div className={ RDstyles.greet_rider }>
+    <div className={RDstyles.rider_dashboard}>
+      <div className={RDstyles.greet_rider}>
         {" "}
         <Link to="/profile/rider">
-        {/* GRADIENT BAR */}
-        <div className="rider-image">
-          <img src={profile} alt="profile_img" className={ RDstyles.rider_img }></img>{" "}
-          {/* RIDER IMAGE */}
-        </div>
-        <div className={ RDstyles.rider_greeting_text }>
-          <h2>Hi, Chris Gayle!</h2>{" "}
-          {/* GREET RIDER */}
-        </div>
+          {/* GRADIENT BAR */}
+          <div className="rider-image">
+            <img
+              src={profile}
+              alt="profile_img"
+              className={RDstyles.rider_img}
+            ></img>{" "}
+            {/* RIDER IMAGE */}
+          </div>
+          <div className={RDstyles.rider_greeting_text}>
+            <h2>Hi, Chris Gayle!</h2> {/* GREET RIDER */}
+          </div>
         </Link>
       </div>
 
@@ -209,10 +241,9 @@ export const RiderDashboard = () => {
         {" "}
         {/* CONTAINS ALLOTTED AND PENDING CARDS*/}
         <div class="row">
-
           <div class="col-12 col-lg-6">
             <div>
-              <div className={ RDstyles.rider_board_heading }>
+              <div className={RDstyles.rider_board_heading}>
                 <h1>ALLOTTED ORDERS</h1>
               </div>
 
@@ -240,7 +271,7 @@ export const RiderDashboard = () => {
 
           <div class="col-12 col-lg-6">
             <div className="pending">
-              <div className={ RDstyles.rider_board_heading }>
+              <div className={RDstyles.rider_board_heading}>
                 <h1>PICKUP REQUESTS</h1>
               </div>
 
@@ -263,20 +294,16 @@ export const RiderDashboard = () => {
                 WasteType="Answer Sheets"
                 WasteQuantity="5kg"
               />
-
             </div>
-
           </div>
-
         </div>
-        </div>
+      </div>
 
-        <div className={ RDstyles.delivery_hist_button }>
-          <Link to="/history/delivery">
+      <div className={RDstyles.delivery_hist_button}>
+        <Link to="/history/delivery">
           <Button variant="info">DELIVERY HISTORY</Button>
-          </Link>
-        </div>
-
+        </Link>
+      </div>
     </div>
   );
 };

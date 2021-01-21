@@ -9,8 +9,6 @@ import pic from "./digvijay.jpeg";
 import MultiSelect from "react-multi-select-component";
 import AddressForm from "../SellerProfile/EditAddress";
 
-
-
 const options = [
   { value: "newspaper", label: "Newspaper" },
   { value: "container", label: "Plastic Containers" },
@@ -136,11 +134,10 @@ export const VendorProfile = () => {
               style={{ display: !WasteType ? "block" : "none" }}
               className={style.SelectType}
             >
-             
-                <label class="input-group-text" for="waste_type">
-                  Type of Waste
-                </label>
-               {/*} <Select
+              <label class="input-group-text" for="waste_type">
+                Type of Waste
+              </label>
+              {/*} <Select
                   options={options}
                   isMulti
                   closeMenuOnSelect={false}
@@ -150,14 +147,13 @@ export const VendorProfile = () => {
                   classNamePrefix="select"
                 />  */}
 
-<MultiSelect
-        options={options}
-        value={selected}
-        onChange={setSelected}
-        labelledBy={"Select"}
-      />
-              </div>
-            
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy={"Select"}
+              />
+            </div>
 
             {/* CHANGE YOUR PASSWORD SECTION*/}
 

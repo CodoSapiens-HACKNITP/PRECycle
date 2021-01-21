@@ -1,6 +1,12 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { VENDOR_LOADED, WASTELIST_UPDATED, FAIL_WASTELIST_UPDATE } from "./types";
+import {
+  VENDOR_LOADED,
+  WASTELIST_UPDATED,
+  FAIL_WASTELIST_UPDATE,
+  REQUEST_CREATED,
+  REQUEST_FAILED,
+} from "./types";
 
 //Load Vendors
 export const loadNearbyVendors = (pincode, city) => async (dispatch) => {
@@ -30,11 +36,11 @@ export const updateWasteList = (wasteType) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const data = JSON.stringify({wasteType});
-    const res = await axios.put('/vendor/wastetype', data, config);
+    const data = JSON.stringify({ wasteType });
+    const res = await axios.put("/vendor/wastetype", data, config);
     dispatch({
       type: WASTELIST_UPDATED,
-      payload: res.data
+      payload: res.data,
     });
     dispatch(setAlert("Waste List Updated", "success"));
   } catch (err) {
@@ -43,7 +49,32 @@ export const updateWasteList = (wasteType) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
-      type: FAIL_WASTELIST_UPDATE
-    })
+      type: FAIL_WASTELIST_UPDATE,
+    });
   }
-}
+};
+
+//Create A pickup reequest
+export const createRequest = (formData) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const data = JSON.stringify(formData);
+    const res = await axios.post("/seller/request", data, config);
+    dispatch({
+      type: REQUEST_CREATED,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: REQUEST_FAILED,
+    });
+  }
+};

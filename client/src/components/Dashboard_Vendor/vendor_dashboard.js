@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import VDstyles from "./vendor_dashboard.module.css";
 import vendorpic from "./vendor.jpg";
@@ -122,7 +122,11 @@ const VendorDashboard = ({ user }) => {
 
     return (
       <>
-        <Button variant="warning" className={ VDstyles.vendor_update_button } onClick={handleShow}>
+        <Button
+          variant="warning"
+          className={VDstyles.vendor_update_button}
+          onClick={handleShow}
+        >
           CHECK STATUS
         </Button>
 
@@ -130,12 +134,14 @@ const VendorDashboard = ({ user }) => {
           <Modal.Header closeButton>
             <Modal.Title>STATUS UPDATE</Modal.Title>
           </Modal.Header>
-          <Modal.Body><form>
-            <StatusUpdates status="Approved by rider" />
-            <StatusUpdates status="Rider on way" />
-            <StatusUpdates status="Waste collected" />
-            <StatusUpdates status="Paid to seller" />
-            <StatusUpdates status="Dropped at vendor" /> </form>
+          <Modal.Body>
+            <form>
+              <StatusUpdates status="Approved by rider" />
+              <StatusUpdates status="Rider on way" />
+              <StatusUpdates status="Waste collected" />
+              <StatusUpdates status="Paid to seller" />
+              <StatusUpdates status="Dropped at vendor" />{" "}
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleClose}>
@@ -152,18 +158,18 @@ const VendorDashboard = ({ user }) => {
       <div className={VDstyles.greet_vendor}>
         {" "}
         <Link to="/profile/vendor">
-        {/* GRADIENT BAR */}
-        <div className="vendor-image">
-          <img
-            src={vendorpic}
-            alt="profile_img"
-            className={VDstyles.vendor_img}
-          ></img>{" "}
-          {/* VENDOR IMAGE */}
-        </div>
-        <div className={VDstyles.greeting_vendor}>
-          <h2>Welcome, {user ? user.name : ""}</h2> {/* GREET VENDOR */}
-        </div>
+          {/* GRADIENT BAR */}
+          <div className="vendor-image">
+            <img
+              src={vendorpic}
+              alt="profile_img"
+              className={VDstyles.vendor_img}
+            ></img>{" "}
+            {/* VENDOR IMAGE */}
+          </div>
+          <div className={VDstyles.greeting_vendor}>
+            <h2>Welcome, {user ? user.name : ""}</h2> {/* GREET VENDOR */}
+          </div>
         </Link>
       </div>
 

@@ -1,4 +1,9 @@
-import { VENDOR_LOADED, WASTELIST_UPDATED, FAIL_WASTELIST_UPDATE , CLEAR_PROFILE} from "../actions/types";
+import {
+  VENDOR_LOADED,
+  WASTELIST_UPDATED,
+  FAIL_WASTELIST_UPDATE,
+  CLEAR_PROFILE,
+} from "../actions/types";
 const initialState = {
   vendors: [],
   loading: true,

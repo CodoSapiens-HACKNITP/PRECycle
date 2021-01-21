@@ -25,91 +25,107 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     loadNearbyVendors(localStorage.pincode, localStorage.city);
-  }
-
+  };
 
   return (
     <div>
       <div className="seller-dashboard1">
         {/* HEADER SECTION */}
         <div className="gradient-section">
-        <Link to="/profile/seller">
-          <div className="Profile-image-container">
-            <div className="intro">
-              <h5>
-                Hi! {user ? <span>{user.name}</span> : <span>Gadha</span>}{" "}
-              </h5>
+          <Link to="/profile/seller">
+            <div className="Profile-image-container">
+              <div className="intro">
+                <h5>
+                  Hi! {user ? <span>{user.name}</span> : <span>Gadha</span>}{" "}
+                </h5>
+              </div>
+              {/* PROFILE IMAGE OF SELLER */}
+              <div className="profile-image">
+                <FcBusinessman className="seller-profile-pic" />
+              </div>
             </div>
-            {/* PROFILE IMAGE OF SELLER */}
-            <div className="profile-image">
-              <FcBusinessman className="seller-profile-pic" />
-            </div>
-          </div>
           </Link>
         </div>
-       
+
         {/* REQUEST TO PICKUP SECTION */}
-            <div>
-              <Link to="/requestPickup">
-                <Button variant="warning" className="request-to-pickup">
-                  <span className="request-text">Request To Pickup</span>
-                </Button>
-              </Link>{" "}
-              <hr className="division1" />
-              {/* SEARCH FOR VENDORS NEAR YOU SECTION */}
-              <h4 className="search-inst">Search for vendors near you</h4>
-              <Form>
-                <div className="form-container">
-                  {/* ADDRESS INPUT */}
+        <div>
+          <Link to="/requestPickup">
+            <Button variant="warning" className="request-to-pickup">
+              <span className="request-text">Request To Pickup</span>
+            </Button>
+          </Link>{" "}
+          <hr className="division1" />
+          {/* SEARCH FOR VENDORS NEAR YOU SECTION */}
+          <h4 className="search-inst">Search for vendors near you</h4>
+          <Form>
+            <div className="form-container">
+              {/* ADDRESS INPUT */}
 
-                  <div className="address-input">
-                    <Form.Group controlId="loaction">
-                      <Form.Label></Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter pickup address"
-                        className="address-class"
-                      />
-                    </Form.Group>
-                  </div>
+              <div className="address-input">
+                <Form.Group controlId="loaction">
+                  <Form.Label></Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter pickup address"
+                    className="address-class"
+                  />
+                </Form.Group>
+              </div>
 
-                  {/* PINCODE INPUT */}
-                  <div className="pincode-input">
-                    <Form.Group controlId="city">
-                      <Form.Label></Form.Label>
-                      <Form.Control type="text" placeholder="City" value={localStorage.city} />
-                    </Form.Group>
-                  </div>
-                  <div className="pincode-input">
-                    <Form.Group controlId="pincode">
-                      <Form.Label></Form.Label>
-                      <Form.Control type="text" placeholder="Pin Code" value={localStorage.pincode} />
-                    </Form.Group>
-                  </div>
-                </div>
-                <div>
-                 <center> <input type="submit" value="Find Nearby Vendors" onClick={(e) => onSubmit(e)}></input></center><br/>
-                </div>
-              </Form>
-              {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
-              {vendor ? (
-                vendor.length > 0 ? (
-                  vendor.map((ven, index) => <Vendors vendor={ven.name} index={index} />)
-                ) : (
-                  <Spinner />
-                )
-              ) : (
-                ""
-              )}
-              <hr className="division1" />
-              {/* PICKUP HISTORY SECTION */}
-              <Link to="/history/pickup">
-              <Button variant="primary" className="pickup-button">
-                <span className="request-text">Pickup History</span>
-              </Button>{" "}
-              </Link>
+              {/* PINCODE INPUT */}
+              <div className="pincode-input">
+                <Form.Group controlId="city">
+                  <Form.Label></Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="City"
+                    value={localStorage.city}
+                  />
+                </Form.Group>
+              </div>
+              <div className="pincode-input">
+                <Form.Group controlId="pincode">
+                  <Form.Label></Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Pin Code"
+                    value={localStorage.pincode}
+                  />
+                </Form.Group>
+              </div>
             </div>
-       
+            <div>
+              <center>
+                {" "}
+                <input
+                  type="submit"
+                  value="Find Nearby Vendors"
+                  onClick={(e) => onSubmit(e)}
+                ></input>
+              </center>
+              <br />
+            </div>
+          </Form>
+          {/* DISPLAY THE VENDORS NEAR THE LOCATION */}
+          {vendor ? (
+            vendor.length > 0 ? (
+              vendor.map((ven, index) => (
+                <Vendors vendor={ven.name} index={index} />
+              ))
+            ) : (
+              <Spinner />
+            )
+          ) : (
+            ""
+          )}
+          <hr className="division1" />
+          {/* PICKUP HISTORY SECTION */}
+          <Link to="/history/pickup">
+            <Button variant="primary" className="pickup-button">
+              <span className="request-text">Pickup History</span>
+            </Button>{" "}
+          </Link>
+        </div>
       </div>
     </div>
   );

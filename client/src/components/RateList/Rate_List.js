@@ -5,39 +5,46 @@ import Table from "react-bootstrap/Table";
 import vendor_ic from "../Dashboard_Vendor/vendor.jpg";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {updateWasteList} from '../../actions/pickup'
+import { updateWasteList } from "../../actions/pickup";
 import { loadUser } from "../../actions/auth";
 
-
-
-const RateList = ({auth, pickup, updateWasteList}) => {
-    
-  const [modal, toggleModal] = useState("false")
+const RateList = ({ auth, pickup, updateWasteList }) => {
+  const [modal, toggleModal] = useState("false");
   function WasteRate(props) {
     return (
       <tr>
         <td>{props.waste}</td>
         <td className={RLstyles.rate_column}>{`Rs ${props.rate}/-`}</td>
         <td>
-          <button id={props.index} onClick={(e) => {toggleModal(!modal); setData({name: props.waste, rate:props.rate, index:props.index});}} ><span>&#9998;</span></button>
+          <button
+            id={props.index}
+            onClick={(e) => {
+              toggleModal(!modal);
+              setData({
+                name: props.waste,
+                rate: props.rate,
+                index: props.index,
+              });
+            }}
+          >
+            <span>&#9998;</span>
+          </button>
         </td>
       </tr>
     );
   }
-  
-  
-  
-  useEffect(() => {
-    loadUser(localStorage.typeofuser)
- });
 
- 
- var wasteTypeArray
-  // var wasteTypeArray =  auth.user ? auth.user.wasteType : [{name: "check", rate: "2000000000"}]
-  var [formData, setFormData] = useState();
+  useEffect(() => {
+    loadUser(localStorage.typeofuser);
+  });
+
+  var wasteTypeArray = auth.user
+    ? auth.user.wasteType
+    : [{ name: "check", rate: "2000000000" }];
+  var [formData, setFormData] = useState(wasteTypeArray);
   useEffect(() => {
     setFormData(wasteTypeArray);
-  }, [wasteTypeArray, auth.user])
+  }, [auth.user]);
   const [data, setData] = useState({
     index: -1,
     name: "",
@@ -52,7 +59,8 @@ const RateList = ({auth, pickup, updateWasteList}) => {
       name,
       rate,
     };
-    if(dataToPush.name === "" || dataToPush.rate === "") return alert("Please fill the form"); 
+    if (dataToPush.name === "" || dataToPush.rate === "")
+      return alert("Please fill the form");
     setFormData([...formData, dataToPush]);
     console.log([...formData, dataToPush]);
     setData({ name: "", rate: "" });
@@ -62,16 +70,16 @@ const RateList = ({auth, pickup, updateWasteList}) => {
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
   const updateList = (e) => {
-      e.preventDefault();
-        formData.map((data) => {
-            if(data.name === name) {
-                  data.rate=rate;
-            }
-            return 1;
-        });
-        toggleModal(!modal);
-        updateWasteList(formData);
-  }
+    e.preventDefault();
+    formData.map((data) => {
+      if (data.name === name) {
+        data.rate = rate;
+      }
+      return 1;
+    });
+    toggleModal(!modal);
+    updateWasteList(formData);
+  };
 
   return (
     <div className={RLstyles.out_container}>
@@ -110,39 +118,55 @@ const RateList = ({auth, pickup, updateWasteList}) => {
               <tbody>
                 {formData.map((waste, index) => {
                   return (
-                    <WasteRate waste={waste.name} rate={ waste.rate} index={index} />
+                    <WasteRate
+                      waste={waste.name}
+                      rate={waste.rate}
+                      index={index}
+                    />
                   );
-                })}  
+                })}
               </tbody>
-
             </Table>
 
-            {!modal? (<form className="rate_form"><input
-                type="text"
-                placeholder="Waste Type"
-                name="name"
-                value={name}
-                onChange={(e) => onChange(e)}
-                required={true}
-              >
-              </input>
-              <input
-                type="text"
-                placeholder="Rate"
-                name="rate"
-                value={rate}
-                onChange={(e) => onChange(e)}
-                required={true}
-              ></input>
-             {index < (formData.length) ? (<button onClick={(e) => updateList(e)}>Update</button>) : (<button onClick={(e) => onSubmit(e)}>Add</button>)}
-             </form>): ("")}           
+            {!modal ? (
+              <form className="rate_form">
+                <input
+                  type="text"
+                  placeholder="Waste Type"
+                  name="name"
+                  value={name}
+                  onChange={(e) => onChange(e)}
+                  required={true}
+                ></input>
+                <input
+                  type="text"
+                  placeholder="Rate"
+                  name="rate"
+                  value={rate}
+                  onChange={(e) => onChange(e)}
+                  required={true}
+                ></input>
+                {index < formData.length ? (
+                  <button onClick={(e) => updateList(e)}>Update</button>
+                ) : (
+                  <button onClick={(e) => onSubmit(e)}>Add</button>
+                )}
+              </form>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className={RLstyles.update_rate}>
-            <Button variant="primary" onClick={(e) => {toggleModal(!modal); setData({ name: "", rate: ""});}}>
+            <Button
+              variant="primary"
+              onClick={(e) => {
+                toggleModal(!modal);
+                setData({ name: "", rate: "" });
+              }}
+            >
               Add New Item
             </Button>
-            
           </div>
         </div>
       </div>
@@ -151,18 +175,16 @@ const RateList = ({auth, pickup, updateWasteList}) => {
 };
 
 RateList.propTypes = {
-    auth: PropTypes.object.isRequired,
-    vendor: PropTypes.object.isRequired,
-    updateWasteList: PropTypes.func.isRequired,
-    pickup: PropTypes.object.isRequired,
-  };
-  
-  const mapStateToProps = (state) => ({
-    auth: state.auth,
-    vendor: state.pickup.vendor,
-    pickup: state.auth
-  });
-  
-  export default connect(mapStateToProps, {updateWasteList })(
-    RateList
-  );
+  auth: PropTypes.object.isRequired,
+  vendor: PropTypes.object.isRequired,
+  updateWasteList: PropTypes.func.isRequired,
+  pickup: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  vendor: state.pickup.vendor,
+  pickup: state.pickup,
+});
+
+export default connect(mapStateToProps, { updateWasteList })(RateList);

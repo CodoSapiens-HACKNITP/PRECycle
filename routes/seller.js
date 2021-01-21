@@ -64,6 +64,7 @@ router.post(
       check("state", "State is required").not().isEmpty(),
       check("city", "City is required").not().isEmpty(),
       check("vendorid", "Selecting Vendor is important").not().isEmpty(),
+      check("orderList", "Order Items can't be Empty").not().isEmpty()
     ],
   ],
   async (req, res) => {
@@ -80,6 +81,7 @@ router.post(
       vendorid,
       timeofpickup,
       orderList,
+      recent
     } = req.body;
 
     try {
@@ -97,14 +99,20 @@ router.post(
         },
         vendorDetail: vendorid,
         orderList,
-        timeofpickup,
+        recent,
       });
 
       //**********Algo to get the time half hour ahead of now or any min ahead of now*********//
 
-      // var d1 = new Date (),
-      // d2 = new Date ( d1 );
-      // d2.setMinutes ( d1.getMinutes() + 30 );
+      var d1 = new Date (),
+      d2 = new Date ( d1 );
+      d2.setMinutes ( d1.getMinutes() + 30 );
+
+      if(timeofpickup) {
+        order.timeOfPickup = timeofpickup
+      } else { 
+        order.timeOfPickup = d2;
+      }
 
       await order.save();
       res.status(200).json(order);
