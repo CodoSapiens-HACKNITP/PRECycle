@@ -3,10 +3,13 @@ import {
   WASTELIST_UPDATED,
   FAIL_WASTELIST_UPDATE,
   CLEAR_PROFILE,
+  REQUEST_CREATED,
+  REQUEST_FAILED
 } from "../actions/types";
 const initialState = {
   vendors: [],
   loading: true,
+  request: null
 };
 
 export default function abc(state = initialState, action) {
@@ -20,8 +23,14 @@ export default function abc(state = initialState, action) {
         vendors: payload,
         loading: false,
       };
+    case REQUEST_CREATED:
+      return { 
+        ...state,
+        request: payload
+      }
     case FAIL_WASTELIST_UPDATE:
     case CLEAR_PROFILE:
+    case REQUEST_FAILED:
     default:
       return {
         ...state,

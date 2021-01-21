@@ -123,4 +123,26 @@ router.post(
   }
 );
 
+//route     GET /seller/active/request
+//desc:     Get The active request
+//access:   Private
+router.get('/active/request', auth, async (req, res) => {
+  try {
+    const order = await Order.find({"seller.id": req.seller.id});
+    if(order) {
+    if(!order.completed === false)
+    res.status(400).json({errors: {
+      msg: "No active Pickup Request!!"
+    }});
+    res.status(200).json(order);
+  }
+  res.status(400).json({errors: {
+    msg: "No active Pickup Request!!"
+  }});
+  } catch (error) {
+    console.log(error.message);
+      res.status(500).send("server error");
+  }
+})
+
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
 import Select from "react-select";
-
+import { Redirect } from "react-router-dom";
 import { FcBusinessman } from "react-icons/fc";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import { loadNearbyVendors } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 import { createRequest } from "../../actions/pickup";
 
-const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest }) => {
+const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest, pickupRequest }) => {
   const [formData, setFormData] = useState({});
   //Updating vendors when there is a change in vendors
   useEffect(() => {
@@ -106,6 +106,10 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest }) => {
     e.preventDefault();
     createRequest(formData);
   };
+
+ if(pickupRequest){
+  return <Redirect to='/sellerDashboardProgress' />
+ }
 
   function Vendors(props) {
     return (
@@ -344,11 +348,14 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest }) => {
 RequestPickup.propTypes = {
   user: PropTypes.object.isRequired,
   loadNearbyVendors: PropTypes.func.isRequired,
+  createRequest: PropTypes.func.isRequired,
+  pickupRequest: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendors: state.pickup.vendors,
+  pickupRequest: state.pickup.request
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors, createRequest })(
