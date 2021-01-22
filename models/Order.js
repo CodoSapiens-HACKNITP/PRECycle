@@ -14,7 +14,7 @@ const orderSchema = new Schema({
 
   address: {
     firstLine: {
-      type: String
+      type: String,
     },
     landmark: {
       type: String,
@@ -34,12 +34,12 @@ const orderSchema = new Schema({
   },
   vendorDetail: {
     id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "vendor"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "vendor",
     },
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   vendorAccepted: {
     type: Boolean,

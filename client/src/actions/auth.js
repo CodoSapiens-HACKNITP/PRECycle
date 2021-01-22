@@ -9,6 +9,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  LOGOUT_REMOVE,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -252,5 +253,8 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+  dispatch({
+    type: LOGOUT_REMOVE
+  })
   dispatch({ type: CLEAR_PROFILE });
 };

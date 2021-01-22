@@ -10,7 +10,7 @@ const { check, validationResult } = require("express-validator");
 const Order = require("../models/Order");
 
 //route     GET /profile/my
-//desc:     Get Current Seller profile
+//desc:     Get Current vendor profile
 //access:   Private
 router.get("/my", auth, async (req, res) => {
   try {
@@ -31,12 +31,12 @@ router.get("/my", auth, async (req, res) => {
   }
 });
 
-//route     GET /request
+//route     GET /vendor/request
 //desc:     To view all the request for the vendors
 //access:   Private
 router.get("/request", auth, async (req, res) => {
   try {
-    const requests = await Order.find({ vendorDetail: req.vendor.id });
+    const requests = await Order.find({ "vendorDetail.id": req.vendor.id });
     res.status(200).json(requests);
   } catch (err) {
     console.log(err.message);
@@ -73,19 +73,19 @@ router.put("/request/accept/:id", auth, async (req, res) => {
 
     //after accept of the order by vendor Send notification to all the available rider nearby
     // TO-DO Pending
-    let pincode = orders.address.pin;
-    let riders = await Rider.find({ "address.pin": pincode });
-    if (riders) {
-      const newReq = {
-        orderid: requestid,
-      };
-      riders.map((rider) => rider.pendingRequest.push(newReq));
-    } else {
-      return res.send("No Riders Available Nearby");
-    }
+    // let pincode = orders.address.pin;
+    // let riders = await Rider.find({ "address.pin": pincode });
+    // if (riders) {
+    //   const newReq = {
+    //     orderid: requestid,
+    //   };
+    //   riders.map((rider) => rider.pendingRequest.push(newReq));
+    // } else {
+    //   return res.send("No Riders Available Nearby");
+    // }
 
     await orders.save();
-    res.json({ orders, riders });
+    res.json({ orders});
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

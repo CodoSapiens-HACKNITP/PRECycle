@@ -10,7 +10,13 @@ import { loadNearbyVendors } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 import { createRequest } from "../../actions/pickup";
 
-const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest, pickupRequest }) => {
+const RequestPickup = ({
+  user,
+  loadNearbyVendors,
+  vendors,
+  createRequest,
+  pickupRequest,
+}) => {
   const [formData, setFormData] = useState({});
   //Updating vendors when there is a change in vendors
   useEffect(() => {
@@ -107,9 +113,9 @@ const RequestPickup = ({ user, loadNearbyVendors, vendors, createRequest, pickup
     createRequest(formData);
   };
 
- if(pickupRequest){
-  return <Redirect to='/sellerDashboardProgress' />
- }
+  if (pickupRequest.length > 0) {
+    return <Redirect to="/sellerDashboardProgress" />;
+  }
 
   function Vendors(props) {
     return (
@@ -355,7 +361,7 @@ RequestPickup.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendors: state.pickup.vendors,
-  pickupRequest: state.pickup.request
+  pickupRequest: state.pickup.request,
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors, createRequest })(

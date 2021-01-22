@@ -4,12 +4,16 @@ import {
   FAIL_WASTELIST_UPDATE,
   CLEAR_PROFILE,
   REQUEST_CREATED,
-  REQUEST_FAILED
+  REQUEST_FAILED,
+  VENDOR_ORDER_LIST,
+  ACCEPTED_ORDER_LIST,
+  LOGOUT_REMOVE
 } from "../actions/types";
 const initialState = {
   vendors: [],
   loading: true,
-  request: []
+  request: [],
+  acceptedRequest: []
 };
 
 export default function abc(state = initialState, action) {
@@ -24,9 +28,27 @@ export default function abc(state = initialState, action) {
         loading: false,
       };
     case REQUEST_CREATED:
+      return {
+        ...state,
+        request: payload,
+      };
+    case VENDOR_ORDER_LIST:
+      return {
+        ...state,
+        request: payload,
+      };
+    case ACCEPTED_ORDER_LIST:
       return { 
         ...state,
-        request: payload
+        acceptedRequest:  payload
+      };
+    case LOGOUT_REMOVE: 
+      return {
+        ...state,
+        vendors: [],
+        loading: false,
+        request: [],
+        acceptedRequest: []
       }
     case FAIL_WASTELIST_UPDATE:
     case CLEAR_PROFILE:

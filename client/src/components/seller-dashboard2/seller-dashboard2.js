@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./seller-dashboard2.css";
 import Button from "react-bootstrap/Button";
 import { FcBusinessman } from "react-icons/fc";
@@ -6,34 +6,46 @@ import { FcOk } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Moment from "react-moment";
 
-const SellerDashboard2 = ({user,request}) => {
+const SellerDashboard2 = ({ user, request, pickup }) => {
   var address = "";
   var waste = "";
-  var vendorDetail =""
+  var vendorDetail = "";
+  var timeOfPickup = "";
+  var qty = "";
+  var vendorAccepted = "";
   useEffect(() => {
-    vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : ""
-  }, [request])
-  
-  // useEffect(() => {
-  //   if(request !== undefined && request !== null){ 
-  
-  // if(request[0].address.firstLine !== undefined) address += request[0].address.firstLine;
-  // address += "";
-  // if(request[0].address.city !== undefined) address += request[0].address.city;
-  // address += "";
-  // if(request[0].address.state !== undefined) address += request[0].address.state;
-  // address += "";
-  // if(request[0].address.pin !== undefined) address += request[0].address.pin;
-  // address += "";
+    vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
+  }, [pickup, request]);
+  vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
 
-  // request[0].orderList.map((order) => {
-  //  waste += order.nameOfWaste + "";
-  // })}
+  if (request[0] !== undefined) {
+    if (request[0].address.firstLine !== undefined)
+      address += request[0].address.firstLine;
+    address += ", ";
+    if (request[0].address.city !== undefined)
+      address += request[0].address.city;
+    address += ", ";
+    if (request[0].address.state !== undefined)
+      address += request[0].address.state;
+    address += ", P.O: ";
+    if (request[0].address.pin !== undefined) address += request[0].address.pin;
+    address += " ";
+    if (request[0].timeOfPickup !== undefined)
+      timeOfPickup = request[0].timeOfPickup;
+    if (request[0].orderList !== undefined)
+      waste = request[0].orderList.map((waste) => {
+        return waste.nameOfWaste;
+      });
+    if (request[0].orderList !== undefined)
+      qty = request[0].orderList.map((waste) => {
+        return waste.qty + "Kg";
+      });
+    if (request[0].vendorAccepted !== undefined)
+      vendorAccepted = request[0].vendorAccepted;
+  }
 
-  // vendorDetail = request[0].vendorDetail.name
-  // }, [request])
-  
   function KeyValue(props) {
     return (
       <div className="keyvalue-container">
@@ -84,14 +96,13 @@ const SellerDashboard2 = ({user,request}) => {
 
           {/* PICKUP ADDRESS       */}
 
-          <KeyValue
-            info="pickup address"
-            value={address}
-          />
+          <KeyValue info="pickup address" value={address} />
 
           {/* SLOT */}
-
-          <KeyValue info="slot" value="9:00am-3:00pm" />
+          <KeyValue
+            info="Slot Details "
+            value={<Moment>{timeOfPickup}</Moment>}
+          ></KeyValue>
 
           {/* RIDER'S NAME */}
 
@@ -99,14 +110,11 @@ const SellerDashboard2 = ({user,request}) => {
 
           {/* WASTE TYPE */}
 
-          <KeyValue
-            info="Waste Type"
-            value={waste}
-          />
+          <KeyValue info="Waste Type" value={waste} />
 
           {/* WASTE QUANTITY */}
 
-          <KeyValue info="Waste Quantity" value="5kg" />
+          <KeyValue info="Waste Quantity" value={qty} />
         </div>
         <hr className="division1" />
         {/* STATUS UPDATES SECTION */}
@@ -114,7 +122,12 @@ const SellerDashboard2 = ({user,request}) => {
           <h3 className="current-text"> Status Updates</h3>
           <div className="status-container-flex">
             <div className="status-container-flex-box">
-              <StatusUpdates status="Approved by vendor" />
+              {vendorAccepted ? (
+                <StatusUpdates status="Approved by vendor" />
+              ) : (
+                ""
+              )}
+
               <StatusUpdates status="Approved by rider" />
               <StatusUpdates status="Rider on way" />
             </div>
@@ -141,12 +154,14 @@ SellerDashboard2.propTypes = {
   user: PropTypes.object.isRequired,
   vendor: PropTypes.object.isRequired,
   request: PropTypes.object.isRequired,
+  pickup: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendors,
-  request: state.pickup.request
+  request: state.pickup.request,
+  pickup: state.pickup,
 });
 
-export default connect(mapStateToProps, {})( SellerDashboard2 );
+export default connect(mapStateToProps, {})(SellerDashboard2);

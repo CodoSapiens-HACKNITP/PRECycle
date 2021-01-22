@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import VDstyles from "./vendor_dashboard.module.css";
 import vendorpic from "./vendor.jpg";
@@ -9,8 +9,14 @@ import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FcOk } from "react-icons/fc";
+import { vendorOrderList, acceptOrder } from "../../actions/pickup";
+import Moment from "react-moment";
 
-const VendorDashboard = ({ user }) => {
+const VendorDashboard = ({ user, vendorOrderList, pickup: { request, acceptedRequest }, acceptOrder, alert }) => {
+
+  useEffect(() => {
+    vendorOrderList();
+  }, [alert]);
   function UpcomingCard(props) {
     return (
       <Card classname={VDstyles.card_orders}>
@@ -48,7 +54,7 @@ const VendorDashboard = ({ user }) => {
           <div>
             <hr></hr>
           </div>
-          <Button variant="success" className={VDstyles.vendor_accept}>
+          <Button variant="success" className={VDstyles.vendor_accept} >
             ACCEPT
           </Button>
           <Button variant="danger" className={VDstyles.vendor_decline}>
@@ -161,7 +167,7 @@ const VendorDashboard = ({ user }) => {
           {/* GRADIENT BAR */}
           <div className="vendor-image">
             <img
-              src={vendorpic}
+              src={user ? user.avatar : vendorpic}
               alt="profile_img"
               className={VDstyles.vendor_img}
             ></img>{" "}
@@ -182,52 +188,71 @@ const VendorDashboard = ({ user }) => {
               <div className={VDstyles.vendor_heading}>
                 <h1>UPCOMING ORDERS</h1>
               </div>
-
-              <UpcomingCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                RiderName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
-
-              <UpcomingCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                RiderName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
+              {request.length>0 ? (request.map((requests) => {
+                return ( <Card classname={VDstyles.card_orders}>
+                    <Card.Body className={VDstyles.card_u}>
+                      <Card.Text>
+                        <Table>
+                           <tbody>
+                             <tr>
+                               <td>ORDER NO.</td>
+                               <td>{requests._id}</td>
+                            </tr>
+                             <tr>
+                               <td>SELLER'S NAME</td>
+                               <td>{requests.seller.name}</td>
+                             </tr>
+                             <tr>
+                               <td>RIDER'S NAME</td>
+                               <td>{"Rider not alloted"}</td>
+                             </tr>
+                             <tr>
+                               <td>SLOT</td>
+                               <td>{<Moment>{requests.timeOfPickup}</Moment>}</td>
+                             </tr>
+                             <tr>
+                               <td>WASTE TYPE</td>
+                               <td>{requests.orderList.map((waste) => waste.nameOfWaste)}</td>
+                             </tr>
+                             <tr>
+                               <td>WASTE QUANTITY</td>
+                               <td>{requests.orderList.map((waste) => waste.qty)}</td>
+                             </tr>
+                           </tbody>
+                         </Table>
+                       </Card.Text>
+                       <div>
+                         <hr></hr>
+                       </div>
+                       <Button variant="success" className={VDstyles.vendor_accept} onClick={() => acceptOrder(requests._id)}>
+                         ACCEPT
+                       </Button>
+                       <Button variant="danger" className={VDstyles.vendor_decline}>
+                         DECLINE
+                       </Button>
+                     </Card.Body>
+                   </Card>)
+              })): (<h3>No Upcoming Request!</h3>)}
             </div>
           </div>
 
-          <div class="col-12 col-lg-6">
+          {acceptedRequest.length>0 ?(<div class="col-12 col-lg-6">
             <div className="accepted">
               <div className={VDstyles.vendor_heading}>
                 <h1>ACCEPTED ORDERS</h1>
               </div>
-
-              <AcceptedCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                RiderName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
-
-              <AcceptedCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                RiderName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
+              {acceptedRequest.map((request) => {
+                return (<AcceptedCard
+                  OrderNo={request._id}
+                  SellerName={request.seller.name}
+                  RiderName={"rider not alloted"}
+                  Slot={<Moment>{request.timeOfPickup}</Moment>}
+                  WasteType={request.orderList.map((waste) => waste.nameOfWaste)}
+                  WasteQuantity={request.orderList.map((waste) => waste.qty)}
+                />)
+              })}
             </div>
-          </div>
+          </div>) :("")}
         </div>
       </div>
 
@@ -242,11 +267,16 @@ const VendorDashboard = ({ user }) => {
 VendorDashboard.propTypes = {
   user: PropTypes.object.isRequired,
   vendor: PropTypes.object.isRequired,
+  pickup: PropTypes.object.isRequired,
+  acceptOrder: PropTypes.func.isRequired,
+  alert: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendor,
+  pickup: state.pickup,
+  alert: state.alert
 });
 
-export default connect(mapStateToProps, {})(VendorDashboard);
+export default connect(mapStateToProps, { vendorOrderList, acceptOrder })(VendorDashboard);

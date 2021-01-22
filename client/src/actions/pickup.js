@@ -6,6 +6,8 @@ import {
   FAIL_WASTELIST_UPDATE,
   REQUEST_CREATED,
   REQUEST_FAILED,
+  VENDOR_ORDER_LIST,
+  ACCEPTED_ORDER_LIST
 } from "./types";
 
 //Load Vendors
@@ -17,12 +19,12 @@ export const loadNearbyVendors = (pincode, city) => async (dispatch) => {
       type: VENDOR_LOADED,
       payload: vendors.data,
     });
-    if(activeRequest.data.length>0){
-    dispatch({
-      type: REQUEST_CREATED,
-      payload: activeRequest.data,
-    })
-  }
+    if (activeRequest.data.length > 0) {
+      dispatch({
+        type: REQUEST_CREATED,
+        payload: activeRequest.data,
+      });
+    }
     // var length = vendors.data.length;
     // if (length > 0)
     //   dispatch(setAlert(`${length} Nearby Vendors Found`, "success"));
@@ -91,17 +93,57 @@ export const createRequest = (formData) => async (dispatch) => {
 export const updateRequest = () => async (dispatch) => {
   try {
     let activeRequest = await axios.get(`/seller/active/request`);
-    if(activeRequest.data.length>0){
+    if (activeRequest.data.length > 0) {
       dispatch({
         type: REQUEST_CREATED,
         payload: activeRequest.data,
-      })
+      });
     }
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
+    dispatch({
+      type: REQUEST_FAILED,
+    });
+  }
+};
+
+//Show the pending request to the vendor dashboard
+export const vendorOrderList = () => async (dispatch) => {
+  try {
+    let orderList = await axios.get("/vendor/request");
+    var pendingOrder = [];
+    orderList.data.map((order) => {
+      if (order.vendorAccepted === false) pendingOrder.push(order);
+    });
+    var acceptedOrder =[];
+    orderList.data.map((order) => {
+      if (order.vendorAccepted === true) acceptedOrder.push(order);
+    });
+    dispatch({
+      type: VENDOR_ORDER_LIST,
+      payload: pendingOrder,
+    });
+    dispatch({
+      type: ACCEPTED_ORDER_LIST,
+      payload: acceptedOrder
+    })
+  } catch (err) {
+    dispatch({
+      type: REQUEST_FAILED,
+    });
+  }
+};
+
+//Accept or Decline the order by the vendor
+export const acceptOrder = (orderid) => async (dispatch) => {
+  try {
+    await axios.put(`/vendor/request/accept/${orderid}`);
+    dispatch(setAlert("Order Accepted!", "success"));
+  } catch (error) {
+    console.log(error.message);
     dispatch({
       type: REQUEST_FAILED,
     });

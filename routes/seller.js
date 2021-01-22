@@ -64,7 +64,7 @@ router.post(
       check("state", "State is required").not().isEmpty(),
       check("city", "City is required").not().isEmpty(),
       check("vendorid", "Selecting Vendor is important").not().isEmpty(),
-      check("orderList", "Order Items can't be Empty").not().isEmpty()
+      check("orderList", "Order Items can't be Empty").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -81,7 +81,7 @@ router.post(
       vendorid,
       timeofpickup,
       orderList,
-      recent
+      recent,
     } = req.body;
 
     try {
@@ -101,7 +101,7 @@ router.post(
         },
         vendorDetail: {
           id: vendorid,
-          name: vendor.name
+          name: vendor.name,
         },
         orderList,
         recent,
@@ -109,13 +109,13 @@ router.post(
 
       //**********Algo to get the time half hour ahead of now or any min ahead of now*********//
 
-      var d1 = new Date (),
-      d2 = new Date ( d1 );
-      d2.setMinutes ( d1.getMinutes() + 30 );
+      var d1 = new Date(),
+        d2 = new Date(d1);
+      d2.setMinutes(d1.getMinutes() + 30);
 
-      if(timeofpickup) {
-        order.timeOfPickup = timeofpickup
-      } else { 
+      if (timeofpickup) {
+        order.timeOfPickup = timeofpickup;
+      } else {
         order.timeOfPickup = d2;
       }
 
@@ -131,23 +131,27 @@ router.post(
 //route     GET /seller/active/request
 //desc:     Get The active request
 //access:   Private
-router.get('/active/request', auth, async (req, res) => {
+router.get("/active/request", auth, async (req, res) => {
   try {
-    const order = await Order.find({"seller.id": req.seller.id});
-    if(order) {
-    if(!order.completed === false)
-    res.status(400).json({errors: {
-      msg: "No active Pickup Request!!"
-    }});
-    res.status(200).json(order);
-  }
-  res.status(400).json({errors: {
-    msg: "No active Pickup Request!!"
-  }});
+    const order = await Order.find({ "seller.id": req.seller.id });
+    if (order) {
+      if (!order.completed === false)
+        res.status(400).json({
+          errors: {
+            msg: "No active Pickup Request!!",
+          },
+        });
+      res.status(200).json(order);
+    }
+    res.status(400).json({
+      errors: {
+        msg: "No active Pickup Request!!",
+      },
+    });
   } catch (error) {
     console.log(error.message);
-      res.status(500).send("server error");
+    res.status(500).send("server error");
   }
-})
+});
 
 module.exports = router;
