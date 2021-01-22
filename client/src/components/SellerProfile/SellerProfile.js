@@ -4,10 +4,12 @@ import style from "./SellerProfile.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiFillEdit } from "react-icons/ai";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Card from "./Card";
 import AddressForm from "./EditAddress";
 
-export const SellerProfile = () => {
+const SellerProfile = ({user}) => {
   //  FOR EDITABLE ADDRESS FORM FUNCTIONALITY
 
   const [isClicked, setIsClicked] = useState(false);
@@ -24,10 +26,10 @@ export const SellerProfile = () => {
         <div>
           <div className={style.cardDiv}>
             <Card
-              name="David Warner"
-              email="dw@gmail.com"
-              img="https://static.wixstatic.com/media/ea883b_9f64e50b22fe47c4af0f50ed65e6729f~mv2.jpg/v1/fill/w_1000,h_750,al_c,q_90,usm_0.66_1.00_0.01/ea883b_9f64e50b22fe47c4af0f50ed65e6729f~mv2.jpg"
-              tel="645342453"
+              name={user ? user.name : ""}
+              email={user ? user.email : ""}
+              img={user ? user.avatar : ""}
+              tel={user ? user.contact : ""}
             />
           </div>
 
@@ -47,7 +49,7 @@ export const SellerProfile = () => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder="I - 950 , Hindalco Colony"
+                  placeholder={user ? (user.address.firstLine + ", " + user.address.landmark + ", " + user.address.city + ", " + user.address.state + " P.O: " + user.address.pin) : ("")}
                   readOnly
                 />
               </Form.Group>
@@ -96,3 +98,15 @@ export const SellerProfile = () => {
     </div>
   );
 };
+
+SellerProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { })(
+  SellerProfile
+);
