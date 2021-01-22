@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import { FcBusinessman } from "react-icons/fc";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loadNearbyVendors } from "../../actions/pickup";
+import { loadNearbyVendors, vendorOrderList } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 import { createRequest } from "../../actions/pickup";
 

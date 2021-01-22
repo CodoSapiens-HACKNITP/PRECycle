@@ -85,7 +85,7 @@ router.put("/request/accept/:id", auth, async (req, res) => {
     // }
 
     await orders.save();
-    res.json({ orders});
+    res.json({ orders });
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

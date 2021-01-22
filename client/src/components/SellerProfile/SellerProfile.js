@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import Card from "./Card";
 import AddressForm from "./EditAddress";
 
-const SellerProfile = ({user}) => {
+const SellerProfile = ({ user }) => {
   //  FOR EDITABLE ADDRESS FORM FUNCTIONALITY
 
   const [isClicked, setIsClicked] = useState(false);
@@ -49,7 +49,19 @@ const SellerProfile = ({user}) => {
                   as="textarea"
                   rows={3}
                   className={style.addressField}
-                  placeholder={user ? (user.address.firstLine + ", " + user.address.landmark + ", " + user.address.city + ", " + user.address.state + " P.O: " + user.address.pin) : ("")}
+                  placeholder={
+                    user
+                      ? user.address.firstLine +
+                        ", " +
+                        user.address.landmark +
+                        ", " +
+                        user.address.city +
+                        ", " +
+                        user.address.state +
+                        " P.O: " +
+                        user.address.pin
+                      : ""
+                  }
                   readOnly
                 />
               </Form.Group>
@@ -107,6 +119,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { })(
-  SellerProfile
-);
+export default connect(mapStateToProps, {})(SellerProfile);

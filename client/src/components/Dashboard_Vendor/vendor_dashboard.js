@@ -12,8 +12,13 @@ import { FcOk } from "react-icons/fc";
 import { vendorOrderList, acceptOrder } from "../../actions/pickup";
 import Moment from "react-moment";
 
-const VendorDashboard = ({ user, vendorOrderList, pickup: { request, acceptedRequest }, acceptOrder, alert }) => {
-
+const VendorDashboard = ({
+  user,
+  vendorOrderList,
+  pickup: { request, acceptedRequest },
+  acceptOrder,
+  alert,
+}) => {
   useEffect(() => {
     vendorOrderList();
   }, [alert]);
@@ -54,7 +59,7 @@ const VendorDashboard = ({ user, vendorOrderList, pickup: { request, acceptedReq
           <div>
             <hr></hr>
           </div>
-          <Button variant="success" className={VDstyles.vendor_accept} >
+          <Button variant="success" className={VDstyles.vendor_accept}>
             ACCEPT
           </Button>
           <Button variant="danger" className={VDstyles.vendor_decline}>
@@ -188,71 +193,102 @@ const VendorDashboard = ({ user, vendorOrderList, pickup: { request, acceptedReq
               <div className={VDstyles.vendor_heading}>
                 <h1>UPCOMING ORDERS</h1>
               </div>
-              {request.length>0 ? (request.map((requests) => {
-                return ( <Card classname={VDstyles.card_orders}>
-                    <Card.Body className={VDstyles.card_u}>
-                      <Card.Text>
-                        <Table>
-                           <tbody>
-                             <tr>
-                               <td>ORDER NO.</td>
-                               <td>{requests._id}</td>
-                            </tr>
-                             <tr>
-                               <td>SELLER'S NAME</td>
-                               <td>{requests.seller.name}</td>
-                             </tr>
-                             <tr>
-                               <td>RIDER'S NAME</td>
-                               <td>{"Rider not alloted"}</td>
-                             </tr>
-                             <tr>
-                               <td>SLOT</td>
-                               <td>{<Moment>{requests.timeOfPickup}</Moment>}</td>
-                             </tr>
-                             <tr>
-                               <td>WASTE TYPE</td>
-                               <td>{requests.orderList.map((waste) => waste.nameOfWaste)}</td>
-                             </tr>
-                             <tr>
-                               <td>WASTE QUANTITY</td>
-                               <td>{requests.orderList.map((waste) => waste.qty)}</td>
-                             </tr>
-                           </tbody>
-                         </Table>
-                       </Card.Text>
-                       <div>
-                         <hr></hr>
-                       </div>
-                       <Button variant="success" className={VDstyles.vendor_accept} onClick={() => acceptOrder(requests._id)}>
-                         ACCEPT
-                       </Button>
-                       <Button variant="danger" className={VDstyles.vendor_decline}>
-                         DECLINE
-                       </Button>
-                     </Card.Body>
-                   </Card>)
-              })): (<h3>No Upcoming Request!</h3>)}
+              {request.length > 0 ? (
+                request.map((requests) => {
+                  return (
+                    <Card classname={VDstyles.card_orders}>
+                      <Card.Body className={VDstyles.card_u}>
+                        <Card.Text>
+                          <Table>
+                            <tbody>
+                              <tr>
+                                <td>ORDER NO.</td>
+                                <td>{requests._id}</td>
+                              </tr>
+                              <tr>
+                                <td>SELLER'S NAME</td>
+                                <td>{requests.seller.name}</td>
+                              </tr>
+                              <tr>
+                                <td>RIDER'S NAME</td>
+                                <td>{"Rider not alloted"}</td>
+                              </tr>
+                              <tr>
+                                <td>SLOT</td>
+                                <td>
+                                  {<Moment>{requests.timeOfPickup}</Moment>}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>WASTE TYPE</td>
+                                <td>
+                                  {requests.orderList.map(
+                                    (waste) => waste.nameOfWaste
+                                  )}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>WASTE QUANTITY</td>
+                                <td>
+                                  {requests.orderList.map((waste) => waste.qty)}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        </Card.Text>
+                        <div>
+                          <hr></hr>
+                        </div>
+                        <Button
+                          variant="success"
+                          className={VDstyles.vendor_accept}
+                          onClick={() => acceptOrder(requests._id)}
+                        >
+                          ACCEPT
+                        </Button>
+                        <Button
+                          variant="danger"
+                          className={VDstyles.vendor_decline}
+                        >
+                          DECLINE
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  );
+                })
+              ) : (
+                <h3>No Upcoming Request!</h3>
+              )}
             </div>
           </div>
 
-          {acceptedRequest.length>0 ?(<div class="col-12 col-lg-6">
-            <div className="accepted">
-              <div className={VDstyles.vendor_heading}>
-                <h1>ACCEPTED ORDERS</h1>
+          {acceptedRequest.length > 0 ? (
+            <div class="col-12 col-lg-6">
+              <div className="accepted">
+                <div className={VDstyles.vendor_heading}>
+                  <h1>ACCEPTED ORDERS</h1>
+                </div>
+                {acceptedRequest.map((request) => {
+                  return (
+                    <AcceptedCard
+                      OrderNo={request._id}
+                      SellerName={request.seller.name}
+                      RiderName={"rider not alloted"}
+                      Slot={<Moment>{request.timeOfPickup}</Moment>}
+                      WasteType={request.orderList.map(
+                        (waste) => waste.nameOfWaste
+                      )}
+                      WasteQuantity={request.orderList.map(
+                        (waste) => waste.qty
+                      )}
+                    />
+                  );
+                })}
               </div>
-              {acceptedRequest.map((request) => {
-                return (<AcceptedCard
-                  OrderNo={request._id}
-                  SellerName={request.seller.name}
-                  RiderName={"rider not alloted"}
-                  Slot={<Moment>{request.timeOfPickup}</Moment>}
-                  WasteType={request.orderList.map((waste) => waste.nameOfWaste)}
-                  WasteQuantity={request.orderList.map((waste) => waste.qty)}
-                />)
-              })}
             </div>
-          </div>) :("")}
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
@@ -276,7 +312,9 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendor,
   pickup: state.pickup,
-  alert: state.alert
+  alert: state.alert,
 });
 
-export default connect(mapStateToProps, { vendorOrderList, acceptOrder })(VendorDashboard);
+export default connect(mapStateToProps, { vendorOrderList, acceptOrder })(
+  VendorDashboard
+);

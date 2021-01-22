@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./seller-dashboard1.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -12,7 +12,7 @@ import { loadNearbyVendors } from "../../actions/pickup";
 const SellerDashboard1 = ({ user, vendor, loadNearbyVendors, request }) => {
   useEffect(() => {
     loadNearbyVendors(localStorage.pincode, localStorage.city);
-  }, [])
+  }, []);
   function Vendors(props) {
     return (
       <div className="vendor-list">
@@ -54,7 +54,13 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors, request }) => {
         <div>
           <Link to="/requestPickup">
             <Button variant="warning" className="request-to-pickup">
-              {request.length>0 ? (<span className="request-text">Watch Status of Your current Request</span>) :(<span className="request-text">Request To Pickup</span>)}
+              {request.length > 0 ? (
+                <span className="request-text">
+                  Watch Status of Your current Request
+                </span>
+              ) : (
+                <span className="request-text">Request To Pickup</span>
+              )}
             </Button>
           </Link>{" "}
           <hr className="division1" />
@@ -119,7 +125,7 @@ const SellerDashboard1 = ({ user, vendor, loadNearbyVendors, request }) => {
               <Spinner />
             )
           ) : (
-            ""
+            "No Vendor Found. Please Try Again after Some Time!"
           )}
           <hr className="division1" />
           {/* PICKUP HISTORY SECTION */}
@@ -144,7 +150,7 @@ SellerDashboard1.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendors,
-  request: state.pickup.request
+  request: state.pickup.request,
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors })(

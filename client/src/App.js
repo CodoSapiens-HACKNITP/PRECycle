@@ -17,7 +17,7 @@ import { RiderDashboard } from "./components/Dashboard_Rider/rider_dashboard";
 import SellerDashboard2 from "./components/seller-dashboard2/seller-dashboard2";
 import VendorDashboard from "./components/Dashboard_Vendor/vendor_dashboard";
 import RequestPickup from "./components/RequestPickup/RequestPickupComponent";
-import  SellerProfile  from "./components/SellerProfile/SellerProfile";
+import SellerProfile from "./components/SellerProfile/SellerProfile";
 import { RiderProfile } from "./components/RiderProfile/RiderProfile";
 import RateList from "./components/RateList/Rate_List";
 import { OrderHistory } from "./components/Vendor_OrderHistory/order_history";

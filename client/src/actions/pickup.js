@@ -7,7 +7,7 @@ import {
   REQUEST_CREATED,
   REQUEST_FAILED,
   VENDOR_ORDER_LIST,
-  ACCEPTED_ORDER_LIST
+  ACCEPTED_ORDER_LIST,
 } from "./types";
 
 //Load Vendors
@@ -77,6 +77,7 @@ export const createRequest = (formData) => async (dispatch) => {
       type: REQUEST_CREATED,
       payload: res.data,
     });
+    dispatch(vendorOrderList());
     dispatch(setAlert("Request Created Successfully!", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
@@ -118,7 +119,7 @@ export const vendorOrderList = () => async (dispatch) => {
     orderList.data.map((order) => {
       if (order.vendorAccepted === false) pendingOrder.push(order);
     });
-    var acceptedOrder =[];
+    var acceptedOrder = [];
     orderList.data.map((order) => {
       if (order.vendorAccepted === true) acceptedOrder.push(order);
     });
@@ -128,8 +129,8 @@ export const vendorOrderList = () => async (dispatch) => {
     });
     dispatch({
       type: ACCEPTED_ORDER_LIST,
-      payload: acceptedOrder
-    })
+      payload: acceptedOrder,
+    });
   } catch (err) {
     dispatch({
       type: REQUEST_FAILED,
@@ -148,4 +149,4 @@ export const acceptOrder = (orderid) => async (dispatch) => {
       type: REQUEST_FAILED,
     });
   }
-}
+};

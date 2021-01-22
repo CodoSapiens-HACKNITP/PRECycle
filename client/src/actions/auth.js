@@ -254,7 +254,7 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
   });
   dispatch({
-    type: LOGOUT_REMOVE
-  })
+    type: LOGOUT_REMOVE,
+  });
   dispatch({ type: CLEAR_PROFILE });
 };
