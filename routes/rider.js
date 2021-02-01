@@ -39,12 +39,14 @@ router.get('/request', auth, async (req, res) => {
     const rider = await Rider.findById(req.rider.id);
     let orders = await Order.find({ $or: [{ "address.pin": rider.address.pin }, { "address.city": rider.address.city }],
   });
+  var vendorAcceptedOrder =[];
   orders.map((order) => {
-    if(order.vendorAccepted === false) {
-      return res.status(200).send("Approval form vendor is pending")
+    if(order.vendorAccepted === true && order.riderDetail.name !== null) {
+      vendorAcceptedOrder.push(order);
     }
-  })
-  res.status(200).json(orders);
+  });
+  if(vendorAcceptedOrder.length === 0) return res.status(200).json({errors: [{msg: "there is no Vendor accpeted order nearby"}]});
+  res.status(200).json(vendorAcceptedOrder);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

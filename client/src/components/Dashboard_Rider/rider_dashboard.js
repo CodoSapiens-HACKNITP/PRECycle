@@ -17,7 +17,7 @@ const RiderDashboard = ({user, request}) => {
 
   useEffect(() => {
     viewRequest()
-  }, [])
+  })
   function AllottedCard(props) {
     return (
       <Card classname={RDstyles.card_pickups}>
@@ -320,6 +320,7 @@ RiderDashboard.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   request: state.pickup.request,
+  acceptedRequest: state.pickup.acceptedRequest,
   pickup: state.pickup,
   alert: state.alert,
 });
