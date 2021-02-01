@@ -8,6 +8,7 @@ import {
   REQUEST_FAILED,
   VENDOR_ORDER_LIST,
   ACCEPTED_ORDER_LIST,
+  RIDER_NEARBY_ORDER
 } from "./types";
 
 //Load Vendors
@@ -150,3 +151,23 @@ export const acceptOrder = (orderid) => async (dispatch) => {
     });
   }
 };
+
+//Get all the vendor accepted request in rider of that area
+export const viewRequest = () => async (dispatch) => {
+  try {
+    const response = await axios.get('/rider/request');
+    dispatch({
+      type: RIDER_NEARBY_ORDER,
+      payload: response.data
+    })
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((err) => dispatch(setAlert(err.msg, "danger")));
+    }
+    console.log(error.message);
+    dispatch({
+      type: RIDER_NEARBY_ORDER,
+    });
+  }
+}

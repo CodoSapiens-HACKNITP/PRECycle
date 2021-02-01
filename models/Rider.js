@@ -65,7 +65,15 @@ const riderSchema = new Schema({
       required: true,
     },
   },
-  pendingRequests: [
+  pendingAcceptedRequests: [
+    {
+      orderid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "order",
+      },
+    },
+  ],
+  completedAcceptedRequests: [
     {
       orderid: {
         type: mongoose.Schema.Types.ObjectId,

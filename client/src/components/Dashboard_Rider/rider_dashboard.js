@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import RDstyles from "./rider_dashboard.module.css";
 import profile from "./rider.png";
@@ -7,12 +7,17 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-//import PropTypes from "prop-types";
-//import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
-// import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import {viewRequest} from '../../actions/pickup'
 
-export const RiderDashboard = () => {
+const RiderDashboard = ({user, request}) => {
+
+  useEffect(() => {
+    viewRequest()
+  }, [])
   function AllottedCard(props) {
     return (
       <Card classname={RDstyles.card_pickups}>
@@ -232,7 +237,7 @@ export const RiderDashboard = () => {
             {/* RIDER IMAGE */}
           </div>
           <div className={RDstyles.rider_greeting_text}>
-            <h2>Hi, Chris Gayle!</h2> {/* GREET RIDER */}
+            <h2>{user ? user.name : "<please refresh the page>"}</h2> {/* GREET RIDER */}
           </div>
         </Link>
       </div>
@@ -248,7 +253,7 @@ export const RiderDashboard = () => {
               </div>
 
               <AllottedCard
-                OrderNo="#1234"
+                OrderNo={"Hi"}
                 SellerName="Random Nobody"
                 SellerAddress="In the Middle of Nowhere"
                 VendorName="OG Ragpickers"
@@ -274,26 +279,22 @@ export const RiderDashboard = () => {
               <div className={RDstyles.rider_board_heading}>
                 <h1>PICKUP REQUESTS</h1>
               </div>
-
-              <PendingCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                SellerAddress="In the Middle of Nowhere"
-                VendorName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
-
-              <PendingCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                SellerAddress="In the Middle of Nowhere"
-                VendorName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
+              {request ? request.map((req)=> {
+                return (<PendingCard
+                OrderNo={req._id}
+                SellerName={req.seller.name}
+                SellerAddress={req.address.firstLine + "," + req.address.city + "," + req.address.state + req.address.pin}
+                VendorName={req.vendorDetail.name}
+                Slot={req.timeOfPickup}
+                WasteType={req.orderList.map(
+                  (waste) => waste.nameOfWaste
+                )}
+                WasteQuantity={req.orderList.map(
+                  (waste) => waste.qty 
+                ) + " Kg"}
+              />)
+              }) : <h1>No Pending Request!</h1>
+            }
             </div>
           </div>
         </div>
@@ -307,3 +308,22 @@ export const RiderDashboard = () => {
     </div>
   );
 };
+
+RiderDashboard.propTypes = {
+  user: PropTypes.object.isRequired,
+  request: PropTypes.object.isRequired,
+  pickup: PropTypes.object.isRequired,
+  acceptOrder: PropTypes.func.isRequired,
+  alert: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  request: state.pickup.request,
+  pickup: state.pickup,
+  alert: state.alert,
+});
+
+export default connect(mapStateToProps, { viewRequest})(
+  RiderDashboard
+);

@@ -8,6 +8,7 @@ import {
   VENDOR_ORDER_LIST,
   ACCEPTED_ORDER_LIST,
   LOGOUT_REMOVE,
+  RIDER_NEARBY_ORDER,
 } from "../actions/types";
 const initialState = {
   vendors: [],
@@ -50,6 +51,11 @@ export default function abc(state = initialState, action) {
         request: [],
         acceptedRequest: [],
       };
+    case RIDER_NEARBY_ORDER:
+      return {
+        ...state,
+        request: payload
+      }
     case FAIL_WASTELIST_UPDATE:
     case CLEAR_PROFILE:
     case REQUEST_FAILED:
