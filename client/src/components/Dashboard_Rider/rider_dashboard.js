@@ -11,13 +11,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
-import {viewRequest} from '../../actions/pickup'
+import {acceptOrder, viewRequest} from '../../actions/pickup'
 
-const RiderDashboard = ({user, request}) => {
+const RiderDashboard = ({auth, user, request, acceptedRequest}) => {
 
   useEffect(() => {
     viewRequest()
-  })
+  }, [auth.typeofuser])
   function AllottedCard(props) {
     return (
       <Card classname={RDstyles.card_pickups}>
@@ -252,25 +252,22 @@ const RiderDashboard = ({user, request}) => {
                 <h1>ALLOTTED ORDERS</h1>
               </div>
 
-              <AllottedCard
-                OrderNo={"Hi"}
-                SellerName="Random Nobody"
-                SellerAddress="In the Middle of Nowhere"
-                VendorName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
-
-              <AllottedCard
-                OrderNo="#1234"
-                SellerName="Random Nobody"
-                SellerAddress="In the Middle of Nowhere"
-                VendorName="OG Ragpickers"
-                Slot="DD/MM/YYYY 24:00"
-                WasteType="Answer Sheets"
-                WasteQuantity="5kg"
-              />
+              {acceptedRequest.length>0 ? acceptedRequest.map((req)=> {
+                return (<AllottedCard
+                OrderNo={req._id}
+                SellerName={req.seller.name}
+                SellerAddress={req.address.firstLine + "," + req.address.city + "," + req.address.state + req.address.pin}
+                VendorName={req.vendorDetail.name}
+                Slot={req.timeOfPickup}
+                WasteType={req.orderList.map(
+                  (waste) => waste.nameOfWaste
+                )}
+                WasteQuantity={req.orderList.map(
+                  (waste) => waste.qty 
+                ) + " Kg"}
+              />)
+              }) : <h1>No Pending Request!</h1>
+            }
             </div>
           </div>
 
@@ -279,7 +276,7 @@ const RiderDashboard = ({user, request}) => {
               <div className={RDstyles.rider_board_heading}>
                 <h1>PICKUP REQUESTS</h1>
               </div>
-              {request ? request.map((req)=> {
+              {request.length>0 ? request.map((req)=> {
                 return (<PendingCard
                 OrderNo={req._id}
                 SellerName={req.seller.name}
@@ -315,6 +312,7 @@ RiderDashboard.propTypes = {
   pickup: PropTypes.object.isRequired,
   acceptOrder: PropTypes.func.isRequired,
   alert: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -323,6 +321,7 @@ const mapStateToProps = (state) => ({
   acceptedRequest: state.pickup.acceptedRequest,
   pickup: state.pickup,
   alert: state.alert,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { viewRequest})(

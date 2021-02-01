@@ -12,6 +12,7 @@ import {
   LOGOUT_REMOVE,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+import { viewRequest } from "./pickup";
 
 //Load userif(localStorage.token)
 export const loadUser = (typeOfUser) => async (dispatch) => {
@@ -235,6 +236,9 @@ export const login = (loginDetail, password, typeOfUser) => async (
     });
 
     dispatch(loadUser(localStorage.getItem("typeofuser")));
+    if(localStorage.typeofuser === "rider") {
+    dispatch(viewRequest());
+    }
   } catch (err) {
     const errors = err.response.data.errors;
 

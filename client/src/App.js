@@ -40,9 +40,7 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser(localStorage.typeofuser));
     store.dispatch(updateRequest());
-    if(localStorage.typeofuser==="rider"){
-    store.dispatch(viewRequest());
-    }
+    
   });
   return (
     <Provider store={store}>
