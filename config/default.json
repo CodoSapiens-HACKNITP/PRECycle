@@ -1,6 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://rich:12345@precycle.a2uns.mongodb.net/PRECycle?retryWrites=true&w=majority",
-  "JWTsecret": "my secret token",
-  "githubclientid": "da8e85393062771df927",
-  "githubsecret": "e829540a5af2c9eaec2c6f3ff2872c9d8fadce42"
+  "JWTsecret": "my secret token"
 }
