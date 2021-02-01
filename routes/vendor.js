@@ -74,7 +74,7 @@ router.put("/request/accept/:id", auth, async (req, res) => {
     //after accept of the order by vendor Send notification to all the available rider nearby
     // TO-DO Pending
     // let pincode = orders.address.pin;
-    // let riders = await Rider.find({ "address.pin": pincode });
+    // let riders = await Rider.findManyAndUpdate({ "address.pin": pincode });
     // if (riders) {
     //   const newReq = {
     //     orderid: requestid,
@@ -83,6 +83,7 @@ router.put("/request/accept/:id", auth, async (req, res) => {
     // } else {
     //   return res.send("No Riders Available Nearby");
     // }
+
 
     await orders.save();
     res.json({ orders });

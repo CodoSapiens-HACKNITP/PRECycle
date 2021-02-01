@@ -41,6 +41,15 @@ const orderSchema = new Schema({
       type: String,
     },
   },
+  riderDetail: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "rider",
+    },
+    name: {
+      type: String,
+    },
+  },
   vendorAccepted: {
     type: Boolean,
     default: false,
@@ -67,8 +76,49 @@ const orderSchema = new Schema({
     type: Date,
   },
   orderAccepted: {
+    status:{
     type: Boolean,
     default: false,
+    },
+    time: {
+      type: Date,
+    },
+  },
+  onMyWay: {
+    status:{
+      type: Boolean,
+      default: false,
+      },
+      time: {
+        type: Date,
+      },
+  },
+  wasteCollected: {
+    status:{
+      type: Boolean,
+      default: false,
+      },
+      time: {
+        type: Date,
+      },
+  },
+  paidTheSeller: {
+    status:{
+      type: Boolean,
+      default: false,
+      },
+      time: {
+        type: Date,
+      },
+  },
+  droppedAtVendors: {
+    status:{
+      type: Boolean,
+      default: false,
+      },
+      time: {
+        type: Date,
+      },
   },
   cancelled: {
     type: Boolean,

@@ -7,6 +7,7 @@ const Seller = require("../models/Seller");
 const Rider = require("../models/Rider");
 const Vendor = require("../models/Vendor");
 const { check, validationResult } = require("express-validator");
+const Order = require("../models/Order");
 
 //route     GET /profile/my
 //desc:     Get Current Seller profile
@@ -29,5 +30,59 @@ router.get("/my", auth, async (req, res) => {
     res.status(500).send("server error");
   }
 });
+
+//route     GET /request
+//desc:     Watch recent request in the nearby areas
+//access:   Private
+router.get('/request', auth, async (req, res) => {
+  try {
+    const rider = await Rider.findById(req.rider.id);
+    let orders = await Order.find({ $or: [{ "address.pin": rider.address.pin }, { "address.city": rider.address.city }],
+  });
+  orders.map((order) => {
+    if(order.vendorAccepted === false) {
+      return res.status(200).send("Approval form vendor is pending")
+    }
+  })
+  res.status(200).json(orders);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+//route     PUT /request/accept/:id
+//desc:     Accept any of the recent request
+//access:   Private
+router.put('/request/accept/:id', auth, async (req, res) => {
+  const orderid = req.params.id;
+  try {
+    let order = await Order.findById(orderid);
+    if(!order) res.status(400).json({errors: [{msg: "There is no Order!"}]})
+    let rider = await Rider.findById(req.rider.id);
+    if(order.orderAccepted){
+      return res.status(200).json({
+        erros: [
+          {msg: "You have Already Accepted This order"}
+        ]
+      })
+    }
+    order.orderAccepted.status = true;
+    order.orderAccepted.time = new Date.now()
+
+    order.onMyWay.status = true;
+    order.onMyWay.time = new Date.now()
+    var dataToPush = {
+      orderid: orderid
+    };
+    rider.pendingRequests.unshift(dataToPush);
+    await order.save();
+    await rider.save();
+    res.status(200).json(order);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("SERVER ERROR");
+  }
+})
 
 module.exports = router;

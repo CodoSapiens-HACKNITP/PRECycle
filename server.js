@@ -10,10 +10,6 @@ connectDB();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-//Home route of API Running
-app.get("/", (req, res) => {
-  res.send("API Running");
-});
 
 //define routes
 app.use("/users", require("./routes/users"));
