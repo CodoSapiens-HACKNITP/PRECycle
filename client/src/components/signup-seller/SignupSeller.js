@@ -260,7 +260,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
                   <label for="TnC">
                     {" "}
                     I agree to the{" "}
-                    <a href=" " alt="terms and conditions" className="tnc">
+                    <a href="/tnc" alt="terms and conditions" className="tnc">
                       terms and conditions and the privacy policy
                     </a>
                   </label>
