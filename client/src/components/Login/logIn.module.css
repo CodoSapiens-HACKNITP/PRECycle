@@ -237,6 +237,12 @@
     justify-content: center;
     height: 100vh;
   }
+  .SignIN {
+    flex: 100%;
+  }
+  .name {
+    font-size: 3rem;
+  }
   .form_div {
     width: 90vw;
     padding: 0 0 20px 0;

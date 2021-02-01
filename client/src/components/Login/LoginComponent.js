@@ -56,7 +56,7 @@ const Login = ({ login, isAuthenticated }) => {
 
         {/* SIGNIN SECTION */}
 
-        <div className="flex-item-right">
+        <div className={styles.flexRight}>
           <div className="content">
             <h2 className={styles.form_h2}>
               <center>SIGN IN</center>
