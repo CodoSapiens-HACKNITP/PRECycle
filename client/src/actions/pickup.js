@@ -8,7 +8,9 @@ import {
   REQUEST_FAILED,
   VENDOR_ORDER_LIST,
   ACCEPTED_ORDER_LIST,
-  RIDER_NEARBY_ORDER
+  RIDER_NEARBY_ORDER,
+  RIDER_REQUEST_ACCEPTED,
+  VIEW_ACCEPTED_ORDER
 } from "./types";
 
 //Load Vendors
@@ -167,7 +169,46 @@ export const viewRequest = () => async (dispatch) => {
     }
     console.log(error.message);
     dispatch({
-      type: RIDER_NEARBY_ORDER,
+      type: REQUEST_FAILED,
+    });
+  }
+}
+
+//Rider Accept request 
+export const acceptRequest = (orderid) => async (dispatch) => {
+  try {
+  const res =  await axios.put(`/rider/request/accept/${orderid}`)
+   dispatch({
+     type: RIDER_REQUEST_ACCEPTED,
+     payload: res.data
+   });
+   dispatch(viewRequest());
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((err) => dispatch(setAlert(err.msg, "danger")));
+    }
+    dispatch({
+      type: REQUEST_FAILED,
+    });
+  }
+}
+
+//To view all the accepted order by the rider
+export const viewAcceptedRequestRider = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/rider/request/accept')
+    dispatch({
+      type: VIEW_ACCEPTED_ORDER,
+      payload:  res.data
+    })
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((err) => dispatch(setAlert(err.msg, "danger")));
+    }
+    dispatch({
+      type: REQUEST_FAILED,
     });
   }
 }

@@ -9,10 +9,10 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import { loadNearbyVendors } from "../../actions/pickup";
 
-const SellerDashboard1 = ({ user, vendor, loadNearbyVendors, request }) => {
+const SellerDashboard1 = ({ user, auth, vendor, loadNearbyVendors, request }) => {
   useEffect(() => {
     loadNearbyVendors(localStorage.pincode, localStorage.city);
-  }, []);
+  }, [auth.isAuthenticated]);
   function Vendors(props) {
     return (
       <div className="vendor-list">
@@ -145,12 +145,14 @@ SellerDashboard1.propTypes = {
   vendor: PropTypes.object.isRequired,
   loadNearbyVendors: PropTypes.func.isRequired,
   request: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendors,
   request: state.pickup.request,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors })(

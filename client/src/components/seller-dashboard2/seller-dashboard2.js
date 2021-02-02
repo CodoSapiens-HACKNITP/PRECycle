@@ -3,7 +3,7 @@ import "./seller-dashboard2.css";
 import Button from "react-bootstrap/Button";
 import { FcBusinessman } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
@@ -15,6 +15,9 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
   var timeOfPickup = "";
   var qty = "";
   var vendorAccepted = "";
+  var orderAccepted = "";
+  var onMyWay = ""
+  var riderName = "rider not alloted"
   useEffect(() => {
     vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
   }, [pickup, request]);
@@ -44,7 +47,15 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
       });
     if (request[0].vendorAccepted !== undefined)
       vendorAccepted = request[0].vendorAccepted;
+      if (request[0].orderAccepted !== undefined)
+      orderAccepted = request[0].orderAccepted.status;
+      if (request[0].onMyWay !== undefined)
+      onMyWay = request[0].onMyWay.status;
+      if (request[0].riderDetail !== undefined)
+      riderName = request[0].riderDetail.name
   }
+
+  if(request.length === 0) return <Redirect to='/requestPickup' />
 
   function KeyValue(props) {
     return (
@@ -106,7 +117,7 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
 
           {/* RIDER'S NAME */}
 
-          <KeyValue info="Rider's Name" value={"Rider Not Alloted"} />
+          <KeyValue info="Rider's Name" value={riderName} />
 
           {/* WASTE TYPE */}
 
@@ -128,8 +139,8 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
                 ""
               )}
 
-              <StatusUpdates status="Approved by rider" />
-              <StatusUpdates status="Rider on way" />
+              {orderAccepted ? (<StatusUpdates status="Approved by rider" />): ("")}
+              {onMyWay ? (<StatusUpdates status="Rider on way" />) : ('')}
             </div>
             <div className="status-container-flex-box">
               <StatusUpdates status="Waste collected" />

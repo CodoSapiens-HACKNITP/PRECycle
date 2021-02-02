@@ -11,13 +11,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
-import {acceptOrder, viewRequest} from '../../actions/pickup'
+import {acceptOrder, viewRequest, acceptRequest, viewAcceptedRequestRider} from '../../actions/pickup'
 
-const RiderDashboard = ({auth, user, request, acceptedRequest}) => {
+const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acceptRequest, viewAcceptedRequestRider}) => {
 
   useEffect(() => {
-    viewRequest()
-  }, [auth.typeofuser])
+    viewRequest();
+    viewAcceptedRequestRider();
+  }, [auth.isAuthenticated ])
   function AllottedCard(props) {
     return (
       <Card classname={RDstyles.card_pickups}>
@@ -107,7 +108,7 @@ const RiderDashboard = ({auth, user, request, acceptedRequest}) => {
           <div>
             <hr></hr>
           </div>
-          <Button variant="success" className={RDstyles.rider_accept}>
+          <Button variant="success" onClick={() => {acceptRequest(props.OrderNo); window.location.reload()}} className={RDstyles.rider_accept}>
             ACCEPT
           </Button>
           <Button variant="danger" className={RDstyles.rider_decline}>
@@ -313,6 +314,8 @@ RiderDashboard.propTypes = {
   acceptOrder: PropTypes.func.isRequired,
   alert: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  acceptRequest: PropTypes.func.isRequired,
+  viewAcceptedRequestRider: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -324,6 +327,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { viewRequest})(
+export default connect(mapStateToProps, { viewRequest,acceptRequest, viewAcceptedRequestRider})(
   RiderDashboard
 );

@@ -41,7 +41,7 @@ router.get('/request', auth, async (req, res) => {
   });
   var vendorAcceptedOrder =[];
   orders.map((order) => {
-    if(order.vendorAccepted === true && order.riderDetail.name !== null) {
+    if(order.vendorAccepted === true && order.orderAccepted.status === false && order.riderDetail) {
       vendorAcceptedOrder.push(order);
     }
   });
@@ -60,29 +60,49 @@ router.put('/request/accept/:id', auth, async (req, res) => {
   const orderid = req.params.id;
   try {
     let order = await Order.findById(orderid);
-    if(!order) res.status(400).json({errors: [{msg: "There is no Order!"}]})
     let rider = await Rider.findById(req.rider.id);
-    if(order.orderAccepted){
+    if(order.cancelled) return res.status(400).json({errors: [{msg: "The Order has been cancelled!"}]})
+    if(order.orderAccepted.status){
       return res.status(200).json({
         erros: [
-          {msg: "You have Already Accepted This order"}
+          {msg: "The Order is Already Accepted!"}
         ]
       })
     }
     order.orderAccepted.status = true;
-    order.orderAccepted.time = new Date.now()
-
-    order.onMyWay.status = true;
-    order.onMyWay.time = new Date.now()
+    if(!order.riderDetail.name){
+    order.riderDetail.name = rider.name;
+    order.riderDetail.id = rider._id
+    }else {
+      return res.status(400).json({errors: [{msg: "The Order has been Alloted to a different rider!"}]})
+    }
     var dataToPush = {
       orderid: orderid
     };
-    rider.pendingRequests.unshift(dataToPush);
+    rider.pendingAcceptedRequests.unshift(dataToPush);
     await order.save();
     await rider.save();
     res.status(200).json(order);
   } catch (err) {
     console.log(err.message);
+    res.status(500).send("SERVER ERROR");
+  }
+});
+
+//route     GET /request/accept
+//desc:     To get all the accepted order by the particular rider
+//access:   Private
+router.get('/request/accept', auth, async (req, res) => {
+  try {
+    let orders = await Order.find({"riderDetail.id": req.rider.id});
+    if(!orders) return res.status(200).json({errors: [{msg: "There are no orders"}]});
+    var acceptedOrder =[]
+    if(orders.map((order) => {
+      if(order.orderAccepted.status) return acceptedOrder.push(order);
+    }))
+    res.status(200).json(acceptedOrder)
+  } catch (error) {
+    onsole.log(err.message);
     res.status(500).send("SERVER ERROR");
   }
 })
