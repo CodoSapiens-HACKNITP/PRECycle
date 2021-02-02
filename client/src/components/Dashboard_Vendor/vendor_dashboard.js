@@ -211,7 +211,7 @@ const VendorDashboard = ({
                               </tr>
                               <tr>
                                 <td>RIDER'S NAME</td>
-                                <td>{"Rider not alloted"}</td>
+                                <td>{requests.riderDetail ? requests.riderDetail.name : "Rider Not Alloted"}</td>
                               </tr>
                               <tr>
                                 <td>SLOT</td>
