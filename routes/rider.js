@@ -54,11 +54,9 @@ router.get("/request", auth, async (req, res) => {
       }
     });
     if (vendorAcceptedOrder.length === 0)
-      return res
-        .status(200)
-        .json({
-          errors: [{ msg: "there is no Vendor accpeted order nearby" }],
-        });
+      return res.status(200).json({
+        errors: [{ msg: "there is no Vendor accpeted order nearby" }],
+      });
     res.status(200).json(vendorAcceptedOrder);
   } catch (err) {
     console.log(err.message);
@@ -88,11 +86,9 @@ router.put("/request/accept/:id", auth, async (req, res) => {
       order.riderDetail.name = rider.name;
       order.riderDetail.id = rider._id;
     } else {
-      return res
-        .status(400)
-        .json({
-          errors: [{ msg: "The Order has been Alloted to a different rider!" }],
-        });
+      return res.status(400).json({
+        errors: [{ msg: "The Order has been Alloted to a different rider!" }],
+      });
     }
     var dataToPush = {
       orderid: orderid,
@@ -123,9 +119,154 @@ router.get("/request/accept", auth, async (req, res) => {
     )
       res.status(200).json(acceptedOrder);
   } catch (error) {
-    onsole.log(err.message);
+    console.log(err.message);
     res.status(500).send("SERVER ERROR");
   }
 });
 
+//route     PUT /request/:orderid/status/onmyway
+//desc:     to update status of rider on the way
+//access:   Private
+router.put("/request/:orderid/status/onmyway", auth, async (req, res) => {
+  try {
+    let order = await Order.findById(req.params.orderid);
+    if (order.onMyWay.status)
+      return res
+        .status(200)
+        .json({ errors: [{ msg: "Order status is already true" }] });
+    if (order.orderAccepted.status) {
+      order.onMyWay.status = true;
+    } else {
+      return res
+        .status(200)
+        .json({ errors: [{ msg: "Order is not accepted by you!" }] });
+    }
+    await order.save();
+    res.status(200).json(order);
+  } catch (error) {
+    console.log(err.message);
+    res.status(500).send("SERVER ERROR");
+  }
+});
+
+//route     PUT /request/:orderid/status/wastecollected
+//desc:     to update status of Waste Collected
+//access:   Private
+router.put(
+  "/request/:orderid/status/wastecollected",
+  auth,
+  async (req, res) => {
+    try {
+      let order = await Order.findById(req.params.orderid);
+      if (order.wasteCollected.status)
+        return res
+          .status(200)
+          .json({ errors: [{ msg: "Order status is already true" }] });
+      if (order.orderAccepted.status) {
+        if (order.onMyWay.status) {
+          order.wasteCollected.status = true;
+        } else {
+          return res
+            .status(200)
+            .json({ errors: [{ msg: "OnMyWay Status is required!" }] });
+        }
+      } else {
+        return res
+          .status(200)
+          .json({ errors: [{ msg: "Order is not accepted by you!" }] });
+      }
+      await order.save();
+      res.status(200).json(order);
+    } catch (error) {
+      console.log(err.message);
+      res.status(500).send("SERVER ERROR");
+    }
+  }
+);
+
+//route     PUT /request/:orderid/status/recivedpayment
+//desc:     to update status of Waste Collected
+//access:   Private
+router.put(
+  "/request/:orderid/status/recivedpayment",
+  auth,
+  async (req, res) => {
+    try {
+      let order = await Order.findById(req.params.orderid);
+      if (order.paidTheSeller.status)
+        return res
+          .status(200)
+          .json({ errors: [{ msg: "Order status is already true" }] });
+      if (order.orderAccepted.status) {
+        if (order.onMyWay.status) {
+          if (order.wasteCollected.status) {
+            order.paidTheSeller.status = true;
+          } else {
+            return res
+              .status(200)
+              .json({
+                errors: [{ msg: "Waste Collected Status is required!" }],
+              });
+          }
+        } else {
+          return res
+            .status(200)
+            .json({ errors: [{ msg: "OnMyWay Status is required!" }] });
+        }
+      } else {
+        return res
+          .status(200)
+          .json({ errors: [{ msg: "Order is not accepted by you!" }] });
+      }
+      await order.save();
+      res.status(200).json(order);
+    } catch (error) {
+      console.log(err.message);
+      res.status(500).send("SERVER ERROR");
+    }
+  }
+);
+
+//route     PUT /request/:orderid/status/dropatvendor
+//desc:     to update status of dropped at vendors
+//access:   Private
+router.put("/request/:orderid/status/dropatvendor", auth, async (req, res) => {
+  try {
+    let order = await Order.findById(req.params.orderid);
+    if (order.droppedAtVendors.status)
+      return res
+        .status(200)
+        .json({ errors: [{ msg: "Order status is already true" }] });
+    if (order.orderAccepted.status) {
+      if (order.onMyWay.status) {
+        if (order.wasteCollected.status) {
+          if (order.paidTheSeller.status) {
+            order.droppedAtVendors.status = true;
+          } else {
+            return res
+              .status(200)
+              .json({ errors: [{ msg: "Paid the seller is required!" }] });
+          }
+        } else {
+          return res
+            .status(200)
+            .json({ errors: [{ msg: "Waste Collected Status is required!" }] });
+        }
+      } else {
+        return res
+          .status(200)
+          .json({ errors: [{ msg: "OnMyWay Status is required!" }] });
+      }
+    } else {
+      return res
+        .status(200)
+        .json({ errors: [{ msg: "Order is not accepted by you!" }] });
+    }
+    await order.save();
+    res.status(200).json(order);
+  } catch (error) {
+    console.log(err.message);
+    res.status(500).send("SERVER ERROR");
+  }
+});
 module.exports = router;

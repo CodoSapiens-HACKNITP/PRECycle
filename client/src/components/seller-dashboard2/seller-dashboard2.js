@@ -18,6 +18,9 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
   var orderAccepted = "";
   var onMyWay = "";
   var riderName = "rider not alloted";
+  var wasteCollected = "";
+  var paidTheSeller = "";
+  var droppedAtVendors = "";
   useEffect(() => {
     vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
   }, [pickup, request]);
@@ -50,6 +53,12 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
     if (request[0].orderAccepted !== undefined)
       orderAccepted = request[0].orderAccepted.status;
     if (request[0].onMyWay !== undefined) onMyWay = request[0].onMyWay.status;
+    if (request[0].droppedAtVendors !== undefined)
+      droppedAtVendors = request[0].droppedAtVendors.status;
+    if (request[0].wasteCollected !== undefined)
+      wasteCollected = request[0].wasteCollected.status;
+    if (request[0].paidTheSeller !== undefined)
+      paidTheSeller = request[0].paidTheSeller.status;
     if (request[0].riderDetail !== undefined)
       riderName = request[0].riderDetail.name;
   }
@@ -146,9 +155,13 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
               {onMyWay ? <StatusUpdates status="Rider on way" /> : ""}
             </div>
             <div className="status-container-flex-box">
-              <StatusUpdates status="Waste collected" />
-              <StatusUpdates status="Recieved Payment" />
-              <StatusUpdates status="Dropped at vendor" />
+              {wasteCollected ? <StatusUpdates status="Waste collected" /> : ""}
+              {paidTheSeller ? <StatusUpdates status="Recieved Payment" /> : ""}
+              {droppedAtVendors ? (
+                <StatusUpdates status="Dropped at vendor" />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

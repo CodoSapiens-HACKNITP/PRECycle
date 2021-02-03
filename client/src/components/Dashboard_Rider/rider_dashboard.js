@@ -73,7 +73,7 @@ const RiderDashboard = ({
           <div>
             <hr></hr>
           </div>
-          <Update />
+          <Update onMyWay={props.onMyWay} wasteCollected={props.wasteCollected} paidTheSeller={props.paidTheSeller} droppedAtVendors={props.droppedAtVendors}/>
           <Invoice />
         </Card.Body>
       </Card>
@@ -139,7 +139,7 @@ const RiderDashboard = ({
     );
   }
 
-  function Update() {
+  function Update(props) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -163,16 +163,16 @@ const RiderDashboard = ({
             <form method="post" classname={RDstyles.statusupdate}>
               <fieldset>
                 <legend>What is the status?</legend>
-                <input type="checkbox" name="status_update" value="" />
+                <input type="checkbox" name="status_update" value="" checked={props.onMyWay} disabled={props.onMyWay ?  "true": ""} />
                 On my Way
                 <br />
-                <input type="checkbox" name="status_update" value="" />
+                <input type="checkbox" name="status_update" value="" checked={props.wasteCollected} disabled={props.wasteCollected ?  "true": ""} />
                 Waste collected
                 <br />
-                <input type="checkbox" name="status_update" value="" />
+                <input type="checkbox" name="status_update" value="" checked={props.paidTheSeller} disabled={props.paidTheSeller ?  "true": ""} />
                 Paid the seller
                 <br />
-                <input type="checkbox" name="status_update" value="" />
+                <input type="checkbox" name="status_update" value="" checked={props.droppedAtVendors} disabled={props.droppedAtVendors ?  "true": ""}/>
                 Dropped at vendor's
                 <br />
               </fieldset>
@@ -296,6 +296,10 @@ const RiderDashboard = ({
                       WasteQuantity={
                         req.orderList.map((waste) => waste.qty) + " Kg"
                       }
+                      onMyWay = {req.onMyWay.status}
+                      wasteCollected = {req.wasteCollected.status}
+                      paidTheSeller = {req.paidTheSeller.status}
+                      droppedAtVendors = {req.droppedAtVendors.status}
                     />
                   );
                 })
