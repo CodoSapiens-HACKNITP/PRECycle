@@ -236,8 +236,8 @@ export const login = (loginDetail, password, typeOfUser) => async (
     });
 
     dispatch(loadUser(localStorage.getItem("typeofuser")));
-    if(localStorage.typeofuser === "rider") {
-    dispatch(viewRequest());
+    if (localStorage.typeofuser === "rider") {
+      dispatch(viewRequest());
     }
   } catch (err) {
     const errors = err.response.data.errors;

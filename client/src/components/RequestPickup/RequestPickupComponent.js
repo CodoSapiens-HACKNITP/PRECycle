@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { loadNearbyVendors, vendorOrderList } from "../../actions/pickup";
 import Spinner from "../layout/Spinner";
 import { createRequest } from "../../actions/pickup";
-import {loadUser} from '../../actions/auth'
+import { loadUser } from "../../actions/auth";
 
 const RequestPickup = ({
   user,
@@ -46,7 +46,6 @@ const RequestPickup = ({
       recent: true,
     });
   }, [user]);
-
 
   //Destructuring the FormData
   var {

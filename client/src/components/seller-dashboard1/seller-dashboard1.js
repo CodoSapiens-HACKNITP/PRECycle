@@ -9,7 +9,13 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import { loadNearbyVendors } from "../../actions/pickup";
 
-const SellerDashboard1 = ({ user, auth, vendor, loadNearbyVendors, request }) => {
+const SellerDashboard1 = ({
+  user,
+  auth,
+  vendor,
+  loadNearbyVendors,
+  request,
+}) => {
   useEffect(() => {
     loadNearbyVendors(localStorage.pincode, localStorage.city);
   }, [auth.isAuthenticated]);
@@ -152,7 +158,7 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendors,
   request: state.pickup.request,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { loadNearbyVendors })(

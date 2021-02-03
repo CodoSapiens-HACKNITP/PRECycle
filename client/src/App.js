@@ -13,7 +13,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/signup-seller/SignupSeller";
 import SignupVendor from "./components/Vendor_SignUp/signup-vendor";
 import SellerDashboard1 from "./components/seller-dashboard1/seller-dashboard1";
-import  RiderDashboard  from "./components/Dashboard_Rider/rider_dashboard";
+import RiderDashboard from "./components/Dashboard_Rider/rider_dashboard";
 import SellerDashboard2 from "./components/seller-dashboard2/seller-dashboard2";
 import VendorDashboard from "./components/Dashboard_Vendor/vendor_dashboard";
 import RequestPickup from "./components/RequestPickup/RequestPickupComponent";
@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser(localStorage.typeofuser));
     store.dispatch(updateRequest());
-    
   });
   return (
     <Provider store={store}>

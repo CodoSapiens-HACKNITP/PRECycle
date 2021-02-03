@@ -10,7 +10,7 @@ import {
   ACCEPTED_ORDER_LIST,
   RIDER_NEARBY_ORDER,
   RIDER_REQUEST_ACCEPTED,
-  VIEW_ACCEPTED_ORDER
+  VIEW_ACCEPTED_ORDER,
 } from "./types";
 
 //Load Vendors
@@ -157,11 +157,11 @@ export const acceptOrder = (orderid) => async (dispatch) => {
 //Get all the vendor accepted request in rider of that area
 export const viewRequest = () => async (dispatch) => {
   try {
-    const response = await axios.get('/rider/request');
+    const response = await axios.get("/rider/request");
     dispatch({
       type: RIDER_NEARBY_ORDER,
-      payload: response.data
-    })
+      payload: response.data,
+    });
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -172,17 +172,17 @@ export const viewRequest = () => async (dispatch) => {
       type: REQUEST_FAILED,
     });
   }
-}
+};
 
-//Rider Accept request 
+//Rider Accept request
 export const acceptRequest = (orderid) => async (dispatch) => {
   try {
-  const res =  await axios.put(`/rider/request/accept/${orderid}`)
-   dispatch({
-     type: RIDER_REQUEST_ACCEPTED,
-     payload: res.data
-   });
-   dispatch(viewRequest());
+    const res = await axios.put(`/rider/request/accept/${orderid}`);
+    dispatch({
+      type: RIDER_REQUEST_ACCEPTED,
+      payload: res.data,
+    });
+    dispatch(viewRequest());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -192,16 +192,16 @@ export const acceptRequest = (orderid) => async (dispatch) => {
       type: REQUEST_FAILED,
     });
   }
-}
+};
 
 //To view all the accepted order by the rider
 export const viewAcceptedRequestRider = () => async (dispatch) => {
   try {
-    const res = await axios.get('/rider/request/accept')
+    const res = await axios.get("/rider/request/accept");
     dispatch({
       type: VIEW_ACCEPTED_ORDER,
-      payload:  res.data
-    })
+      payload: res.data,
+    });
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -211,4 +211,4 @@ export const viewAcceptedRequestRider = () => async (dispatch) => {
       type: REQUEST_FAILED,
     });
   }
-}
+};

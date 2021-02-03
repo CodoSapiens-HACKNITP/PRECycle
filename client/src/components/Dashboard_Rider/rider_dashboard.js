@@ -11,14 +11,27 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
-import {acceptOrder, viewRequest, acceptRequest, viewAcceptedRequestRider} from '../../actions/pickup'
+import Moment from "react-moment";
+import {
+  acceptOrder,
+  viewRequest,
+  acceptRequest,
+  viewAcceptedRequestRider,
+} from "../../actions/pickup";
 
-const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acceptRequest, viewAcceptedRequestRider}) => {
-
+const RiderDashboard = ({
+  auth,
+  user,
+  request,
+  acceptedRequest,
+  viewRequest,
+  acceptRequest,
+  viewAcceptedRequestRider,
+}) => {
   useEffect(() => {
     viewRequest();
     viewAcceptedRequestRider();
-  }, [auth.isAuthenticated ])
+  }, [auth.isAuthenticated]);
   function AllottedCard(props) {
     return (
       <Card classname={RDstyles.card_pickups}>
@@ -108,7 +121,14 @@ const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acce
           <div>
             <hr></hr>
           </div>
-          <Button variant="success" onClick={() => {acceptRequest(props.OrderNo); window.location.reload()}} className={RDstyles.rider_accept}>
+          <Button
+            variant="success"
+            onClick={() => {
+              acceptRequest(props.OrderNo);
+              window.location.reload();
+            }}
+            className={RDstyles.rider_accept}
+          >
             ACCEPT
           </Button>
           <Button variant="danger" className={RDstyles.rider_decline}>
@@ -238,7 +258,8 @@ const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acce
             {/* RIDER IMAGE */}
           </div>
           <div className={RDstyles.rider_greeting_text}>
-            <h2>{user ? user.name : "<please refresh the page>"}</h2> {/* GREET RIDER */}
+            <h2>{user ? user.name : "<please refresh the page>"}</h2>{" "}
+            {/* GREET RIDER */}
           </div>
         </Link>
       </div>
@@ -253,22 +274,34 @@ const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acce
                 <h1>ALLOTTED ORDERS</h1>
               </div>
 
-              {acceptedRequest.length>0 ? acceptedRequest.map((req)=> {
-                return (<AllottedCard
-                OrderNo={req._id}
-                SellerName={req.seller.name}
-                SellerAddress={req.address.firstLine + "," + req.address.city + "," + req.address.state + req.address.pin}
-                VendorName={req.vendorDetail.name}
-                Slot={req.timeOfPickup}
-                WasteType={req.orderList.map(
-                  (waste) => waste.nameOfWaste
-                )}
-                WasteQuantity={req.orderList.map(
-                  (waste) => waste.qty 
-                ) + " Kg"}
-              />)
-              }) : <h1>No Pending Request!</h1>
-            }
+              {acceptedRequest.length > 0 ? (
+                acceptedRequest.map((req) => {
+                  return (
+                    <AllottedCard
+                      OrderNo={req._id}
+                      SellerName={req.seller.name}
+                      SellerAddress={
+                        req.address.firstLine +
+                        "," +
+                        req.address.city +
+                        "," +
+                        req.address.state +
+                        req.address.pin
+                      }
+                      VendorName={req.vendorDetail.name}
+                      Slot={<Moment>{req.timeOfPickup}</Moment>}
+                      WasteType={req.orderList.map(
+                        (waste) => waste.nameOfWaste
+                      )}
+                      WasteQuantity={
+                        req.orderList.map((waste) => waste.qty) + " Kg"
+                      }
+                    />
+                  );
+                })
+              ) : (
+                <h1>No Pending Request!</h1>
+              )}
             </div>
           </div>
 
@@ -277,22 +310,34 @@ const RiderDashboard = ({auth, user, request, acceptedRequest, viewRequest, acce
               <div className={RDstyles.rider_board_heading}>
                 <h1>PICKUP REQUESTS</h1>
               </div>
-              {request.length>0 ? request.map((req)=> {
-                return (<PendingCard
-                OrderNo={req._id}
-                SellerName={req.seller.name}
-                SellerAddress={req.address.firstLine + "," + req.address.city + "," + req.address.state + req.address.pin}
-                VendorName={req.vendorDetail.name}
-                Slot={req.timeOfPickup}
-                WasteType={req.orderList.map(
-                  (waste) => waste.nameOfWaste
-                )}
-                WasteQuantity={req.orderList.map(
-                  (waste) => waste.qty 
-                ) + " Kg"}
-              />)
-              }) : <h1>No Pending Request!</h1>
-            }
+              {request.length > 0 ? (
+                request.map((req) => {
+                  return (
+                    <PendingCard
+                      OrderNo={req._id}
+                      SellerName={req.seller.name}
+                      SellerAddress={
+                        req.address.firstLine +
+                        "," +
+                        req.address.city +
+                        "," +
+                        req.address.state +
+                        req.address.pin
+                      }
+                      VendorName={req.vendorDetail.name}
+                      Slot={<Moment>{req.timeOfPickup}</Moment>}
+                      WasteType={req.orderList.map(
+                        (waste) => waste.nameOfWaste
+                      )}
+                      WasteQuantity={
+                        req.orderList.map((waste) => waste.qty) + " Kg"
+                      }
+                    />
+                  );
+                })
+              ) : (
+                <h1>No Pending Request!</h1>
+              )}
             </div>
           </div>
         </div>
@@ -324,9 +369,11 @@ const mapStateToProps = (state) => ({
   acceptedRequest: state.pickup.acceptedRequest,
   pickup: state.pickup,
   alert: state.alert,
-  auth: state.auth
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { viewRequest,acceptRequest, viewAcceptedRequestRider})(
-  RiderDashboard
-);
+export default connect(mapStateToProps, {
+  viewRequest,
+  acceptRequest,
+  viewAcceptedRequestRider,
+})(RiderDashboard);

@@ -76,49 +76,49 @@ const orderSchema = new Schema({
     type: Date,
   },
   orderAccepted: {
-    status:{
-    type: Boolean,
-    default: false,
+    status: {
+      type: Boolean,
+      default: false,
     },
     time: {
       type: Date,
     },
   },
   onMyWay: {
-    status:{
+    status: {
       type: Boolean,
       default: false,
-      },
-      time: {
-        type: Date,
-      },
+    },
+    time: {
+      type: Date,
+    },
   },
   wasteCollected: {
-    status:{
+    status: {
       type: Boolean,
       default: false,
-      },
-      time: {
-        type: Date,
-      },
+    },
+    time: {
+      type: Date,
+    },
   },
   paidTheSeller: {
-    status:{
+    status: {
       type: Boolean,
       default: false,
-      },
-      time: {
-        type: Date,
-      },
+    },
+    time: {
+      type: Date,
+    },
   },
   droppedAtVendors: {
-    status:{
+    status: {
       type: Boolean,
       default: false,
-      },
-      time: {
-        type: Date,
-      },
+    },
+    time: {
+      type: Date,
+    },
   },
   cancelled: {
     type: Boolean,

@@ -10,7 +10,6 @@ connectDB();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-
 //define routes
 app.use("/users", require("./routes/users"));
 app.use("/auth", require("./routes/auth"));

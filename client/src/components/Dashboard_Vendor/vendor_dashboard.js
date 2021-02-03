@@ -211,7 +211,11 @@ const VendorDashboard = ({
                               </tr>
                               <tr>
                                 <td>RIDER'S NAME</td>
-                                <td>{requests.riderDetail ? requests.riderDetail.name : "Rider Not Alloted"}</td>
+                                <td>
+                                  {requests.riderDetail
+                                    ? requests.riderDetail.name
+                                    : "Rider Not Alloted"}
+                                </td>
                               </tr>
                               <tr>
                                 <td>SLOT</td>
@@ -273,7 +277,11 @@ const VendorDashboard = ({
                     <AcceptedCard
                       OrderNo={request._id}
                       SellerName={request.seller.name}
-                      RiderName={"rider not alloted"}
+                      RiderName={
+                        request.riderDetail
+                          ? request.riderDetail.name
+                          : "Rider Not Alloted"
+                      }
                       Slot={<Moment>{request.timeOfPickup}</Moment>}
                       WasteType={request.orderList.map(
                         (waste) => waste.nameOfWaste

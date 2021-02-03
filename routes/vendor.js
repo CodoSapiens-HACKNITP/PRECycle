@@ -84,7 +84,6 @@ router.put("/request/accept/:id", auth, async (req, res) => {
     //   return res.send("No Riders Available Nearby");
     // }
 
-
     await orders.save();
     res.json({ orders });
   } catch (err) {

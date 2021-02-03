@@ -16,8 +16,8 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
   var qty = "";
   var vendorAccepted = "";
   var orderAccepted = "";
-  var onMyWay = ""
-  var riderName = "rider not alloted"
+  var onMyWay = "";
+  var riderName = "rider not alloted";
   useEffect(() => {
     vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
   }, [pickup, request]);
@@ -47,15 +47,14 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
       });
     if (request[0].vendorAccepted !== undefined)
       vendorAccepted = request[0].vendorAccepted;
-      if (request[0].orderAccepted !== undefined)
+    if (request[0].orderAccepted !== undefined)
       orderAccepted = request[0].orderAccepted.status;
-      if (request[0].onMyWay !== undefined)
-      onMyWay = request[0].onMyWay.status;
-      if (request[0].riderDetail !== undefined)
-      riderName = request[0].riderDetail.name
+    if (request[0].onMyWay !== undefined) onMyWay = request[0].onMyWay.status;
+    if (request[0].riderDetail !== undefined)
+      riderName = request[0].riderDetail.name;
   }
 
-  if(request.length === 0) return <Redirect to='/requestPickup' />
+  if (request.length === 0) return <Redirect to="/requestPickup" />;
 
   function KeyValue(props) {
     return (
@@ -139,8 +138,12 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
                 ""
               )}
 
-              {orderAccepted ? (<StatusUpdates status="Approved by rider" />): ("")}
-              {onMyWay ? (<StatusUpdates status="Rider on way" />) : ('')}
+              {orderAccepted ? (
+                <StatusUpdates status="Approved by rider" />
+              ) : (
+                ""
+              )}
+              {onMyWay ? <StatusUpdates status="Rider on way" /> : ""}
             </div>
             <div className="status-container-flex-box">
               <StatusUpdates status="Waste collected" />
