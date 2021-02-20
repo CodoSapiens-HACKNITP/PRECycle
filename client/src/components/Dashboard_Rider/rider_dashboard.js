@@ -163,16 +163,16 @@ const RiderDashboard = ({
             <form method="post" classname={RDstyles.statusupdate}>
               <fieldset>
                 <legend>What is the status?</legend>
-                <input type="checkbox" name="status_update" value="" checked={props.onMyWay} disabled={props.onMyWay ?  "true": ""} />
+                <input type="checkbox" name="status_update" value="" checked={props.onMyWay} disabled={props.onMyWay ?  "true": false} />
                 On my Way
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.wasteCollected} disabled={props.wasteCollected ?  "true": ""} />
+                <input type="checkbox" name="status_update" value="" checked={props.wasteCollected} disabled={props.wasteCollected ?  "true": false} />
                 Waste collected
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.paidTheSeller} disabled={props.paidTheSeller ?  "true": ""} />
+                <input type="checkbox" name="status_update" value="" checked={props.paidTheSeller} disabled={props.paidTheSeller ?  "true": false} />
                 Paid the seller
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.droppedAtVendors} disabled={props.droppedAtVendors ?  "true": ""}/>
+                <input type="checkbox" name="status_update" value="" checked={props.droppedAtVendors} disabled={props.droppedAtVendors ?  "true": false}/>
                 Dropped at vendor's
                 <br />
               </fieldset>
