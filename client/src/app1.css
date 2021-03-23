@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+/*****************************/
+/* MESSAGE BOX RELATED CLASS */
+/* (START) */
+/*****************************/
+ .msgbox-area {
+	 max-height: 100%;
+	 position: fixed;
+	 bottom: 15px;
+	 left: 20px;
+	 right: 20px;
+}
+ .msgbox-area .msgbox-box {
+	 font-size: inherit;
+	 color: #fff;
+	 background-color: rgba(0, 0, 0, 0.8);
+	 padding: 18px 20px;
+	 margin: 0 0 15px;
+	 display: flex;
+	 align-items: center;
+	 position: relative;
+	 border-radius: 12px;
+	 box-shadow: 0 10px 15px rgba(0, 0, 0, 0.65);
+	 transition: opacity 300ms ease-in;
+}
+
+ .msgbox-area .msgbox-box:last-child {
+	 margin: 0;
+}
+ .msgbox-area .msgbox-close {
+	 color: #fff;
+	 font-weight: bold;
+	 text-decoration: none;
+	 margin: 0 0 0 20px;
+	 flex-grow: 0;
+	 flex-shrink: 0;
+	 position: relative;
+	 transition: text-shadow 225ms ease-out;
+}
+ .msgbox-area .msgbox-close:hover {
+	 text-shadow: 0 0 3px #efefef;
+}
+ @media (min-width: 481px) and (max-width: 767px) {
+	 .msgbox-area {
+		 left: 80px;
+		 right: 80px;
+	}
+}
+ @media (min-width: 768px) {
+	 .msgbox-area {
+		 width: 480px;
+		 height: 0;
+		 top: 15px;
+		 left: auto;
+		 right: 15px;
+	}
+}
+/*****************************/
+/* MESSAGE BOX RELATED CLASS */
+/* (END) */
+/*****************************/
+ body {
+	 font-family: "Open Sans", sans-serif;
+}
+ .msgbox-area {
+	 font-size: 16px;
+}
+ .msgbox-message-container {
+	 text-align: center;
+	 width: 100vw;
+	 height: 100vh;
+	 padding: 20px;
+	 box-sizing: border-box;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+}
+ .msgbox-message-container h1, .msgbox-message-container h3 {
+	 margin: 10px 20px;
+}
+ .msgbox-message-container p {
+	 margin: 5px 20px;
+}
+ .msgbox-message-button {
+	 font-size: 18px;
+	 font-weight: bold;
+	 font-family: inherit;
+	 color: white;
+	 background-color: #1476ff;
+	 width: 250px;
+	 border: solid 2px #005de0;
+	 padding: 10px 20px;
+	 cursor: pointer;
+	 outline: none;
+	 box-shadow: 0 5px #005de0;
+	 transition: background-color 100ms ease-out, box-shadow 100ms ease-out, transform 100ms ease-out;
+}
+ .msgbox-message-button:hover, .msgbox-message-button:focus, .msgbox-message-button:active {
+	 background-color: #2e85ff;
+}
+ .msgbox-message-button:active {
+	 background-color: #0068fa;
+	 box-shadow: 0 0 #005de0;
+	 transform: translateY(5px);
+}
+ 

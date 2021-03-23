@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { login } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
 import styles from "./logIn.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,19 +8,26 @@ import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     loginDetail: "",
     password: "",
     typeOfUser: "seller",
   });
+  const { loginDetail, password, typeOfUser } = formData;
+
 
   //google login response
   const responseGoogle = (response) => {
     console.log(response);
+    setFormData({...formData, loginDetail: response.profileObj.email, password: response.profileObj.googleId});
+    login(loginDetail, password, typeOfUser);
   };
 
-  const { loginDetail, password, typeOfUser } = formData;
+  
+
+
+  
   localStorage.setItem("typeofuser", typeOfUser);
 
   const onChange = (e) =>
@@ -68,6 +76,7 @@ const Login = ({ login, isAuthenticated }) => {
             >
               <input
                 type="text"
+                id="loginDetail"
                 name="loginDetail"
                 placeholder="Email / Phone Number"
                 onChange={(e) => onChange(e)}
@@ -89,6 +98,7 @@ const Login = ({ login, isAuthenticated }) => {
                 className={styles.select}
                 onChange={(e) => onChange(e)}
               >
+                <option>*Select Type of User!</option>
                 <option value="seller">Seller</option>
                 <option value="rider">Rider</option>
                 <option value="vendor">Vendor</option>
@@ -125,10 +135,12 @@ const Login = ({ login, isAuthenticated }) => {
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.object.isRequired,
+  setAlert: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  
 });
 
 export default connect(mapStateToProps, { login })(Login);

@@ -40,6 +40,7 @@ router.post(
       pincode,
       firstline,
       landmark,
+      avatar
     } = req.body;
 
     try {
@@ -75,13 +76,6 @@ router.post(
           .json({ errors: [{ msg: "seller already exists" }] });
       }
 
-      //get users Gravatar
-
-      const avatar = gravatar.url(email, {
-        s: "200",
-        r: "pg",
-        d: "mm",
-      });
 
       //getting state and city details using pincode
       const response = await axios.get(
@@ -102,6 +96,7 @@ router.post(
           pin: pincode,
         },
         typeofuser: "seller",
+        avatar
       });
 
       if (firstline) seller.address.firstLine = firstline;

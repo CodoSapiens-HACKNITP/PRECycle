@@ -44,7 +44,8 @@ export const registerSeller = (
   phone,
   pincode,
   firstline,
-  landmark
+  landmark,
+  avatar
 ) => async (dispatch) => {
   const config = {
     headers: {
@@ -60,6 +61,7 @@ export const registerSeller = (
     pincode,
     landmark,
     firstline,
+    avatar
   });
 
   try {
