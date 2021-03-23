@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { login } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 import styles from "./logIn.module.css";
@@ -20,9 +20,12 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   //google login response
   const responseGoogle = (response) => {
     console.log(response);
-    setFormData({...formData, loginDetail: response.profileObj.email, password: response.profileObj.googleId});
-    login(loginDetail, password, typeOfUser);
+    setFormData({typeOfUser: "seller",  loginDetail: response.profileObj.email, password: response.profileObj.googleId});
   };
+
+  useEffect(() => {
+    login(loginDetail, password, typeOfUser)
+  }, [password])
 
   
 
