@@ -11,18 +11,20 @@ import {
   FormFeedback,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import {submitFeedback} from '../../actions/auth'
 
 class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
+      firstame: "",
       lastname: "",
       telnum: "",
       email: "",
       agree: false,
       contactType: "Tel.",
       message: "",
+      stars: "4",
       touched: {
         firstname: false,
         lastname: false,
@@ -45,9 +47,11 @@ class Contact extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     console.log("Current State is: " + JSON.stringify(this.state));
     alert("Current State is: " + JSON.stringify(this.state));
-    event.preventDefault();
+    
+    
   }
 
   handleBlur = (field) => (evt) => {
@@ -168,7 +172,7 @@ class Contact extends Component {
             <h3>Send us your Feedback</h3>
           </div>
           <div className="col-12 col-md-9">
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={submitFeedback(JSON.stringify(this.state))}>
               <FormGroup row>
                 <Label htmlFor="firstname" md={2}>
                   First Name
@@ -288,7 +292,7 @@ class Contact extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md={{ size: 10, offset: 2 }}>
-                  <Button type="submit" color="primary">
+                  <Button type="submit" color="primary" onClick={this.handleSubmit}>
                     Send Feedback
                   </Button>
                 </Col>

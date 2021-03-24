@@ -23,59 +23,58 @@ const SellerDashboard2 = ({ user, requests, pickup }) => {
   var droppedAtVendors = "";
   var cancelled = "";
 
-  if(requests) {
-vendorDetail = requests[0] !== undefined ? requests[0].vendorDetail.name : "";
- requests.map((request) => {
-  if(!request.cancelled && !request.completed){
-    if (request !== undefined) {
-    if (request.address.firstLine !== undefined)
-      address += request.address.firstLine;
-    address += ", ";
-    if (request.address.city !== undefined)
-      address += request.address.city;
-    address += ", ";
-    if (request.address.state !== undefined)
-      address += request.address.state;
-    address += ", P.O: ";
-    if (request.address.pin !== undefined) address += request.address.pin;
-    address += " ";
-    if (request.timeOfPickup !== undefined)
-      timeOfPickup = request.timeOfPickup;
-    if (request.orderList !== undefined)
-      waste = request.orderList.map((waste) => {
-        return waste.nameOfWaste;
-      });
-    if (request.orderList !== undefined)
-      qty = request.orderList.map((waste) => {
-        return waste.qty + "Kg";
-      });
-    if (request.vendorAccepted !== undefined)
-      vendorAccepted = request.vendorAccepted;
-    if (request.orderAccepted !== undefined)
-      orderAccepted = request.orderAccepted.status;
-    if (request.cancelled !== undefined) cancelled = request.cancelled;
-    if (request.onMyWay !== undefined) onMyWay = request.onMyWay.status;
-    if (request.droppedAtVendors !== undefined)
-      droppedAtVendors = request.droppedAtVendors.status;
-    if (request.wasteCollected !== undefined)
-      wasteCollected = request.wasteCollected.status;
-    if (request.paidTheSeller !== undefined)
-      paidTheSeller = request.paidTheSeller.status;
-    if (request.riderDetail !== undefined)
-      riderName = request.riderDetail.name;
+  if (requests) {
+    vendorDetail =
+      requests[0] !== undefined ? requests[0].vendorDetail.name : "";
+    requests.map((request) => {
+      if (!request.cancelled && !request.completed) {
+        if (request !== undefined) {
+          if (request.address.firstLine !== undefined)
+            address += request.address.firstLine;
+          address += ", ";
+          if (request.address.city !== undefined)
+            address += request.address.city;
+          address += ", ";
+          if (request.address.state !== undefined)
+            address += request.address.state;
+          address += ", P.O: ";
+          if (request.address.pin !== undefined) address += request.address.pin;
+          address += " ";
+          if (request.timeOfPickup !== undefined)
+            timeOfPickup = request.timeOfPickup;
+          if (request.orderList !== undefined)
+            waste = request.orderList.map((waste) => {
+              return waste.nameOfWaste;
+            });
+          if (request.orderList !== undefined)
+            qty = request.orderList.map((waste) => {
+              return waste.qty + "Kg";
+            });
+          if (request.vendorAccepted !== undefined)
+            vendorAccepted = request.vendorAccepted;
+          if (request.orderAccepted !== undefined)
+            orderAccepted = request.orderAccepted.status;
+          if (request.cancelled !== undefined) cancelled = request.cancelled;
+          if (request.onMyWay !== undefined) onMyWay = request.onMyWay.status;
+          if (request.droppedAtVendors !== undefined)
+            droppedAtVendors = request.droppedAtVendors.status;
+          if (request.wasteCollected !== undefined)
+            wasteCollected = request.wasteCollected.status;
+          if (request.paidTheSeller !== undefined)
+            paidTheSeller = request.paidTheSeller.status;
+          if (request.riderDetail !== undefined)
+            riderName = request.riderDetail.name;
+        }
+      }
+    });
+
+    //traverse complete request array and find if any order of the user is not completed or nor cancelled.
+    requests.map((request) => {
+      if (request.cancelled || request.completed)
+        return <Redirect to="/requestPickup" />;
+    });
   }
- }  
- })
- 
- 
- //traverse complete request array and find if any order of the user is not completed or nor cancelled.
- requests.map((request) => {
-   if(request.cancelled || request.completed) return <Redirect to="/requestPickup" />
- })
-
-}
-if (requests.length === 0  ) return <Redirect to="/requestPickup" />;
-
+  if (requests.length === 0) return <Redirect to="/requestPickup" />;
 
   function KeyValue(props) {
     return (

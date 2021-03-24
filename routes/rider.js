@@ -72,7 +72,6 @@ router.put("/request/accept/:id", auth, async (req, res) => {
   try {
     let order = await Order.findById(orderid);
     let rider = await Rider.findById(req.rider.id);
-    console.log(rider)
     if (order.cancelled)
       return res
         .status(400)

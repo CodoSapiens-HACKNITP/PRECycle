@@ -10,6 +10,8 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
   LOGOUT_REMOVE,
+  FEEDBACK_SUBMITTED,
+  FEEDBACK_FAILED,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import { viewRequest } from "./pickup";
@@ -264,3 +266,30 @@ export const logout = () => (dispatch) => {
   });
   dispatch({ type: CLEAR_PROFILE });
 };
+
+//Feedback submission
+export const submitFeedback = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post('/feedback', data, config);
+    dispatch(setAlert(res.data.msg, "success"));
+    dispatch({
+      type: FEEDBACK_SUBMITTED,
+      payload: res.data
+    })
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: FEEDBACK_FAILED
+    })
+  }
+  
+}

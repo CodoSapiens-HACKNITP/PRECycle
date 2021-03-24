@@ -4,10 +4,10 @@ import PHstyles from "./pickup_history.module.css";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import seller_ic from "./seller.jpg";
-import {connect} from 'react-redux';
-import Moment from 'react-moment'
+import { connect } from "react-redux";
+import Moment from "react-moment";
 
-const PickupHistory = ({requests, user}) => {
+const PickupHistory = ({ requests, user }) => {
   function PickupDetails(props) {
     return (
       <tr>
@@ -35,7 +35,7 @@ const PickupHistory = ({requests, user}) => {
             {/* SELLER IMAGE */}
           </div>
           <div className={PHstyles.seller_greeting_text}>
-            <h2>{user ? user.name : "" }</h2>
+            <h2>{user ? user.name : ""}</h2>
             {/* GREET SELLER */}
           </div>
         </div>
@@ -60,17 +60,17 @@ const PickupHistory = ({requests, user}) => {
 
               <tbody>
                 {requests.map((request) => {
-                  if(request.cancelled || request.completed){
+                  if (request.cancelled || request.completed) {
                     return (
                       <PickupDetails
                         OrderNo={request._id}
                         Slot={<Moment>{request.timeOfPickup}</Moment>}
                         VendorName={request.vendorDetail.name}
                         Review={"Good"}
-                        Status={request.cancelled ? ("Cancelled") : ("Completed")}
+                        Status={request.cancelled ? "Cancelled" : "Completed"}
                         Invoice={"1234Amy.pdf"}
-                        />
-                    )
+                      />
+                    );
                   }
                 })}
                 {/* <PickupDetails
@@ -111,9 +111,9 @@ const PickupHistory = ({requests, user}) => {
   );
 };
 
-const mapStateToProps =(state) => ({
+const mapStateToProps = (state) => ({
   requests: state.pickup.request,
-  user: state.auth.user
-})
+  user: state.auth.user,
+});
 
 export default connect(mapStateToProps, {})(PickupHistory);

@@ -7,6 +7,8 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   ACCOUNT_DELETED,
+  FEEDBACK_SUBMITTED,
+  FEEDBACK_FAILED
 } from "../actions/types";
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
   loading: true,
   user: null,
   typeofuser: "",
+  feedbacks: null
 };
 
 export default function abc(state = initialState, action) {
@@ -58,7 +61,12 @@ export default function abc(state = initialState, action) {
         user: null,
         typeofuser: "",
       };
-
+    case FEEDBACK_SUBMITTED: 
+      return {
+        ...state,
+        feedbacks: payload
+      }
+    case FEEDBACK_FAILED:
     default:
       return state;
   }
