@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 
-const SellerDashboard2 = ({ user, request, pickup }) => {
+const SellerDashboard2 = ({ user, requests, pickup }) => {
   var address = "";
   var waste = "";
   var vendorDetail = "";
@@ -22,50 +22,60 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
   var paidTheSeller = "";
   var droppedAtVendors = "";
   var cancelled = "";
-  useEffect(() => {
-    vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
-  }, [pickup, request]);
-  vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
 
-  if (request[0] !== undefined) {
-    if (request[0].address.firstLine !== undefined)
-      address += request[0].address.firstLine;
+  if(requests) {
+vendorDetail = requests[0] !== undefined ? requests[0].vendorDetail.name : "";
+ requests.map((request) => {
+  if(!request.cancelled && !request.completed){
+    if (request !== undefined) {
+    if (request.address.firstLine !== undefined)
+      address += request.address.firstLine;
     address += ", ";
-    if (request[0].address.city !== undefined)
-      address += request[0].address.city;
+    if (request.address.city !== undefined)
+      address += request.address.city;
     address += ", ";
-    if (request[0].address.state !== undefined)
-      address += request[0].address.state;
+    if (request.address.state !== undefined)
+      address += request.address.state;
     address += ", P.O: ";
-    if (request[0].address.pin !== undefined) address += request[0].address.pin;
+    if (request.address.pin !== undefined) address += request.address.pin;
     address += " ";
-    if (request[0].timeOfPickup !== undefined)
-      timeOfPickup = request[0].timeOfPickup;
-    if (request[0].orderList !== undefined)
-      waste = request[0].orderList.map((waste) => {
+    if (request.timeOfPickup !== undefined)
+      timeOfPickup = request.timeOfPickup;
+    if (request.orderList !== undefined)
+      waste = request.orderList.map((waste) => {
         return waste.nameOfWaste;
       });
-    if (request[0].orderList !== undefined)
-      qty = request[0].orderList.map((waste) => {
+    if (request.orderList !== undefined)
+      qty = request.orderList.map((waste) => {
         return waste.qty + "Kg";
       });
-    if (request[0].vendorAccepted !== undefined)
-      vendorAccepted = request[0].vendorAccepted;
-    if (request[0].orderAccepted !== undefined)
-      orderAccepted = request[0].orderAccepted.status;
-    if (request[0].cancelled !== undefined) cancelled = request[0].cancelled;
-    if (request[0].onMyWay !== undefined) onMyWay = request[0].onMyWay.status;
-    if (request[0].droppedAtVendors !== undefined)
-      droppedAtVendors = request[0].droppedAtVendors.status;
-    if (request[0].wasteCollected !== undefined)
-      wasteCollected = request[0].wasteCollected.status;
-    if (request[0].paidTheSeller !== undefined)
-      paidTheSeller = request[0].paidTheSeller.status;
-    if (request[0].riderDetail !== undefined)
-      riderName = request[0].riderDetail.name;
+    if (request.vendorAccepted !== undefined)
+      vendorAccepted = request.vendorAccepted;
+    if (request.orderAccepted !== undefined)
+      orderAccepted = request.orderAccepted.status;
+    if (request.cancelled !== undefined) cancelled = request.cancelled;
+    if (request.onMyWay !== undefined) onMyWay = request.onMyWay.status;
+    if (request.droppedAtVendors !== undefined)
+      droppedAtVendors = request.droppedAtVendors.status;
+    if (request.wasteCollected !== undefined)
+      wasteCollected = request.wasteCollected.status;
+    if (request.paidTheSeller !== undefined)
+      paidTheSeller = request.paidTheSeller.status;
+    if (request.riderDetail !== undefined)
+      riderName = request.riderDetail.name;
   }
+ }  
+ })
+ 
+ 
+ //traverse complete request array and find if any order of the user is not completed or nor cancelled.
+ requests.map((request) => {
+   if(request.cancelled || request.completed) return <Redirect to="/requestPickup" />
+ })
 
-  if (request.length === 0) return <Redirect to="/requestPickup" />;
+}
+if (requests.length === 0  ) return <Redirect to="/requestPickup" />;
+
 
   function KeyValue(props) {
     return (
@@ -200,14 +210,14 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
 SellerDashboard2.propTypes = {
   user: PropTypes.object.isRequired,
   vendor: PropTypes.object.isRequired,
-  request: PropTypes.object.isRequired,
+  requests: PropTypes.array.isRequired,
   pickup: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   vendor: state.pickup.vendors,
-  request: state.pickup.request,
+  requests: state.pickup.request,
   pickup: state.pickup,
 });
 
