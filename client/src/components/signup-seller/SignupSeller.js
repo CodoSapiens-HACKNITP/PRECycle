@@ -8,7 +8,6 @@ import { registerSeller } from "../../actions/auth";
 import PropTypes from "prop-types";
 import GoogleLogin from "react-google-login";
 
-
 const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -30,7 +29,7 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
     pincode,
     firstline,
     landmark,
-    avatar
+    avatar,
   } = formData;
 
   const onSubmit = async (e) => {
@@ -53,14 +52,15 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
   //google login response
   const responseGoogle = (response) => {
     console.log(response);
-    setFormData({...formData, 
-                  name: response.profileObj.name, 
-                  email: response.profileObj.email,
-                  avatar: response.profileObj.imageUrl,
-                  password: response.profileObj.googleId,
-                  password2: response.profileObj.googleId
-                });
-      setAlert("Please enter your contact details!", "success")
+    setFormData({
+      ...formData,
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      avatar: response.profileObj.imageUrl,
+      password: response.profileObj.googleId,
+      password2: response.profileObj.googleId,
+    });
+    setAlert("Please enter your contact details!", "success");
   };
   const onChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -112,13 +112,13 @@ const Register = ({ setAlert, registerSeller, isAuthenticated }) => {
                 <strong>Sign up with</strong>
               </h2>
               <div className="buttonsignupSeller">
-              <GoogleLogin
-                clientId="266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com"
-                buttonText="Sign Up"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
+                <GoogleLogin
+                  clientId="266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com"
+                  buttonText="Sign Up"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
               </div>
             </div>
             {/* OR DIV */}

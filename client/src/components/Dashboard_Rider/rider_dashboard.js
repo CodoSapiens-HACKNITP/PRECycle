@@ -73,7 +73,12 @@ const RiderDashboard = ({
           <div>
             <hr></hr>
           </div>
-          <Update onMyWay={props.onMyWay} wasteCollected={props.wasteCollected} paidTheSeller={props.paidTheSeller} droppedAtVendors={props.droppedAtVendors}/>
+          <Update
+            onMyWay={props.onMyWay}
+            wasteCollected={props.wasteCollected}
+            paidTheSeller={props.paidTheSeller}
+            droppedAtVendors={props.droppedAtVendors}
+          />
           <Invoice />
         </Card.Body>
       </Card>
@@ -163,16 +168,40 @@ const RiderDashboard = ({
             <form method="post" classname={RDstyles.statusupdate}>
               <fieldset>
                 <legend>What is the status?</legend>
-                <input type="checkbox" name="status_update" value="" checked={props.onMyWay} disabled={props.onMyWay ?  "true": false} />
+                <input
+                  type="checkbox"
+                  name="status_update"
+                  value=""
+                  checked={props.onMyWay}
+                  disabled={props.onMyWay ? "true" : false}
+                />
                 On my Way
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.wasteCollected} disabled={props.wasteCollected ?  "true": false} />
+                <input
+                  type="checkbox"
+                  name="status_update"
+                  value=""
+                  checked={props.wasteCollected}
+                  disabled={props.wasteCollected ? "true" : false}
+                />
                 Waste collected
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.paidTheSeller} disabled={props.paidTheSeller ?  "true": false} />
+                <input
+                  type="checkbox"
+                  name="status_update"
+                  value=""
+                  checked={props.paidTheSeller}
+                  disabled={props.paidTheSeller ? "true" : false}
+                />
                 Paid the seller
                 <br />
-                <input type="checkbox" name="status_update" value="" checked={props.droppedAtVendors} disabled={props.droppedAtVendors ?  "true": false}/>
+                <input
+                  type="checkbox"
+                  name="status_update"
+                  value=""
+                  checked={props.droppedAtVendors}
+                  disabled={props.droppedAtVendors ? "true" : false}
+                />
                 Dropped at vendor's
                 <br />
               </fieldset>
@@ -296,10 +325,10 @@ const RiderDashboard = ({
                       WasteQuantity={
                         req.orderList.map((waste) => waste.qty) + " Kg"
                       }
-                      onMyWay = {req.onMyWay.status}
-                      wasteCollected = {req.wasteCollected.status}
-                      paidTheSeller = {req.paidTheSeller.status}
-                      droppedAtVendors = {req.droppedAtVendors.status}
+                      onMyWay={req.onMyWay.status}
+                      wasteCollected={req.wasteCollected.status}
+                      paidTheSeller={req.paidTheSeller.status}
+                      droppedAtVendors={req.droppedAtVendors.status}
                     />
                   );
                 })

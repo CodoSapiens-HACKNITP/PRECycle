@@ -40,7 +40,7 @@ router.post(
       pincode,
       firstline,
       landmark,
-      avatar
+      avatar,
     } = req.body;
 
     try {
@@ -76,7 +76,6 @@ router.post(
           .json({ errors: [{ msg: "seller already exists" }] });
       }
 
-
       //getting state and city details using pincode
       const response = await axios.get(
         `http://www.postalpincode.in/api/pincode/${pincode}`
@@ -96,7 +95,7 @@ router.post(
           pin: pincode,
         },
         typeofuser: "seller",
-        avatar
+        avatar,
       });
 
       if (firstline) seller.address.firstLine = firstline;

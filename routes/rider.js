@@ -202,11 +202,9 @@ router.put(
           if (order.wasteCollected.status) {
             order.paidTheSeller.status = true;
           } else {
-            return res
-              .status(200)
-              .json({
-                errors: [{ msg: "Waste Collected Status is required!" }],
-              });
+            return res.status(200).json({
+              errors: [{ msg: "Waste Collected Status is required!" }],
+            });
           }
         } else {
           return res

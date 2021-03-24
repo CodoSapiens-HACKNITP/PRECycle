@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import "./app1.css"
+import "./app1.css";
 import Header from "./components/Header/HeaderComponent";
 import Footer from "./components/Footer/FooterComponent";
 import Login from "./components/Login/LoginComponent";
@@ -23,7 +23,7 @@ import { RiderProfile } from "./components/RiderProfile/RiderProfile";
 import RateList from "./components/RateList/Rate_List";
 import { OrderHistory } from "./components/Vendor_OrderHistory/order_history";
 import { DeliveryHistory } from "./components/Rider_DeliveryHistory/delivery_history";
-import { PickupHistory } from "./components/Seller_PickupHistory/pickup_history";
+import  PickupHistory  from "./components/Seller_PickupHistory/pickup_history";
 import Faqs from "./components/Faqs/Faqs";
 import { VendorProfile } from "./components/VendorProfile/VendorProfile";
 import { TnC } from "./components/TnC/TnC";

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const StarRating = () => {
   const [rating, setRating] = useState(null);
@@ -41,15 +43,25 @@ function Footer(props) {
           <div className="col-4 offset-1 col-sm-2">
             <h5>Services</h5>
             <ul className="list-unstyled">
-              <li>
-                <Link to="/requestPickup">Request Pickup</Link>
-              </li>
-              <li>
-                <Link to="/signup/vendor">Join as Vendor</Link>
-              </li>
-              <li>
-                <Link to="/signup/rider">Join as Rider</Link>
-              </li>
+              {localStorage.typeofuser === "seller" ? (
+                <li>
+                  <Link to="/requestPickup">Request Pickup</Link>
+                </li>
+              ) : (
+                ""
+              )}
+              {!localStorage.token ? (
+                <div>
+                  <li>
+                    <Link to="/signup/vendor">Join as Vendor</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup/rider">Join as Rider</Link>
+                  </li>
+                </div>
+              ) : (
+                ""
+              )}
               <li>
                 <Link to="/contactus">Contact Us</Link>
               </li>

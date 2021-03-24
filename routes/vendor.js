@@ -144,4 +144,27 @@ router.put(
   }
 );
 
+//route     PUT /vendor/cancel/:orderid
+//desc:     Vendor Decline Order i.e cancel of order
+//access:   Private
+router.put("/cancel/:orderid", auth, async (req, res) => {
+  const orderid = req.params.orderid;
+  try {
+    let order = await Order.findById(orderid);
+    if (order.cancelled === false) {
+      order.cancelled = true;
+    } else {
+      return res.status(400).json({
+        msg: "The order is already cancelled by the user.",
+      });
+    }
+
+    await order.save();
+    res.json(order);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
 module.exports = router;

@@ -61,7 +61,7 @@ export const registerSeller = (
     pincode,
     landmark,
     firstline,
-    avatar
+    avatar,
   });
 
   try {

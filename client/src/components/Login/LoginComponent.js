@@ -12,25 +12,24 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     loginDetail: "",
     password: "",
-    typeOfUser: "seller",
+    typeOfUser: "",
   });
   const { loginDetail, password, typeOfUser } = formData;
-
 
   //google login response
   const responseGoogle = (response) => {
     console.log(response);
-    setFormData({typeOfUser: "seller",  loginDetail: response.profileObj.email, password: response.profileObj.googleId});
+    setFormData({
+      ...formData,
+      loginDetail: response.profileObj.email,
+      password: response.profileObj.googleId,
+    });
   };
 
   useEffect(() => {
-    login(loginDetail, password, typeOfUser)
-  }, [password])
+    login(loginDetail, password, typeOfUser);
+  }, [password]);
 
-  
-
-
-  
   localStorage.setItem("typeofuser", typeOfUser);
 
   const onChange = (e) =>
@@ -143,7 +142,6 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  
 });
 
 export default connect(mapStateToProps, { login })(Login);

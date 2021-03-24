@@ -154,4 +154,20 @@ router.get("/active/request", auth, async (req, res) => {
   }
 });
 
+//route     PUT seller/cancel/orderid
+//desc:     Cancel the made order
+//access:   Private
+router.put("/cancel/:orderid", auth, async (req, res) => {
+  const orderid = req.params.orderid;
+  try {
+    let order = await Order.findById(orderid);
+    order.cancelled = true;
+    await order.save();
+    res.status(200).json({ msg: "Order Cancelled Successfully!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("server error");
+  }
+});
+
 module.exports = router;

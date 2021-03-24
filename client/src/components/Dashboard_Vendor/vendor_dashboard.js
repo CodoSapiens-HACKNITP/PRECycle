@@ -195,70 +195,74 @@ const VendorDashboard = ({
               </div>
               {request.length > 0 ? (
                 request.map((requests) => {
-                  return (
-                    <Card classname={VDstyles.card_orders}>
-                      <Card.Body className={VDstyles.card_u}>
-                        <Card.Text>
-                          <Table>
-                            <tbody>
-                              <tr>
-                                <td>ORDER NO.</td>
-                                <td>{requests._id}</td>
-                              </tr>
-                              <tr>
-                                <td>SELLER'S NAME</td>
-                                <td>{requests.seller.name}</td>
-                              </tr>
-                              <tr>
-                                <td>RIDER'S NAME</td>
-                                <td>
-                                  {requests.riderDetail
-                                    ? requests.riderDetail.name
-                                    : "Rider Not Alloted"}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>SLOT</td>
-                                <td>
-                                  {<Moment>{requests.timeOfPickup}</Moment>}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>WASTE TYPE</td>
-                                <td>
-                                  {requests.orderList.map(
-                                    (waste) => waste.nameOfWaste
-                                  )}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>WASTE QUANTITY</td>
-                                <td>
-                                  {requests.orderList.map((waste) => waste.qty)}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </Table>
-                        </Card.Text>
-                        <div>
-                          <hr></hr>
-                        </div>
-                        <Button
-                          variant="success"
-                          className={VDstyles.vendor_accept}
-                          onClick={() => acceptOrder(requests._id)}
-                        >
-                          ACCEPT
-                        </Button>
-                        <Button
-                          variant="danger"
-                          className={VDstyles.vendor_decline}
-                        >
-                          DECLINE
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  );
+                  if (!requests.cancelled) {
+                    return (
+                      <Card classname={VDstyles.card_orders}>
+                        <Card.Body className={VDstyles.card_u}>
+                          <Card.Text>
+                            <Table>
+                              <tbody>
+                                <tr>
+                                  <td>ORDER NO.</td>
+                                  <td>{requests._id}</td>
+                                </tr>
+                                <tr>
+                                  <td>SELLER'S NAME</td>
+                                  <td>{requests.seller.name}</td>
+                                </tr>
+                                <tr>
+                                  <td>RIDER'S NAME</td>
+                                  <td>
+                                    {requests.riderDetail
+                                      ? requests.riderDetail.name
+                                      : "Rider Not Alloted"}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>SLOT</td>
+                                  <td>
+                                    {<Moment>{requests.timeOfPickup}</Moment>}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>WASTE TYPE</td>
+                                  <td>
+                                    {requests.orderList.map(
+                                      (waste) => waste.nameOfWaste
+                                    )}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>WASTE QUANTITY</td>
+                                  <td>
+                                    {requests.orderList.map(
+                                      (waste) => waste.qty
+                                    )}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </Table>
+                          </Card.Text>
+                          <div>
+                            <hr></hr>
+                          </div>
+                          <Button
+                            variant="success"
+                            className={VDstyles.vendor_accept}
+                            onClick={() => acceptOrder(requests._id)}
+                          >
+                            ACCEPT
+                          </Button>
+                          <Button
+                            variant="danger"
+                            className={VDstyles.vendor_decline}
+                          >
+                            DECLINE
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    );
+                  }
                 })
               ) : (
                 <h3>No Upcoming Request!</h3>

@@ -4,8 +4,10 @@ import PHstyles from "./pickup_history.module.css";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import seller_ic from "./seller.jpg";
+import {connect} from 'react-redux';
+import Moment from 'react-moment'
 
-export const PickupHistory = () => {
+const PickupHistory = ({requests, user}) => {
   function PickupDetails(props) {
     return (
       <tr>
@@ -13,6 +15,7 @@ export const PickupHistory = () => {
         <td>{props.Slot}</td>
         <td>{props.VendorName}</td>
         <td>{props.Review}</td>
+        <td>{props.Status}</td>
         <td className={PHstyles.invoice}>{props.Invoice}</td>
       </tr>
     );
@@ -25,14 +28,14 @@ export const PickupHistory = () => {
           {/* GRADIENT BAR */}
           <div className="seller-image">
             <img
-              src={seller_ic}
+              src={user ? user.avatar : seller_ic}
               alt="profile_img"
               className={PHstyles.seller_img}
             ></img>
             {/* SELLER IMAGE */}
           </div>
           <div className={PHstyles.seller_greeting_text}>
-            <h2>Hi, David Warner!</h2>
+            <h2>{user ? user.name : "" }</h2>
             {/* GREET SELLER */}
           </div>
         </div>
@@ -50,12 +53,27 @@ export const PickupHistory = () => {
                   <th>SLOT</th>
                   <th>VENDOR NAME</th>
                   <th>REVIEW</th>
+                  <th>Status</th>
                   <th>INVOICE</th>
                 </tr>
               </thead>
 
               <tbody>
-                <PickupDetails
+                {requests.map((request) => {
+                  if(request.cancelled || request.completed){
+                    return (
+                      <PickupDetails
+                        OrderNo={request._id}
+                        Slot={<Moment>{request.timeOfPickup}</Moment>}
+                        VendorName={request.vendorDetail.name}
+                        Review={"Good"}
+                        Status={request.cancelled ? ("Cancelled") : ("Completed")}
+                        Invoice={"1234Amy.pdf"}
+                        />
+                    )
+                  }
+                })}
+                {/* <PickupDetails
                   OrderNo="#1234"
                   Slot="16/01/2021 19:00"
                   VendorName="ABC Recyclers"
@@ -77,7 +95,7 @@ export const PickupHistory = () => {
                   VendorName="GHJ Recyclers"
                   Review="Could be better"
                   Invoice="1357Charles.pdf"
-                />
+                /> */}
               </tbody>
             </Table>
           </div>
@@ -92,3 +110,10 @@ export const PickupHistory = () => {
     </div>
   );
 };
+
+const mapStateToProps =(state) => ({
+  requests: state.pickup.request,
+  user: state.auth.user
+})
+
+export default connect(mapStateToProps, {})(PickupHistory);

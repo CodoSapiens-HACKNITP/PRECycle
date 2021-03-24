@@ -18,7 +18,7 @@ const SellerDashboard1 = ({
 }) => {
   useEffect(() => {
     loadNearbyVendors(localStorage.pincode, localStorage.city);
-  }, [auth.isAuthenticated]);
+  }, [user]);
   function Vendors(props) {
     return (
       <div className="vendor-list">

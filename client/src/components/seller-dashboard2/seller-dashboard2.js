@@ -21,6 +21,7 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
   var wasteCollected = "";
   var paidTheSeller = "";
   var droppedAtVendors = "";
+  var cancelled = "";
   useEffect(() => {
     vendorDetail = request[0] !== undefined ? request[0].vendorDetail.name : "";
   }, [pickup, request]);
@@ -52,6 +53,7 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
       vendorAccepted = request[0].vendorAccepted;
     if (request[0].orderAccepted !== undefined)
       orderAccepted = request[0].orderAccepted.status;
+    if (request[0].cancelled !== undefined) cancelled = request[0].cancelled;
     if (request[0].onMyWay !== undefined) onMyWay = request[0].onMyWay.status;
     if (request[0].droppedAtVendors !== undefined)
       droppedAtVendors = request[0].droppedAtVendors.status;
@@ -137,40 +139,58 @@ const SellerDashboard2 = ({ user, request, pickup }) => {
         </div>
         <hr className="division1" />
         {/* STATUS UPDATES SECTION */}
-        <div className="status-container">
-          <h3 className="current-text"> Status Updates</h3>
-          <div className="status-container-flex">
-            <div className="status-container-flex-box">
-              {vendorAccepted ? (
-                <StatusUpdates status="Approved by vendor" />
-              ) : (
-                ""
-              )}
+        {vendorAccepted ? (
+          <div className="status-container">
+            <h3 className="current-text"> Status Updates</h3>
+            <div className="status-container-flex">
+              <div className="status-container-flex-box">
+                {vendorAccepted ? (
+                  <StatusUpdates status="Approved by vendor" />
+                ) : (
+                  ""
+                )}
 
-              {orderAccepted ? (
-                <StatusUpdates status="Approved by rider" />
-              ) : (
-                ""
-              )}
-              {onMyWay ? <StatusUpdates status="Rider on way" /> : ""}
+                {orderAccepted ? (
+                  <StatusUpdates status="Approved by rider" />
+                ) : (
+                  ""
+                )}
+                {onMyWay ? <StatusUpdates status="Rider on way" /> : ""}
+              </div>
+              <div className="status-container-flex-box">
+                {wasteCollected ? (
+                  <StatusUpdates status="Waste collected" />
+                ) : (
+                  ""
+                )}
+                {paidTheSeller ? (
+                  <StatusUpdates status="Recieved Payment" />
+                ) : (
+                  ""
+                )}
+                {droppedAtVendors ? (
+                  <StatusUpdates status="Dropped at vendor" />
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-            <div className="status-container-flex-box">
-              {wasteCollected ? <StatusUpdates status="Waste collected" /> : ""}
-              {paidTheSeller ? <StatusUpdates status="Recieved Payment" /> : ""}
-              {droppedAtVendors ? (
-                <StatusUpdates status="Dropped at vendor" />
-              ) : (
-                ""
-              )}
-            </div>
+            <hr className="division1" />
           </div>
-        </div>
-        <hr className="division1" />
+        ) : (
+          ""
+        )}
+
         {/* PICKUP HISTORY SECTION */}
         <Link to="/history/pickup">
           <Button variant="primary" className="pickup-button">
             <span className="request-text">Pickup History</span>
           </Button>{" "}
+        </Link>
+        <Link to="/cancel">
+          <Button variant="danger" className="pickup-button">
+            <span className="request-text">Cancel The Pickup Request!</span>
+          </Button>
         </Link>
       </div>
     </div>
