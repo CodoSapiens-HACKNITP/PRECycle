@@ -11,7 +11,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 //define routes
-app.use("/feedback", require("./routes/feedback"))
+app.use("/feedback", require("./routes/feedback"));
 app.use("/users", require("./routes/users"));
 app.use("/auth", require("./routes/auth"));
 app.use("/seller", require("./routes/seller"));

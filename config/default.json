@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://rich:12345@precycle.a2uns.mongodb.net/PRECycle?retryWrites=true&w=majority",
+  "mongoURI": "mongodb://localhost:27017/precycle",
   "JWTsecret": "my secret token"
 }
