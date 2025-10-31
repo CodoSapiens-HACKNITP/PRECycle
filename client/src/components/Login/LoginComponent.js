@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import GoogleLogin from "react-google-login";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
@@ -47,12 +47,12 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   }
 
   return (
-    <div className="signup-Rider">
+    <div className='signup-Rider'>
       {/* GOOGLE FONTS */}
 
       {/* MAIN CONTENT SECTION */}
 
-      <div className="flex-container-rider">
+      <div className='flex-container-rider'>
         {/* WELCOME TO PRECYCLE SECTION */}
 
         <div className={styles.SignIN}>
@@ -67,7 +67,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
         {/* SIGNIN SECTION */}
 
         <div className={styles.flexRight}>
-          <div className="content">
+          <div className='content'>
             <h2 className={styles.form_h2}>
               <center>SIGN IN</center>
             </h2>
@@ -77,33 +77,33 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
               className={styles.form_component}
             >
               <input
-                type="text"
-                id="loginDetail"
-                name="loginDetail"
-                placeholder="Email / Phone Number"
+                type='text'
+                id='loginDetail'
+                name='loginDetail'
+                placeholder='Email / Phone Number'
                 onChange={(e) => onChange(e)}
                 value={loginDetail}
                 required
               ></input>
 
               <input
-                type="password"
-                name="password"
-                placeholder="Password"
+                type='password'
+                name='password'
+                placeholder='Password'
                 onChange={(e) => onChange(e)}
                 value={password}
                 required
               ></input>
               <select
-                name="typeOfUser"
+                name='typeOfUser'
                 value={typeOfUser}
                 className={styles.select}
                 onChange={(e) => onChange(e)}
               >
                 <option>*Select Type of User!</option>
-                <option value="seller">Seller</option>
-                <option value="rider">Rider</option>
-                <option value="vendor">Vendor</option>
+                <option value='seller'>Seller</option>
+                <option value='rider'>Rider</option>
+                <option value='vendor'>Vendor</option>
               </select>
 
               <button className={styles.signin_btn}>Sign In</button>
@@ -111,17 +111,14 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
             <center>
               <p className={styles.or}>or</p>
               <GoogleLogin
-                clientId="266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com"
-                buttonText="Login"
                 onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
+                onError={responseGoogle}
               />
               ,
               <h4 className={styles.form_h4}>
                 {" "}
                 New User?{" "}
-                <Link to="/signup/seller" className={styles.form_link}>
+                <Link to='/signup/seller' className={styles.form_link}>
                   {" "}
                   Sign Up Here
                 </Link>
@@ -224,12 +221,9 @@ const Login = ({ login, isAuthenticated }) => {
             </form>
             <p className={styles.or}>or</p>
             <GoogleLogin
-              clientId="266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com"
-              buttonText="Login"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />,
+              onError={responseGoogle}
+            />
             <h4 className={styles.form_h4}>
               {" "}
               New User?{" "}

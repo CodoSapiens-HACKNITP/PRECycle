@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./App.css";
 import "./app1.css";
 import Header from "./components/Header/HeaderComponent";
@@ -44,95 +45,100 @@ function App() {
   });
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <Alert />
-          <Switch>
-            <Route exact path="/home" component={() => <Home />} />
-            <Route exact path="/contactus" component={() => <Contact />} />
-            <Route exact path="/aboutus" component={() => <About />} />
-            <Route exact path="/login" component={() => <Login />} />
-            <Route exact path="/signup/seller" component={() => <Register />} />
-            <Route
-              exact
-              path="/signup/rider"
-              component={() => <SignupRider />}
-            />
-            <Route
-              exact
-              path="/signup/vendor"
-              component={() => <SignupVendor />}
-            />
-            <PrivateRoute
-              exact
-              path="/dashboard/seller"
-              component={() => <SellerDashboard1 />}
-            />
-            <PrivateRoute
-              exact
-              path="/sellerDashboardProgress"
-              component={() => <SellerDashboard2 />}
-            />
-            <PrivateRoute
-              exact
-              path="/dashboard/rider"
-              component={() => <RiderDashboard />}
-            />
-            <PrivateRoute
-              exact
-              path="/dashboard/vendor"
-              component={() => <VendorDashboard />}
-            />
-            <PrivateRoute
-              exact
-              path="/history/order"
-              component={() => <OrderHistory />}
-            />
-            <PrivateRoute
-              exact
-              path="/history/delivery"
-              component={() => <DeliveryHistory />}
-            />
-            <PrivateRoute
-              exact
-              path="/history/pickup"
-              component={() => <PickupHistory />}
-            />
-            <Route exact path="/faqs" component={() => <Faqs />} />
-            <Route exact path="/tnc" component={() => <TnC />} />
-            <PrivateRoute
-              exact
-              path="/requestPickup"
-              component={() => <RequestPickup />}
-            />
-            <PrivateRoute
-              exact
-              path="/ratelist"
-              component={() => <RateList />}
-            />
+      <GoogleOAuthProvider clientId='266262352024-950s3j5a29gddj75l9oujmckk8u7rfub.apps.googleusercontent.com'>
+        <BrowserRouter>
+          <div className='App'>
+            <Header />
+            <Alert />
+            <Switch>
+              <Route exact path='/home' component={() => <Home />} />
+              <Route exact path='/contactus' component={() => <Contact />} />
+              <Route exact path='/aboutus' component={() => <About />} />
+              <Route exact path='/login' component={() => <Login />} />
+              <Route
+                exact
+                path='/signup/seller'
+                component={() => <Register />}
+              />
+              <Route
+                exact
+                path='/signup/rider'
+                component={() => <SignupRider />}
+              />
+              <Route
+                exact
+                path='/signup/vendor'
+                component={() => <SignupVendor />}
+              />
+              <PrivateRoute
+                exact
+                path='/dashboard/seller'
+                component={() => <SellerDashboard1 />}
+              />
+              <PrivateRoute
+                exact
+                path='/sellerDashboardProgress'
+                component={() => <SellerDashboard2 />}
+              />
+              <PrivateRoute
+                exact
+                path='/dashboard/rider'
+                component={() => <RiderDashboard />}
+              />
+              <PrivateRoute
+                exact
+                path='/dashboard/vendor'
+                component={() => <VendorDashboard />}
+              />
+              <PrivateRoute
+                exact
+                path='/history/order'
+                component={() => <OrderHistory />}
+              />
+              <PrivateRoute
+                exact
+                path='/history/delivery'
+                component={() => <DeliveryHistory />}
+              />
+              <PrivateRoute
+                exact
+                path='/history/pickup'
+                component={() => <PickupHistory />}
+              />
+              <Route exact path='/faqs' component={() => <Faqs />} />
+              <Route exact path='/tnc' component={() => <TnC />} />
+              <PrivateRoute
+                exact
+                path='/requestPickup'
+                component={() => <RequestPickup />}
+              />
+              <PrivateRoute
+                exact
+                path='/ratelist'
+                component={() => <RateList />}
+              />
+              <PrivateRoute
+                exact
+                path='/profile/rider'
+                component={() => <RiderProfile />}
+              />
+              <PrivateRoute
+                exact
+                path='/profile/seller'
+                component={() => <SellerProfile />}
+              />
+              <PrivateRoute
+                exact
+                path='/profile/vendor'
+                component={() => <VendorProfile />}
+              />
+              <Redirect to='/home' />
+            </Switch>
 
-            <PrivateRoute
-              exact
-              path="/profile/rider"
-              component={() => <RiderProfile />}
-            />
-            <PrivateRoute
-              exact
-              path="/profile/seller"
-              component={() => <SellerProfile />}
-            />
-            <PrivateRoute
-              exact
-              path="/profile/vendor"
-              component={() => <VendorProfile />}
-            />
-            <Redirect to="/home" />
-          </Switch>
-
-          <Footer />
-        </div>
-      </BrowserRouter>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     </Provider>
   );
 }
